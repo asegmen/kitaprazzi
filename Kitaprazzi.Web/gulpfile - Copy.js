@@ -20,7 +20,7 @@ gulp.task('styles', function () {
             includePaths: ['scss'].concat()
         }))
         .pipe(minifyCss({keepBreaks : true}))
-        .pipe(concat('zathura.css'))
+        .pipe(concat('kitaprazzi.css'))
         .pipe(gulp.dest(cssTarget));
 });
 
@@ -28,7 +28,7 @@ gulp.task('styles', function () {
 gulp.task('scripts', function () {
     gulp.src(jsSource + '/*.js')
         .pipe(uglify())
-        .pipe(concat('zathura.js'))
+        .pipe(concat('kitaprazzi.js'))
         .pipe(gulp.dest(jsTarget));
 });
 

@@ -177,7 +177,7 @@
                 min-height: unset;
                 padding: 0;
                 position: static;
-                transtion: all .2s linear;
+                transition: all .2s linear; 
 
                 &.opened {
                     display: block;
@@ -615,21 +615,29 @@
 footer {
     background: $color-nevada;
     color: $color-white;
-    padding-bottom: 25px;
-    padding-top: 25px;
     text-align: center;
 
     .copyright {
         margin-bottom: 10px;
-        @include media(tablet){
-            text-align:left;
+
+        @include media(tablet) {
+            text-align: left;
         }
     }
 
     .social {
-        @include media(tablet){
-            float:right;
+        @include media(tablet) {
+            padding: 10px 0;
         }
+
+        &box {
+            margin-top: 30px;
+
+            @include media(tablet) {
+                margin: 0;
+            }
+        }
+
         &-item {
             display: inline-block;
 
@@ -639,7 +647,16 @@ footer {
 
                 i {
                     color: $color-white;
-                    font-size: 18px;
+                    font-size: 20px;
+                    padding: 5px;
+
+                    &[class*="facebook"] {
+                        background: $color-facebook;
+                    }
+
+                    &[class*="instagram"] {
+                        background: $color-instagram;
+                    }
                 }
 
                 :hover {
@@ -650,6 +667,70 @@ footer {
                     i[class*="instagram"] {
                         color: $color-instagram;
                     }
+                }
+            }
+        }
+    }
+
+    .footer-bottom {
+        background: $color-nevada;
+        padding-bottom: 25px;
+        padding-top: 25px;
+    }
+
+    .footer-top {
+        background: #111;
+        padding-bottom: 25px;
+        padding-top: 25px;
+    }
+
+    .box {
+        text-align: center;
+
+        @include media(tablet) {
+            text-align: left;
+        }
+
+        &-title {
+            font-weight: $fw-bold;
+            margin-bottom: 15px;
+        }
+
+        &-text {
+            font: 400 11px/15px $font2;
+            margin-bottom: 10px;
+        }
+
+        .newsletter-wrapper {
+            background: $color-white;
+            display: block;
+            height: 50px;
+            padding: 10px 40px 10px 15px;
+            position: relative;
+            width: 100%;
+
+            input {
+                background: transparent;
+                border: none;
+                height: 100%;
+                line-height: 100%;
+                text-align: left;
+                width: 100%;
+            }
+
+            .subscribe {
+                background: $color-supernova;
+                height: 30px;
+                position: absolute;
+                right: 10px;
+                text-align: center;
+                top: 10px;
+                width: 30px;
+
+                i {
+                    color: $color-white;
+                    font-size: 18px;
+                    line-height: 30px;
                 }
             }
         }
