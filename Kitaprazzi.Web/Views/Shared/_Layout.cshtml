@@ -11,8 +11,13 @@
     <link rel="stylesheet" href="~/Assets/dist/css/zathura.css" />
 </head>
 <body>
+    @{
+        Html.RenderPartial("~/Views/_Partial/_Header.cshtml");
+    }
+    @RenderBody()
+    @{
+        Html.RenderPartial("~/Views/_Partial/_Footer.cshtml");
 
-        @RenderBody()
-
+    }
 </body>
 </html>
