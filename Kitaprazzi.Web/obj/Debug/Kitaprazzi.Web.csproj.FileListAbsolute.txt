@@ -68,3 +68,4 @@ C:\@Projects\Kitaprazzi\Kitaprazzi\Kitaprazzi.Web\obj\Debug\Kitaprazzi.Web.cspro
 C:\@Projects\Kitaprazzi\Kitaprazzi\Kitaprazzi.Web\obj\Debug\Kitaprazzi.Web.csproj.CopyComplete
 C:\@Projects\Kitaprazzi\Kitaprazzi\Kitaprazzi.Web\obj\Debug\Kitaprazzi.Web.dll
 C:\@Projects\Kitaprazzi\Kitaprazzi\Kitaprazzi.Web\obj\Debug\Kitaprazzi.Web.pdb
+C:\@Projects\Kitaprazzi\Kitaprazzi\Kitaprazzi.Web\obj\Debug\Kitaprazzi.Web.csprojAssemblyReference.cache
