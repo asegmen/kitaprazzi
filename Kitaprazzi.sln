@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitaprazzi.Web", "Kitaprazzi.Web\Kitaprazzi.Web.csproj", "{4126B912-B366-4A6E-B640-1422D060CE70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitaprazzi.Data", "Kitaprazzi.Data\Kitaprazzi.Data.csproj", "{1860C30F-2565-4480-9D78-B16B25656637}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4126B912-B366-4A6E-B640-1422D060CE70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4126B912-B366-4A6E-B640-1422D060CE70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4126B912-B366-4A6E-B640-1422D060CE70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1860C30F-2565-4480-9D78-B16B25656637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1860C30F-2565-4480-9D78-B16B25656637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1860C30F-2565-4480-9D78-B16B25656637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1860C30F-2565-4480-9D78-B16B25656637}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
