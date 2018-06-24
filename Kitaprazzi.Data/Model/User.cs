@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-
 namespace Kitaprazzi.Data.Model
 {
     public class User: BaseEntity
@@ -24,7 +23,7 @@ namespace Kitaprazzi.Data.Model
         [Required]
         public string Password { get; set; }
 
-        public Role Role { get; set; }
+        public virtual Role Role { get; set; }
 
     }
 }

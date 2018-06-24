@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Kitaprazzi.Data.Model
@@ -21,7 +22,7 @@ namespace Kitaprazzi.Data.Model
             get { return _updateDate; }
             set { _updateDate = value; }
         }
-
+        [Display(Name ="Aktif / Pasif Durumu")]
         public bool Status{ get; set; }
     }
 }

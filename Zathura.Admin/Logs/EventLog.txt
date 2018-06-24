@@ -1,0 +1,2 @@
+09:18:43,317 ERROR LogHelper:83 - Log eklendi
+09:20:37,063 ERROR LogHelper:83 - Log eklendi

@@ -52,6 +52,14 @@
     <Compile Include="Migrations\201806130949554_Kitaprazzi_V1.Designer.cs">
       <DependentUpon>201806130949554_Kitaprazzi_V1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806231213589_KitaprazziV2.cs" />
+    <Compile Include="Migrations\201806231213589_KitaprazziV2.Designer.cs">
+      <DependentUpon>201806231213589_KitaprazziV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806231227309_Kitaprazzi_V3.cs" />
+    <Compile Include="Migrations\201806231227309_Kitaprazzi_V3.Designer.cs">
+      <DependentUpon>201806231227309_Kitaprazzi_V3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BaseEntity.cs" />
     <Compile Include="Model\Category.cs" />
@@ -62,6 +70,7 @@
     <Compile Include="Model\MediaItem.cs" />
     <Compile Include="Model\Publisher.cs" />
     <Compile Include="Model\Role.cs" />
+    <Compile Include="Model\SystemSetting.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,6 +82,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201806130949554_Kitaprazzi_V1.resx">
       <DependentUpon>201806130949554_Kitaprazzi_V1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806231213589_KitaprazziV2.resx">
+      <DependentUpon>201806231213589_KitaprazziV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806231227309_Kitaprazzi_V3.resx">
+      <DependentUpon>201806231227309_Kitaprazzi_V3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
