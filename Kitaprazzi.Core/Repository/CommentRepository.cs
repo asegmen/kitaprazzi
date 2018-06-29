@@ -17,47 +17,51 @@ namespace Kitaprazzi.Core.Repository
 
         public int Count()
         {
-            throw new NotImplementedException();
+            return _context.Comments.Count();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var item = GetById(id);
+            if (item != null)
+            {
+                _context.Comments.Remove(item);
+            }
         }
 
         public Comment Get(Expression<Func<Comment, bool>> expression)
         {
-            throw new NotImplementedException();
+            return _context.Comments.FirstOrDefault(expression);
         }
 
         public IEnumerable<Comment> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Comments.Select(x => x);
         }
 
         public Comment GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Comments.FirstOrDefault(x => x.ID == id);
         }
 
         public IQueryable<Comment> GetMany(Expression<Func<Comment, bool>> expression)
         {
-            throw new NotImplementedException();
+            return _context.Comments.Where(expression);
         }
 
         public void Insert(Comment obj)
         {
-            throw new NotImplementedException();
+            _context.Comments.Add(obj);
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
 
         public void Update(Comment obj)
         {
-            throw new NotImplementedException();
+            _context.Comments.AddOrUpdate(obj);
         }
     }
 }

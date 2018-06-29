@@ -17,47 +17,51 @@ namespace Kitaprazzi.Core.Repository
 
         public int Count()
         {
-            throw new NotImplementedException();
+            return _context.MediaItems.Count();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var item = GetById(id);
+            if (item != null)
+            {
+                _context.MediaItems.Remove(item);
+            }
         }
 
         public MediaItem Get(Expression<Func<MediaItem, bool>> expression)
         {
-            throw new NotImplementedException();
+            return _context.MediaItems.FirstOrDefault(expression);
         }
 
         public IEnumerable<MediaItem> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.MediaItems.Select(x => x);
         }
 
         public MediaItem GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.MediaItems.FirstOrDefault(x => x.ID == id);
         }
 
         public IQueryable<MediaItem> GetMany(Expression<Func<MediaItem, bool>> expression)
         {
-            throw new NotImplementedException();
+            return _context.MediaItems.Where(expression);
         }
 
         public void Insert(MediaItem obj)
         {
-            throw new NotImplementedException();
+            _context.MediaItems.Add(obj);
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
 
         public void Update(MediaItem obj)
         {
-            throw new NotImplementedException();
+            _context.MediaItems.AddOrUpdate(obj);
         }
     }
 }

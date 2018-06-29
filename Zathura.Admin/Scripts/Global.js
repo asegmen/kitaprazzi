@@ -3,7 +3,7 @@
     category.Name = $("#categoryName").val();
     category.Url = $("#categoryUrl").val();
     category.Status = $("#status").val() ? $("#status").val() : 0;
-    category.ParentCategoryId = $("#ParentCategoryId").val();
+    category.CategoryID = $("#categoryID").val();
 
     $.ajax({
         url: "/category/add",
@@ -59,7 +59,7 @@ function UpdateCategory() {
     category.Name = $("#categoryName").val();
     category.Url = $("#categoryUrl").val();
     category.Status = $("#status").val() ? $("#status").val() : 0;
-    category.ParentCategoryId = $("#ParentCategoryId").val();
+    category.CategoryID = $("#categoryID").val();
     category.ID = $("#ID").val();
 
     $.ajax({

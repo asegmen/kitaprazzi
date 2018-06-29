@@ -53,7 +53,7 @@ namespace Zathura.Admin.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            var parentCatList = _categoryRepository.GetMany(x => x.Status && x.CategoryID == 0 && x.Status).ToList();//(x => x.ParentCategoryId == 0 && x.Status)
+            var parentCatList = _categoryRepository.GetMany(x => x.Status == (int)Status.Active && x.CategoryID == 0).ToList();//(x => x.ParentCategoryId == 0 && x.Status)
             ViewBag.ParentCategoryList = parentCatList;
             var systemSettingsList = _systemSettingRepository.GetMany(x => x.Key == "Status").ToList();
             ViewBag.StatusList = systemSettingsList;
@@ -65,20 +65,20 @@ namespace Zathura.Admin.Controllers
         {
             try
             {
-                //_categoryRepository.Insert(category);
-                //_categoryRepository.Save();
-                //return Json(new ResultJson() { Success = true, Message = "Category Added Successfully." });
-                var user = Session["User"] as User;
-                if (user != null)
-                {
-                    var usr = new User();
-                    usr = user;
-                    category.User = usr;
-                    _categoryRepository.Insert(category);
-                    _categoryRepository.Save();
-                    return Json(new ResultJson() { Success = true, Message = "Category Added Successfully." });
-                }
-                return Json(new ResultJson { Success = false, Message = "Category couldnt added!!!" });
+                _categoryRepository.Insert(category);
+                _categoryRepository.Save();
+                return Json(new ResultJson() { Success = true, Message = "Category Added Successfully." });
+                //var user = Session["User"] as User;
+                //if (user != null)
+                //{
+                //    var usr = new User();
+                //    usr = user;
+                //    category.User = usr;
+                //    _categoryRepository.Insert(category);
+                //    _categoryRepository.Save();
+                //    return Json(new ResultJson() { Success = true, Message = "Category Added Successfully." });
+                //}
+                //return Json(new ResultJson { Success = false, Message = "Category couldnt added!!!" });
 
             }
             catch (Exception ex)
@@ -98,7 +98,7 @@ namespace Zathura.Admin.Controllers
             {
                 throw new Exception("Category couldn't found!");
             }
-            var parentCatList = _categoryRepository.GetAll(); //GetMany(x => x.ParentCategoryId == 0 && x.Status == Status.Active).ToList();
+            var parentCatList = _categoryRepository.GetMany(x => x.CategoryID == 0 && x.Status == (int)Status.Active).ToList();
             ViewBag.ParentCategoryList = parentCatList;
             var systemSettingsList = _systemSettingRepository.GetMany(x => x.Key == "Status").ToList();
             ViewBag.StatusList = systemSettingsList;
@@ -109,17 +109,21 @@ namespace Zathura.Admin.Controllers
         [LoginFilter]
         public JsonResult Update(Category category)
         {
-            //if (ModelState.IsValid)
-            //{
+            try
+            {
                 var categoryItem = _categoryRepository.GetById(category.ID);
                 categoryItem.Status = category.Status;
                 categoryItem.Name = category.Name;
-                //categoryItem.ParentCategoryId = category.ParentCategoryId;
+                categoryItem.CategoryID = category.CategoryID;
                 categoryItem.Url = category.Url;
                 _categoryRepository.Save();
-                return Json(new ResultJson {Success = true, Message = "Category updated successfully."});
-            //}
-            //return Json(new ResultJson { Success = false, Message = "Category couldn't updated!" });
+                return Json(new ResultJson { Success = true, Message = "Category updated successfully." });
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultJson { Success = false, Message = "Category couldnt added!!!", ExceptionMessage = ex.Message, ExStackTrace = ex.StackTrace });
+            }
+
         }
 
         #endregion
@@ -127,14 +131,22 @@ namespace Zathura.Admin.Controllers
         #region Delete Category
         public ActionResult Delete(int id)
         {
-            var category = _categoryRepository.GetById(id);
-            if (category == null)
+            try
             {
-                return Json(new ResultJson { Success = false, Message = "Category couldn't found!" });
+                var category = _categoryRepository.GetById(id);
+                if (category == null)
+                {
+                    return Json(new ResultJson { Success = false, Message = "Category couldn't found!" });
+                }
+                _categoryRepository.Delete(id);
+                _categoryRepository.Save();
+                return Json(new ResultJson { Success = true, Message = "Category deleted successfully..." });
             }
-            _categoryRepository.Delete(id);
-            _categoryRepository.Save();
-            return Json(new ResultJson { Success = true, Message = "Category deleted successfully..." });
+            catch (Exception ex)
+            {
+                return Json(new ResultJson { Success = false, Message = "Category couldnt added!!!", ExceptionMessage = ex.Message, ExStackTrace = ex.StackTrace });
+            }
+            
         }
         #endregion
 

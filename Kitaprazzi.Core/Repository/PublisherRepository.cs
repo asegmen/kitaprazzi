@@ -17,47 +17,51 @@ namespace Kitaprazzi.Core.Repository
 
         public int Count()
         {
-            throw new NotImplementedException();
+            return _context.Publishers.Count();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var item = GetById(id);
+            if (item != null)
+            {
+                _context.Publishers.Remove(item);
+            }
         }
 
         public Publisher Get(Expression<Func<Publisher, bool>> expression)
         {
-            throw new NotImplementedException();
+            return _context.Publishers.FirstOrDefault(expression);
         }
 
         public IEnumerable<Publisher> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Publishers.Select(x => x);
         }
 
         public Publisher GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Publishers.FirstOrDefault(x => x.ID == id);
         }
 
         public IQueryable<Publisher> GetMany(Expression<Func<Publisher, bool>> expression)
         {
-            throw new NotImplementedException();
+            return _context.Publishers.Where(expression);
         }
 
         public void Insert(Publisher obj)
         {
-            throw new NotImplementedException();
+            _context.Publishers.Add(obj);
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
 
         public void Update(Publisher obj)
         {
-            throw new NotImplementedException();
+            _context.Publishers.AddOrUpdate(obj);
         }
     }
 }

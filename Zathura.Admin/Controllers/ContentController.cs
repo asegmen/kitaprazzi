@@ -1,5 +1,7 @@
-﻿using Kitaprazzi.Core.Infrastructure;
+﻿using Kitaprazzi.Core.Helper;
+using Kitaprazzi.Core.Infrastructure;
 using Kitaprazzi.Data.Model;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,8 @@ namespace Zathura.Admin.Controllers
 {
     public class ContentController : Controller
     {
+        private const int PagingCount = 30;
+
         #region Repositories
         private readonly IContentRepository _contentRepository;
         private readonly ICategoryRepository _categoryRepository;
@@ -29,9 +33,9 @@ namespace Zathura.Admin.Controllers
         }
         #endregion
 
-        public ActionResult Index()
+        public ActionResult Index(int p = 1)
         {
-            return View();
+            return View(_contentRepository.GetAll().OrderByDescending(x => x.ID).ToPagedList(p, PagingCount));
         }
 
         [HttpGet]
@@ -51,8 +55,8 @@ namespace Zathura.Admin.Controllers
             {
                 //var user = _userRepository.GetById(Convert.ToInt32(userSession.ID));
                 //content.UserID = user.ID;
-                //content.CategoryID = CategoryID;
-                //content.StartDate = DateTime.Now;
+                content.CategoryID = CategoryID;
+                content.StartDate = DateTime.Now;
                 //if (spotImage != null)
                 //{
                 //    string fileName = Guid.NewGuid().ToString().Replace("-", "");
@@ -61,32 +65,32 @@ namespace Zathura.Admin.Controllers
                 //    Request.Files[0].SaveAs(Server.MapPath(fullPath));
                 //    content.MediaItems = fullPath;
                 //}
-                //_contentRepository.Insert(content);
-                //_contentRepository.Save();
-                ////get inserted content id and save images if contentImages not null
-                //string mediaList = System.IO.Path.GetExtension(Request.Files[1].FileName);
-                //if (contentImages != null)
-                //{
-                //    foreach (var file in contentImages)
-                //    {
-                //        if (file.ContentLength > 0)
-                //        {
-                //            string fileName = Guid.NewGuid().ToString().Replace("-", "");
-                //            string extension = System.IO.Path.GetExtension(Request.Files[1].FileName);
-                //            string fullPath = "/external/content/" + fileName + extension;
-                //            file.SaveAs(Server.MapPath(fullPath));
+                _contentRepository.Insert(content);
+                _contentRepository.Save();
+                //get inserted content id and save images if contentImages not null
+                string mediaList = System.IO.Path.GetExtension(Request.Files[1].FileName);
+                if (contentImages != null)
+                {
+                    foreach (var file in contentImages)
+                    {
+                        if (file.ContentLength > 0)
+                        {
+                            string fileName = Guid.NewGuid().ToString().Replace("-", "");
+                            string extension = System.IO.Path.GetExtension(Request.Files[1].FileName);
+                            string fullPath = "/external/content/" + fileName + extension;
+                            file.SaveAs(Server.MapPath(fullPath));
 
-                //            var media = new MediaItem
-                //            {
-                //                Url = fullPath
-                //            };
+                            var media = new MediaItem
+                            {
+                                Url = fullPath
+                            };
 
-                //            media.Content.ID = content.ID;
-                //            _mediaItemRepository.Insert(media);
-                //            _mediaItemRepository.Save();
-                //        }
-                //    }
-                //}
+                            media.Content.ID = content.ID;
+                            _mediaItemRepository.Insert(media);
+                            _mediaItemRepository.Save();
+                        }
+                    }
+                }
 
             }
             return View();
@@ -102,7 +106,7 @@ namespace Zathura.Admin.Controllers
             //    _cacheManager.Add("CategoriList_", _categoryRepository.GetMany(x => x.ParentCategoryId == 0).ToList(), 3600);
             //}
 
-            var categoryList = new List<Category>();// _cacheManager.Get<List<Category>>("CategoriList_");
+            var categoryList = _categoryRepository.GetMany(x => x.CategoryID == 0 && x.Status == (int)Status.Active);// _cacheManager.Get<List<Category>>("CategoriList_");
             ViewBag.CategoryList = categoryList;
         }
 

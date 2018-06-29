@@ -23,6 +23,6 @@ namespace Kitaprazzi.Data.Model
             set { _updateDate = value; }
         }
         [Display(Name ="Aktif / Pasif Durumu")]
-        public bool Status{ get; set; }
+        public int Status{ get; set; }
     }
 }

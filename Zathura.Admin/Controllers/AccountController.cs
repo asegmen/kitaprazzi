@@ -32,7 +32,7 @@ namespace Zathura.Admin.Controllers
             var useList = _userRepository.GetAll().ToList();
 
             var userExists =
-                _userRepository.GetMany(x => x.Email == user.Email && x.Password == user.Password && x.Status)
+                _userRepository.GetMany(x => x.Email == user.Email && x.Password == user.Password && x.Status == (int)Status.Active)
                     .SingleOrDefault();
             if (userExists != null) 
             {

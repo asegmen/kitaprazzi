@@ -1,6 +1,6 @@
 ﻿@model PagedList.IPagedList<Kitaprazzi.Data.Model.Category>
 @using PagedList.Mvc;
-@using Zathura.Core.Helper
+@using Kitaprazzi.Core.Helper
 @{
     ViewBag.Title = "Category List";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -43,7 +43,7 @@
                                     </td>
 
                                     <td>
-                                        @if (item.Status)
+                                        @if (item.Status == (int)Status.Active)
                                         {
                                             <b class="label label-success">Active</b>
                                         }
