@@ -11,9 +11,9 @@ namespace Kitaprazzi.Data.Model
     {
         [MaxLength(50, ErrorMessage = "Kitap Adı Alanı 50 karakterden uzun olamaz!")]
         public string Title { get; set; }
-        [MaxLength(100, ErrorMessage = "Spot Alanı 50 karakterden uzun olamaz!")]
+        [MaxLength(100, ErrorMessage = "Spot Alanı 100 karakterden uzun olamaz!")]
         public string Spot { get; set; }
-        [MaxLength(500, ErrorMessage = "Açıklama Alanı 50 karakterden uzun olamaz!")]
+        [MaxLength(500, ErrorMessage = "Açıklama Alanı 500 karakterden uzun olamaz!")]
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
         public int Type { get; set; }

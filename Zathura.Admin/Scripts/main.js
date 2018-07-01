@@ -39,7 +39,7 @@ $(function() {
 
 	// Compact sidebar on mobiles fix
 	$(window).resize(function(){	
-		if ($("#make-compact").css("display") == "none" ){
+		if ($("#make-compact").css("display") === "none" ){
 			$("body").removeClass("compact-sidebar");
 		}
 	});

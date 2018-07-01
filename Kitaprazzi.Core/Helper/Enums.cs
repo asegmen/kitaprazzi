@@ -11,4 +11,9 @@ namespace Kitaprazzi.Core.Helper
         Passive = 0,
         Active = 1
     }
+    public enum ImageType
+    {
+        SpotImage = 0,
+        MediaImage = 1
+    }
 }

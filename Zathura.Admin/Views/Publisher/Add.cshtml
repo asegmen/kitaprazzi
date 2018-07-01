@@ -1,0 +1,91 @@
+﻿@model Kitaprazzi.Data.Model.Publisher
+@{
+    ViewBag.Title = "Add Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- Basic form -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <header class="panel-heading">@ViewBag.Title</header>
+                <div class="panel-body">
+                    @Html.HiddenFor(x => x.ID)
+                    <form role="form">
+                        @*<div class="form-group">
+                                <label for="exampleInputEmail1">Parent Category Name</label>
+                                @Html.DropDownListFor(model => model.CategoryID, new SelectList(ViewBag.ParentCategoryList, "ID", "Name"), ("Select Item"), new { @class = "form-control", id = "categoryID" })
+                            </div>*@
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Yayın Evi Adı</label>
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", id = "publisherName", placeholder = "Yayın Evi Adı" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Telefon</label>
+                            @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", id = "phoneNumber", placeholder = "Telefon Numarası" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Adres</label>
+                            @Html.TextBoxFor(x => x.Adress, new { @class = "form-control", id = "adress", placeholder = "Adress" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Şehir</label>
+                            @Html.DropDownListFor(model => model.City, new SelectList(ViewBag.CityList, "ID", "Name"), ("Select Item"), new { @class = "form-control", id = "cityId" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">İlçe</label>
+                            <select id="country" class="form-control" disabled="disabled"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Status</label>
+                            @Html.DropDownListFor(model => model.Name, new SelectList(ViewBag.StatusList, "Value", "Name"), ("Select Item"), new { @class = "form-control", id = "status" })
+                        </div>
+
+                        <a href="#" class="btn btn-default" onclick="AddPublisher()">Save</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Basic form -->
+
+</div>
+
+
+    <script type="text/javascript">
+
+        $(function() {
+            $('#cityId').on('change', function() {
+                var cityDropdown = $('#country');
+                //disable city drop down
+                cityDropdown.prop('disabled', 'disabled');
+                //clear drop down of old city
+                cityDropdown.empty();
+
+                //retrieve selected state
+                var state = $(this).val();
+                if (state.length > 0) {
+                    // retrieve data using a Url.Action() to construct url
+                    $.getJSON('@Url.Action("GetCountryByCityID")', {
+                        cityId: state
+                    })
+                    .done(function (data) {
+                        //re-enable city drop down
+                        cityDropdown.removeProp('disabled');
+                        //for each returned state
+                        $.each(data, function (i, city) {
+                            //Create new option
+                            var option = $('<option />').html(city['Name']).val(city['ID']);
+                            //append city states drop down
+                            cityDropdown.append(option);
+                        });
+                    })
+                    .fail(function (jqxhr, textStatus, error) {
+                        var err = textStatus + ", " + error;
+                        console.log("Request Failed: " + err);
+                    });
+                }
+            });
+        })
+    </script>

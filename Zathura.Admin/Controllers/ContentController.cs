@@ -8,7 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Zathura.Admin.CustomFilter;
-
+using Zathura.Admin.Helper;
 
 namespace Zathura.Admin.Controllers
 {
@@ -21,14 +21,16 @@ namespace Zathura.Admin.Controllers
         private readonly ICategoryRepository _categoryRepository;
         private readonly IUserRepository _userRepository;
         private readonly IMediaItemRepository _mediaItemRepository;
+        private readonly ISystemSettingRepository _systemSettingRepository;
         //private readonly IMemoryCacheManager _cacheManager;
 
-        public ContentController(IContentRepository contentRepository, ICategoryRepository categoryRepository, IUserRepository userRepository, IMediaItemRepository mediaItemRepository)//, IMemoryCacheManager cacheManager
+        public ContentController(IContentRepository contentRepository, ICategoryRepository categoryRepository, IUserRepository userRepository, IMediaItemRepository mediaItemRepository, ISystemSettingRepository systemSettingRepository)//, IMemoryCacheManager cacheManager
         {
             _contentRepository = contentRepository;
             _categoryRepository = categoryRepository;
             _userRepository = userRepository;
             _mediaItemRepository = mediaItemRepository;
+            _systemSettingRepository = systemSettingRepository;
             //_cacheManager = cacheManager;
         }
         #endregion
@@ -57,23 +59,36 @@ namespace Zathura.Admin.Controllers
                 //content.UserID = user.ID;
                 content.CategoryID = CategoryID;
                 content.StartDate = DateTime.Now;
-                //if (spotImage != null)
-                //{
-                //    string fileName = Guid.NewGuid().ToString().Replace("-", "");
-                //    string extension = System.IO.Path.GetExtension(Request.Files[0].FileName);
-                //    string fullPath = "/external/content/" + fileName + extension;
-                //    Request.Files[0].SaveAs(Server.MapPath(fullPath));
-                //    content.MediaItems = fullPath;
-                //}
+
                 _contentRepository.Insert(content);
-                _contentRepository.Save();
+                //_contentRepository.Save();
+
+                //insert spot images
+                if (spotImage != null)
+                {
+                    string fileName = Guid.NewGuid().ToString().Replace("-", "");
+                    string extension = System.IO.Path.GetExtension(Request.Files[0].FileName);
+                    string fullPath = "/external/content/" + fileName + extension;
+                    Request.Files[0].SaveAs(Server.MapPath(fullPath));
+                    var media = new MediaItem
+                    {
+                        Url = fullPath,
+                        Content = content,
+                        Status = (int)Status.Active,
+                        CreatedDate = DateTime.Now,
+                        Type = (int) ImageType.SpotImage
+                    };
+
+                    _mediaItemRepository.Insert(media);
+                    _mediaItemRepository.Save();
+                }
                 //get inserted content id and save images if contentImages not null
                 string mediaList = System.IO.Path.GetExtension(Request.Files[1].FileName);
                 if (contentImages != null)
                 {
                     foreach (var file in contentImages)
                     {
-                        if (file.ContentLength > 0)
+                        if (file?.ContentLength > 0)
                         {
                             string fileName = Guid.NewGuid().ToString().Replace("-", "");
                             string extension = System.IO.Path.GetExtension(Request.Files[1].FileName);
@@ -82,10 +97,13 @@ namespace Zathura.Admin.Controllers
 
                             var media = new MediaItem
                             {
-                                Url = fullPath
+                                Url = fullPath,
+                                Content = content,
+                                Status = (int)Status.Active,
+                                CreatedDate = DateTime.Now,
+                                Type = (int)ImageType.MediaImage
                             };
 
-                            media.Content.ID = content.ID;
                             _mediaItemRepository.Insert(media);
                             _mediaItemRepository.Save();
                         }
@@ -93,6 +111,7 @@ namespace Zathura.Admin.Controllers
                 }
 
             }
+            SetCategoryList();
             return View();
         }
 
@@ -108,8 +127,38 @@ namespace Zathura.Admin.Controllers
 
             var categoryList = _categoryRepository.GetMany(x => x.CategoryID == 0 && x.Status == (int)Status.Active);// _cacheManager.Get<List<Category>>("CategoriList_");
             ViewBag.CategoryList = categoryList;
+            var systemSettingsList = _systemSettingRepository.GetMany(x => x.Key == "Status").ToList();
+            ViewBag.StatusList = systemSettingsList;
+        }
+        public ActionResult Delete(int contentId) {
+            try
+            {
+                var content = _contentRepository.GetById(contentId);
+                if (content == null)
+                {
+                }
+                _contentRepository.Delete(contentId);
+                _contentRepository.Save();
+                //return Json(new ResultJson { Success = true, Message = "Content deleted successfully..." });
+            }
+            catch (Exception ex)
+            {
+                //return Json(new ResultJson { Success = false, Message = "Content couldnt deleted!!!", ExceptionMessage = ex.Message, ExStackTrace = ex.StackTrace });
+            }
+            return Index(1);
         }
 
+        [HttpGet]
+        [LoginFilter]
+        public ActionResult Update(int id) {
+            var content = _contentRepository.GetById(id);
+            if (content == null)
+            {
+                throw new Exception("Content not found");
+            }
+            SetCategoryList();
+            return View(content);
+        }
         #endregion
     }
 }

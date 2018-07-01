@@ -80,3 +80,33 @@ function UpdateCategory() {
         }
     });
 }
+
+
+
+function AddPublisher() {
+    var publisher = new Object();
+    publisher.Name = $("#publisherName").val();
+    publisher.Phone = $("#phoneNumber").val();
+    publisher.Adress = $("#adress").val();
+    publisher.Status = $("#status").val() ? $("#status").val() : 0;
+    cityId = $("#cityId").val() ? $("#cityId").val() : 0;
+    countryId = $("#country").val() ? $("#country").val() : 0;
+
+    $.ajax({
+        url: "/publisher/add",
+        data: { publisher:publisher, cityId : cityId, countryId: countryId },
+        type: "POST",
+        success: function (response) {
+            if (response.Success) {
+                bootbox.alert(response.Message, function () {
+                    location.reload();
+                });
+            }
+            else {
+                bootbox.alert(response.Message, function () {
+
+                });
+            }
+        }
+    });
+}

@@ -14,26 +14,56 @@
             <div class="sidebar-link-addon"><span class="badge bg-green">NEW</span></div>
         </li>
         <li class="has-submenu">
-            <a href="#"><i class="typcn typcn-tabs-outline"></i> <span>Contents</span></a>
+            <a href="#"><i class="typcn typcn-tabs-outline"></i> <span>Kategori</span></a>
             <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
             <!-- Sidebar submenu -->
             <ul class="sidebar-submenu">
-                <li><a href="@Url.Action("Index","Content")">All Contents</a></li>
-                <li><a href="@Url.Action("Add","Content")">Add Content</a></li>
+                <li><a href="@Url.Action("Index","Category")">Kategori Listele</a></li>
+                <li><a href="@Url.Action("Add","Category")">Kategori Ekle</a></li>
             </ul>
             <!-- /Sidebar submenu -->
         </li>
         <li class="has-submenu">
-            <a href="#"><i class="typcn typcn-tabs-outline"></i> <span>Categories</span></a>
+            <a href="#"><i class="typcn typcn-tabs-outline"></i> <span>Kullanıcı İşlemleri</span></a>
             <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
             <!-- Sidebar submenu -->
             <ul class="sidebar-submenu">
-                <li><a href="@Url.Action("Index","Category")">All Categories</a></li>
-                <li><a href="@Url.Action("Add","Category")">Add Category</a></li>
+                <li><a href="@Url.Action("Index","Category")">Kullanıcı Listesi</a></li>
+                @*<li><a href="@Url.Action("Add","Category")">Kullanıcı Ekle</a></li>*@
             </ul>
             <!-- /Sidebar submenu -->
         </li>
         <li class="has-submenu">
+            <a href="#"><i class="typcn typcn-tabs-outline"></i> <span>Yayın Evleri</span></a>
+            <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
+            <!-- Sidebar submenu -->
+            <ul class="sidebar-submenu">
+                <li><a href="@Url.Action("Index","Publisher")">Yayınevi Listesi</a></li>
+                <li><a href="@Url.Action("Add","Publisher")">Yayın Evi Ekle</a></li>
+            </ul>
+            <!-- /Sidebar submenu -->
+        </li>
+        <li class="has-submenu">
+            <a href="#"><i class="typcn typcn-tabs-outline"></i> <span>Yorumlar</span></a>
+            <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
+            <!-- Sidebar submenu -->
+            <ul class="sidebar-submenu">
+                <li><a href="@Url.Action("Index","Category")">Yorum Listesi</a></li>
+            </ul>
+            <!-- /Sidebar submenu -->
+        </li>
+        <li class="has-submenu">
+            <a href="#"><i class="typcn typcn-tabs-outline"></i> <span>İçerik</span></a>
+            <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
+            <!-- Sidebar submenu -->
+            <ul class="sidebar-submenu">
+                <li><a href="@Url.Action("Index","Content")">İçerik Listesi</a></li>
+                <li><a href="@Url.Action("Add","Content")">İçerik Ekle</a></li>
+            </ul>
+            <!-- /Sidebar submenu -->
+        </li>
+
+        @*<li class="has-submenu">
             <a href="#"><i class="typcn typcn-compass"></i> <span>Elements</span></a>
             <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
             <!-- Sidebar submenu -->
@@ -72,31 +102,31 @@
                 <li><a href="search.html">Search results</a></li>
             </ul>
             <!-- /Sidebar submenu -->
-        </li>
+        </li>*@
     </ul>
     <!-- /Sidebar group -->
     <!-- Sidebar group -->
-    <ul class="sidebar-group">
+    @*<ul class="sidebar-group">
         <li class="sidebar-group-header">FAVORITES</li>
         <li><a href="#"><i class="typcn typcn-starburst text-red"></i> <span>Web design</span></a></li>
         <li><a href="#"><i class="typcn typcn-starburst text-blue"></i> <span>Technology</span></a></li>
         <li><a href="#"><i class="typcn typcn-starburst text-green"></i> <span>Gadgets</span></a></li>
-    </ul>
+    </ul>*@
     <!-- /Sidebar group -->
     <br>
     <!-- Sidebar panel -->
-    <div class="sidebar-panel">
+    @*<div class="sidebar-panel">
         <h4>Upgrade</h4>
         <p>
             Upgrade to premium to get rid of the ads!
             <br>
             <button class="btn btn-primary btn-block">Learn more...</button>
         </p>
-    </div>
+    </div>*@
     <!-- /Sidebar panel -->
     <!-- Sidebar panel -->
-    <div class="sidebar-panel">
+    @*<div class="sidebar-panel">
         <button class="btn btn-primary btn-block no-margin"><i class="typcn typcn-plus"></i> Create invoice</button>
-    </div>
+    </div>*@
     <!-- /Sidebar panel -->
 </aside>

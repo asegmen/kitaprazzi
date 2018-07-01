@@ -6,7 +6,7 @@
 <script src="~/Content/ckeditor/ckeditor.js"></script>
 <div class="container-fluid">
     <!-- Basic form -->
-    @using (Html.BeginForm("Add", "Content", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Update", "Content", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary()

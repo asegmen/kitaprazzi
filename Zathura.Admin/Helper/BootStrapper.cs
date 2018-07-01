@@ -29,6 +29,9 @@ namespace Zathura.Admin.Helper
             builder.RegisterType<UserRepository>().As<IUserRepository>();
             builder.RegisterType<CategoryRepository>().As<ICategoryRepository>();
             builder.RegisterType<SystemSettingRepository>().As<ISystemSettingRepository>();
+            builder.RegisterType<CityRepository>().As<ICityRepository>();
+            builder.RegisterType<CountryRepository>().As<ICountryRepository>();
+            builder.RegisterType<PublisherRepository>().As<IPublisherRepository>();
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             var container = builder.Build();
