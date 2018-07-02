@@ -55,12 +55,15 @@ namespace Zathura.Admin.Controllers
 
         [HttpPost]
         [LoginFilter]
-        public JsonResult Add(Publisher publisher, int cityId = 1, int countryId = 1)
+        public JsonResult Add(Publisher publisher)
         {
             try
             {
-                publisher.City = _cityRepository.GetById(cityId);
-                publisher.Country = _countryRepository.GetById(countryId);
+                if (publisher == null)
+                {
+                    return Json(new ResultJson { Success = false, Message = "Publisher couldn't found!" });
+
+                }
                 _publisherRepository.Insert(publisher);
                 _publisherRepository.Save();
                 return Json(new ResultJson() { Success = true, Message = "Publisher Added Successfully." });
@@ -82,12 +85,14 @@ namespace Zathura.Admin.Controllers
                 return Json(new ResultJson { Success = false, Message = "Publisher couldn't found!" });
             }
             PrepareForms();
+            var counrtyList = _countryRepository.GetMany(x => x.City.ID == publisher.CityID);
+            ViewBag.CountryList = counrtyList;
             return View(publisher);
         }
 
         [HttpPost]
         [LoginFilter]
-        public ActionResult Update(Publisher publisher)
+        public JsonResult Update(Publisher publisher)
         {
             try
             {
@@ -98,9 +103,12 @@ namespace Zathura.Admin.Controllers
                 }
                 publisherItem.Name = publisher.Name;
                 publisherItem.Phone = publisher.Phone;
-                publisherItem.Status = (int)Status.Active;
+                publisherItem.Status = publisher.Status;
                 publisherItem.UpdateDate = DateTime.Now;
-                publisher.Adress = publisher.Adress;
+                publisherItem.Adress = publisher.Adress;
+                publisherItem.CityID = publisher.CityID;
+                publisherItem.CountryID = publisher.CountryID;
+
                 _publisherRepository.Save();
                 return Json(new ResultJson { Success = true, Message = "Publisher updated successfully." });
             }
@@ -122,6 +130,27 @@ namespace Zathura.Admin.Controllers
         {
             var counrtyList = _countryRepository.GetMany(x=> x.City.ID == cityId);
             return Json(counrtyList, JsonRequestBehavior.AllowGet);
+        }
+
+        [LoginFilter]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                var content = _publisherRepository.GetById(id);
+                if (content != null)
+                {
+                    _publisherRepository.Delete(id);
+                    _publisherRepository.Save();
+                }
+               
+                //return Json(new ResultJson { Success = true, Message = "Content deleted successfully..." });
+            }
+            catch (Exception ex)
+            {
+                //return Json(new ResultJson { Success = false, Message = "Content couldnt deleted!!!", ExceptionMessage = ex.Message, ExStackTrace = ex.StackTrace });
+            }
+            return Index(1);
         }
     }
 }

@@ -10,7 +10,8 @@ namespace Kitaprazzi.Data.Model
     public class Comment:BaseEntity
     {
         public virtual User User{ get; set; }
-        [MaxLength(1000, ErrorMessage = "Ad Alanı 50 karakterden uzun olamaz!")]
+        public int UserID { get; set; }
+        [MaxLength(1000, ErrorMessage = "Mesaj Alanı 1000 karakterden uzun olamaz!")]
         public string Message { get; set; }
     }
 }

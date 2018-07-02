@@ -1,4 +1,4 @@
-﻿@model Kitaprazzi.Data.Model.Category
+﻿@model Kitaprazzi.Data.Model.Publisher
 @{
     ViewBag.Title = "Update";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,30 +11,40 @@
             <div class="panel panel-default">
                 <header class="panel-heading">@ViewBag.Title</header>
                 <div class="panel-body">
-                    @Html.HiddenFor(x=> x.ID)
+                    @Html.HiddenFor(x => x.ID)
                     <form role="form">
+                        @*<div class="form-group">
+                                <label for="exampleInputEmail1">Parent Category Name</label>
+                                @Html.DropDownListFor(model => model.CategoryID, new SelectList(ViewBag.ParentCategoryList, "ID", "Name"), ("Select Item"), new { @class = "form-control", id = "categoryID" })
+                            </div>*@
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Parent Category Name</label>
-                            @Html.DropDownListFor(model => model.CategoryID, new SelectList(ViewBag.ParentCategoryList, "ID", "Name"), ("Select Item"), new {@class = "form-control", id = "categoryID" })
+                            <label for="exampleInputEmail1">Yayın Evi Adı</label>
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", id = "publisherName", placeholder = "Yayın Evi Adı" })
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Category Name</label>
-                            @Html.TextBoxFor(x => x.Name, new {@class = "form-control", id = "categoryName", placeholder = "Category Name"})
+                            <label for="exampleInputEmail1">Telefon</label>
+                            @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", id = "phoneNumber", placeholder = "Telefon Numarası" })
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Url</label>
-                            @Html.TextBoxFor(x => x.Url, new {@class = "form-control", id = "categoryUrl", placeholder = "Url"})
+                            <label for="exampleInputPassword1">Adres</label>
+                            @Html.TextBoxFor(x => x.Adress, new { @class = "form-control", id = "adress", placeholder = "Adress" })
                         </div>
-                        @*<div class="checkbox">
-                            <label>
-                                @Html.CheckBoxFor(x => x.IsActive, new { @checked = "checked", id = "categoryIsActive" }) Is Active?
-                            </label>
-                        </div>*@
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Şehir</label>
+                            @Html.DropDownListFor(model => model.CityID, new SelectList(ViewBag.CityList, "ID", "Name"), ("Select Item"), new { @class = "form-control", id = "cityId" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">İlçe</label>
+                            @Html.DropDownListFor(model => model.CountryID, new SelectList(ViewBag.CountryList, "ID", "Name"), ("Select Item"), new { @class = "form-control", id = "countryId" })
+
+
+                        </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Status</label>
                             @Html.DropDownListFor(model => model.Status, new SelectList(ViewBag.StatusList, "Value", "Name"), ("Select Item"), new { @class = "form-control", id = "status" })
                         </div>
-                        <a href="#" class="btn btn-default" onclick="UpdateCategory()">Save</a>
+
+                        <a href="#" class="btn btn-default" onclick="UpdatePublisher()">Save</a>
                     </form>
                 </div>
             </div>
@@ -44,3 +54,37 @@
 
 </div>
 
+<script type="text/javascript">
+
+        $(function() {
+            $('#cityId').on('change', function() {
+                var cityDropdown = $('#countryId');
+                //clear drop down of old city
+                cityDropdown.empty();
+
+                //retrieve selected state
+                var state = $(this).val();
+                if (state.length > 0) {
+                    // retrieve data using a Url.Action() to construct url
+                    $.getJSON('@Url.Action("GetCountryByCityID")', {
+                        cityId: state
+                    })
+                    .done(function (data) {
+                        //re-enable city drop down
+                        cityDropdown.removeProp('disabled');
+                        //for each returned state
+                        $.each(data, function (i, city) {
+                            //Create new option
+                            var option = $('<option />').html(city['Name']).val(city['ID']);
+                            //append city states drop down
+                            cityDropdown.append(option);
+                        });
+                    })
+                    .fail(function (jqxhr, textStatus, error) {
+                        var err = textStatus + ", " + error;
+                        console.log("Request Failed: " + err);
+                    });
+                }
+            });
+        })
+</script>
