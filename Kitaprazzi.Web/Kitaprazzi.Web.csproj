@@ -379,6 +379,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -492,13 +493,15 @@
     <Content Include="Assets\bower_components\tether\src\css\tether-theme-basic.sass" />
     <Content Include="Assets\bower_components\tether\src\css\tether.sass" />
     <Content Include="package.json" />
-    <Content Include="Views\Home\Category.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\_Partial\_Header.cshtml" />
     <Content Include="Views\_Partial\_Footer.cshtml" />
     <None Include="packages.config" />
+    <Content Include="Views\Home\Category.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

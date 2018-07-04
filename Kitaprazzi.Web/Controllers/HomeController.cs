@@ -18,5 +18,11 @@ namespace Zathura.UI.Controllers
         {
             return View();
         }
+
+        // GET: Detail
+        public ActionResult Detail()
+        {
+            return View();
+        }
     }
 }
