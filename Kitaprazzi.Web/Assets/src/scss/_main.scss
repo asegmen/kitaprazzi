@@ -114,7 +114,7 @@
                 }
 
                 .wide-menu {
-                    display: block;
+                    display: flex;
                 }
             }
 
@@ -238,9 +238,7 @@
             width:80%;
 
             &-wrapper {
-                float: left;
                 padding: 20px;
-                width: 33.33333%;
             }
 
             &-title {
@@ -269,6 +267,7 @@
     padding: 15px;
 
     @include media(tablet) {
+        height:100%;
         margin: 0;
     }
 
@@ -349,6 +348,7 @@
 
     @include media(tablet) {
         height: 100%;
+        max-height:400px;
     }
 
     .swiper-slide {
@@ -617,13 +617,6 @@ footer {
     color: $color-white;
     text-align: center;
 
-    .copyright {
-        margin-bottom: 10px;
-
-        @include media(tablet) {
-            text-align: left;
-        }
-    }
 
     .social {
         @include media(tablet) {
@@ -673,7 +666,7 @@ footer {
     }
 
     .footer-bottom {
-        background: $color-nevada;
+        background: #333;
         padding-bottom: 25px;
         padding-top: 25px;
     }
@@ -731,6 +724,48 @@ footer {
                     color: $color-white;
                     font-size: 18px;
                     line-height: 30px;
+                }
+            }
+        }
+    }
+
+    .footer-middle{
+        background:#111;
+        border-top:1px dotted #333;
+        padding-bottom:20px;
+        padding-top:20px;
+        .foot-box{
+            background:#222;
+            display:block;
+            margin:1px 0;
+            padding:10px;
+            position:relative;
+            b{
+                color:$color-white;
+                font-weight:700;
+                line-height:20px;
+            }
+            i{
+                color:orange;
+                float:right;
+                font-size:20px;
+                line-height:20px;
+            }
+        }
+        .footer-links{
+            margin-top:20px;
+            .foot-box{
+                text-align:left;
+                h2{
+                    color:#ddd;
+                    font-weight:700;
+                    font-size:13px;
+                    margin:10px 0;
+                }
+                a{
+                    font-size:12px;
+                    color:#666;
+                    line-height:18px;
                 }
             }
         }
