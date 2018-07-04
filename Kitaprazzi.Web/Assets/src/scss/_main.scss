@@ -633,18 +633,30 @@ footer {
 
         &-item {
             display: inline-block;
+            float:left;
+            margin:0 2px;
+            text-align:center;
+            width:40px;
 
             a {
                 display: block;
-                margin: 0 5px;
 
                 i {
                     color: $color-white;
                     font-size: 20px;
                     padding: 5px;
+                    width:40px;
 
                     &[class*="facebook"] {
                         background: $color-facebook;
+                    }
+
+                    &[class*="twitter"] {
+                        background: $color-twitter;
+                    }
+
+                    &[class*="google-plus"] {
+                        background: $color-googleplus;
                     }
 
                     &[class*="instagram"] {
@@ -652,15 +664,6 @@ footer {
                     }
                 }
 
-                :hover {
-                    i[class*="facebook"] {
-                        color: $color-facebook;
-                    }
-
-                    i[class*="instagram"] {
-                        color: $color-instagram;
-                    }
-                }
             }
         }
     }
@@ -729,43 +732,50 @@ footer {
         }
     }
 
-    .footer-middle{
-        background:#111;
-        border-top:1px dotted #333;
-        padding-bottom:20px;
-        padding-top:20px;
-        .foot-box{
-            background:#222;
-            display:block;
-            margin:1px 0;
-            padding:10px;
-            position:relative;
-            b{
-                color:$color-white;
-                font-weight:700;
-                line-height:20px;
+    .footer-middle {
+        background: #111;
+        border-top: 1px dotted #333;
+        padding-bottom: 20px;
+        padding-top: 20px;
+
+        .foot-box {
+            background: #222;
+            display: block;
+            margin: 1px 0;
+            padding: 10px;
+            position: relative;
+
+            b {
+                color: $color-white;
+                font-weight: 700;
+                line-height: 20px;
             }
-            i{
-                color:orange;
-                float:right;
-                font-size:20px;
-                line-height:20px;
+
+            i {
+                color: orange;
+                float: right;
+                font-size: 20px;
+                line-height: 20px;
             }
         }
-        .footer-links{
-            margin-top:20px;
-            .foot-box{
-                text-align:left;
-                h2{
-                    color:#ddd;
-                    font-weight:700;
-                    font-size:13px;
-                    margin:10px 0;
+
+        .footer-links {
+            margin-top: 20px;
+
+            .foot-box {
+                text-align: left;
+
+                h2 {
+                    color: #ddd;
+                    font-weight: 700;
+                    font-size: 13px;
+                    margin: 10px 0;
                 }
-                a{
-                    font-size:12px;
-                    color:#666;
-                    line-height:18px;
+
+                a {
+                    font-size: 12px;
+                    color: #666;
+                    line-height: 18px;
                 }
             }
         }

@@ -962,13 +962,13 @@ footer .socialbox{margin-top:30px}
 @media (min-width:768px){footer .social{padding:10px 0}
 footer .socialbox{margin:0}
 }
-footer .social-item{display:inline-block}
-footer .social-item a{display:block;margin:0 5px}
-footer .social-item a i{color:#fff;font-size:20px;padding:5px}
+footer .social-item{display:inline-block;float:left;margin:0 2px;text-align:center;width:40px}
+footer .social-item a{display:block}
+footer .social-item a i{color:#fff;font-size:20px;padding:5px;width:40px}
 footer .social-item a i[class*=facebook]{background:#4267b2}
+footer .social-item a i[class*=twitter]{background:#0084b4}
+footer .social-item a i[class*=google-plus]{background:#d34836}
 footer .social-item a i[class*=instagram]{background:#636cb0}
-footer .social-item a :hover i[class*=facebook]{color:#4267b2}
-footer .social-item a :hover i[class*=instagram]{color:#636cb0}
 footer .footer-bottom{background:#333;padding-bottom:25px;padding-top:25px}
 footer .footer-top{background:#111;padding-bottom:25px;padding-top:25px}
 footer .box{text-align:center}
