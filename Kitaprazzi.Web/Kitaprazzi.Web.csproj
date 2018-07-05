@@ -89,6 +89,26 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\bower_components\fancybox\dist\jquery.fancybox.css" />
+    <Content Include="Assets\bower_components\fancybox\dist\jquery.fancybox.js" />
+    <Content Include="Assets\bower_components\fancybox\dist\jquery.fancybox.min.css" />
+    <Content Include="Assets\bower_components\fancybox\dist\jquery.fancybox.min.js" />
+    <Content Include="Assets\bower_components\fancybox\docs\index.html" />
+    <Content Include="Assets\bower_components\fancybox\gulpfile.js" />
+    <Content Include="Assets\bower_components\fancybox\src\css\core.css" />
+    <Content Include="Assets\bower_components\fancybox\src\css\fullscreen.css" />
+    <Content Include="Assets\bower_components\fancybox\src\css\share.css" />
+    <Content Include="Assets\bower_components\fancybox\src\css\slideshow.css" />
+    <Content Include="Assets\bower_components\fancybox\src\css\thumbs.css" />
+    <Content Include="Assets\bower_components\fancybox\src\js\core.js" />
+    <Content Include="Assets\bower_components\fancybox\src\js\fullscreen.js" />
+    <Content Include="Assets\bower_components\fancybox\src\js\guestures.js" />
+    <Content Include="Assets\bower_components\fancybox\src\js\hash.js" />
+    <Content Include="Assets\bower_components\fancybox\src\js\media.js" />
+    <Content Include="Assets\bower_components\fancybox\src\js\share.js" />
+    <Content Include="Assets\bower_components\fancybox\src\js\slideshow.js" />
+    <Content Include="Assets\bower_components\fancybox\src\js\thumbs.js" />
+    <Content Include="Assets\bower_components\fancybox\src\js\wheel.js" />
     <Content Include="Assets\bower_components\font-awesome\css\font-awesome.css" />
     <Content Include="Assets\bower_components\font-awesome\css\font-awesome.min.css" />
     <Content Include="Assets\bower_components\font-awesome\fonts\fontawesome-webfont.svg" />
@@ -499,6 +519,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\_Partial\_Header.cshtml" />
     <Content Include="Views\_Partial\_Footer.cshtml" />
+    <Content Include="Assets\bower_components\fancybox\.bower.json" />
+    <Content Include="Assets\bower_components\fancybox\.gitignore" />
+    <Content Include="Assets\bower_components\fancybox\bower.json" />
+    <Content Include="Assets\bower_components\fancybox\package.json" />
+    <Content Include="Assets\bower_components\fancybox\README.md" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\User\Index.cshtml" />

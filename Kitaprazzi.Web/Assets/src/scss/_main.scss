@@ -943,3 +943,74 @@ footer {
         line-height:20px;
     }
 }
+
+.comment {
+    background: $color-white;
+    box-shadow: $box-shadow;
+    padding: 15px 20px;
+
+    @include media(web) {
+        padding: 25px 30px;
+    }
+
+    &-row {
+        border-top: 1px solid #eaeaea;
+        margin-top: 20px;
+        padding-top: 20px;
+
+        &:first-child {
+            border: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+        div[class^="col"]{
+            padding-left:5px;
+            padding-right:5px;
+            @include media(tablet){
+                padding-left:15px;
+                padding-right:15px;
+            }
+        }
+    }
+
+    &-avatar {
+        background: #edf2f6;
+        border-radius: 50%;
+        display: block;
+        height: 40px;
+        width: 40px;
+        @include media(web){
+            height:80px;
+            width:80px;
+        }
+    }
+
+    &-name {
+        color:$color-bourbon;
+        font-size: 16px;
+        font-weight: $fw-bold;
+        line-height: 27px;
+        margin-bottom: 5px;
+        text-decoration:underline;
+    }
+
+    &-title {
+        font-size: 18px;
+        line-height: 27px;
+        margin-bottom: 10px;
+    }
+    &-description{
+        p{
+            color:#666;
+            line-height:18px;
+            margin-top:20px;
+            @include media(web){
+                font-size:16px;
+                line-height:24px;
+            }
+            &:first-child{
+                margin-top:0;
+            }
+        }
+    }
+}
