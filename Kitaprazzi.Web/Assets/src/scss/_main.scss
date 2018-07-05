@@ -567,46 +567,45 @@
         margin: 5px 0;
         @include line-clamp(2);
     }
+}
+.star-rating {
+    font-size: 0;
+    margin-top: 10px;
 
-    .star-rating {
-        font-size: 0;
-        margin-top: 10px;
+    &__wrap {
+        display: inline-block;
+        font-size: 1rem;
 
-        &__wrap {
-            display: inline-block;
-            font-size: 1rem;
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    }
 
-            &:after {
-                content: "";
-                display: table;
-                clear: both;
-            }
+    &__ico {
+        float: right;
+        padding-left: 2px;
+        cursor: pointer;
+        color: #FFB300;
+
+        &:last-child {
+            padding-left: 0;
         }
 
-        &__ico {
-            float: right;
-            padding-left: 2px;
-            cursor: pointer;
-            color: #FFB300;
-
-            &:last-child {
-                padding-left: 0;
-            }
-
-            &:hover {
-                &:before, ~ .star-rating__ico:before {
-                    content: "\f005";
-                }
+        &:hover {
+            &:before, ~ .star-rating__ico:before {
+                content: "\f005";
             }
         }
+    }
 
-        &__input {
-            display: none;
+    &__input {
+        display: none;
 
-            &:checked {
-                ~ .star-rating__ico:before {
-                    content: "\f005";
-                }
+        &:checked {
+            ~ .star-rating__ico:before {
+                content: "\f005";
             }
         }
     }
@@ -802,5 +801,145 @@ footer {
             font-weight:$fw-bold;
             line-height:28px
         }
+    }
+}
+
+/*detail*/
+.breadcrumbs{
+    li{
+        float:left;
+        .item{
+            font-size:12px;
+            line-height:27px;
+        }
+        :after{
+            content:">";
+            margin:0 5px;
+        }
+        &:last-child{
+            :after{
+                content:"";
+                display:none;
+            }
+        }
+    }
+}
+
+.detail {
+    background: $color-white;
+    box-shadow: $box-shadow;
+    margin-bottom:20px;
+    padding: 15px 20px;
+    @include media(web){
+        height:100%;
+        margin:0;
+        padding:25px 30px;
+    }
+
+    &-title {
+        font: $fw-bold 18px/27px $font2;
+        margin-bottom:10px;
+    }
+    &-category{
+        color:$color-bourbon;
+        font-size:14px;
+        font-weight:$fw-bold;
+        text-decoration:underline;
+    }
+    &-description{
+        display:block;
+        > p{
+            font-size:14px;
+            line-height:20px;
+            margin-top:20px;
+            @include media(web){
+                font-size:16px;
+                line-height:24px;
+                margin-top:30px;
+            }
+        }
+    }
+}
+
+.image {
+    &-wrapper {
+        background: $color-white;
+        box-shadow: $box-shadow;
+        margin-bottom: 20px;
+
+        @include media(web) {
+            height: 100%;
+            margin: 0;
+        }
+    }
+
+    &-main {
+        img {
+            width: 100%;
+        }
+    }
+
+    &-group {
+        padding: 15px;
+
+        > span {
+            display: block;
+            line-height: 24px;
+            font-weight: $fw-bold;
+            margin-bottom: 5px;
+        }
+
+        .image-list {
+            border-bottom: 1px solid #eaeaea;
+            display: inline-block;
+            margin: 0 -8px 15px;
+            padding-bottom: 15px;
+
+            li {
+                float: left;
+                padding-left: 8px;
+                padding-right: 8px;
+                width: 33.333333%;
+            }
+        }
+
+        .rating {
+            li {
+                small {
+                    display: inline-block;
+                    width: 60%;
+                }
+
+                span {
+                    font-weight: $fw-bold;
+                }
+                &:last-child{
+                    padding-top:10px;
+                    margin-top:10px;
+                    border-top:1px solid #eaeaea;
+                    *{
+                        font-size:16px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dealers{
+    &-list{
+        display:block;
+        border-top:1px solid #eaeaea;
+        margin-top:20px;
+    }
+    &-name{
+        display:block;
+        font-weight:$fw-bold;
+        line-height:20px;
+        margin-top:20px;
+    }
+    &-phone{
+        display:block;
+        line-height:20px;
     }
 }

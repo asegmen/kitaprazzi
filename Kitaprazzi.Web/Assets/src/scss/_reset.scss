@@ -117,3 +117,9 @@ input[type="search"]::-webkit-search-results-decoration {
 .mb {
     margin-bottom: $mb;
 }
+.mb20{
+    margin-bottom: ($mb * 0.6666667);
+}
+.mb10 {
+    margin-bottom: ($mb * 0.3333334);
+}
