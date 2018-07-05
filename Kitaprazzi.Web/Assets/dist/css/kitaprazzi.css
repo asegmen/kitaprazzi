@@ -1129,7 +1129,7 @@ footer .footer-middle .footer-links .foot-box a{font-size:12px;color:#666;line-h
 @media (min-width:992px){.detail{height:100%;margin:0;padding:25px 30px}
 }
 .detail-title{font:700 18px/27px Montserrat;margin-bottom:10px}
-.comment-name,.dealers-name,.detail-category,.image-group .rating li span{font-weight:700}
+.comment-name,.dealers-name,.detail-category,.image-group .rating li span,.image-group>span,.membership h3{font-weight:700}
 .detail-category{font-size:14px}
 .detail-description{display:block}
 .detail-description>p{font-size:14px;line-height:20px;margin-top:20px}
@@ -1140,7 +1140,7 @@ footer .footer-middle .footer-links .foot-box a{font-size:12px;color:#666;line-h
 }
 .image-main img{width:100%}
 .image-group{padding:15px}
-.image-group>span{display:block;line-height:24px;font-weight:700;margin-bottom:5px}
+.image-group>span{display:block;line-height:24px;margin-bottom:5px}
 .image-group .image-list{border-bottom:1px solid #eaeaea;display:inline-block;margin:0 -8px 15px;padding-bottom:15px}
 .image-group .image-list li{float:left;padding-left:8px;padding-right:8px;width:33.333333%}
 .image-group .rating li small{display:inline-block;width:60%}
@@ -1160,7 +1160,17 @@ footer .footer-middle .footer-links .foot-box a{font-size:12px;color:#666;line-h
 .comment-name{line-height:27px;margin-bottom:5px}
 .comment-title{font-size:18px;line-height:27px;margin-bottom:10px}
 .comment-description p{color:#666;line-height:18px;margin-top:20px}
+.comment-description p:first-child{margin-top:0}
+.membership{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.1);padding:15px 20px}
 @media (min-width:992px){.comment-avatar{height:80px;width:80px}
 .comment-description p{font-size:16px;line-height:24px}
+.membership{padding:25px 30px}
 }
-.comment-description p:first-child{margin-top:0}
+.membership h3{font-size:14px;margin-bottom:10px}
+.membership input{border:1px solid #ccc;border-radius:3px;display:block;height:42px;margin:5px 0;padding:5px 10px;width:100%}
+.membership input[type=button],.membership input[type=submit]{background:#27ae60;border:none;color:#fff;cursor:pointer;font-weight:700;letter-spacing:1px;padding:5px;text-align:center}
+.membership .options{margin-top:10px}
+@media (min-width:992px){.membership .options{margin-top:0}
+}
+.membership .options a{clear:both;display:block;float:right;line-height:20px;margin:2px 0;text-decoration:underline}
+.membership .message{color:#b46619;display:block;margin-top:10px}

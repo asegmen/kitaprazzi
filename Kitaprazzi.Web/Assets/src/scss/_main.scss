@@ -1014,3 +1014,59 @@ footer {
         }
     }
 }
+
+.membership {
+    background: $color-white;
+    box-shadow: $box-shadow;
+    padding: 15px 20px;
+
+    @include media(web) {
+        padding: 25px 30px;
+    }
+
+    h3 {
+        font-size: 14px;
+        font-weight: $fw-bold;
+        margin-bottom: 10px;
+    }
+
+    input {
+        border: 1px solid #ccc;
+        border-radius:3px;
+        display: block;
+        height: 42px;
+        margin: 5px 0;
+        padding: 5px 10px;
+        width: 100%;
+
+        &[type="button"], &[type="submit"] {
+            background: #27ae60;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 5px;
+            text-align: center;
+        }
+    }
+    .options{
+        margin-top:10px;
+        @include media(web){
+            margin-top:0;
+        }
+        a{
+            clear:both;
+            display:block;
+            float:right;
+            line-height:20px;
+            margin:2px 0;
+            text-decoration:underline;
+        }
+    }
+    .message{
+        color:$color-bourbon;
+        display:block;
+        margin-top:10px;
+    }
+}
