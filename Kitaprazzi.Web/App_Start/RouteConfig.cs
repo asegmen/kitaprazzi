@@ -14,6 +14,16 @@ namespace Kitaprazzi.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Kitap",
+                url: "kitap/detay/{id}",
+                defaults: new { controller = "Content", action = "Book", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "YayinEvi",
+                url: "yayin-evi/detay/{id}",
+                defaults: new { controller = "Content", action = "Publisher", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

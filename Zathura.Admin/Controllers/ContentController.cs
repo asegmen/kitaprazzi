@@ -4,6 +4,7 @@ using Kitaprazzi.Data.Model;
 using PagedList;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,15 +23,17 @@ namespace Zathura.Admin.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IMediaItemRepository _mediaItemRepository;
         private readonly ISystemSettingRepository _systemSettingRepository;
+        private readonly IPublisherRepository _publisherRepository;
         //private readonly IMemoryCacheManager _cacheManager;
 
-        public ContentController(IContentRepository contentRepository, ICategoryRepository categoryRepository, IUserRepository userRepository, IMediaItemRepository mediaItemRepository, ISystemSettingRepository systemSettingRepository)//, IMemoryCacheManager cacheManager
+        public ContentController(IContentRepository contentRepository, ICategoryRepository categoryRepository, IUserRepository userRepository, IMediaItemRepository mediaItemRepository, ISystemSettingRepository systemSettingRepository, IPublisherRepository publisherRepository)//, IMemoryCacheManager cacheManager
         {
             _contentRepository = contentRepository;
             _categoryRepository = categoryRepository;
             _userRepository = userRepository;
             _mediaItemRepository = mediaItemRepository;
             _systemSettingRepository = systemSettingRepository;
+            _publisherRepository = publisherRepository;
             //_cacheManager = cacheManager;
         }
         #endregion
@@ -50,7 +53,7 @@ namespace Zathura.Admin.Controllers
 
         [HttpPost]
         [LoginFilter]
-        public ActionResult Add(Content content, int CategoryID, HttpPostedFileBase spotImage, IEnumerable<HttpPostedFileBase> contentImages)
+        public ActionResult Add(Content content, int CategoryID, int PublisherID ,HttpPostedFileBase spotImage, IEnumerable<HttpPostedFileBase> contentImages)
         {
             var userSession = HttpContext.Session[Kitaprazzi.Core.Helper.Session.User] as User;
             if (ModelState.IsValid) //check Content object attributes is ok?
@@ -67,7 +70,7 @@ namespace Zathura.Admin.Controllers
                 if (spotImage != null)
                 {
                     string fileName = Guid.NewGuid().ToString().Replace("-", "");
-                    string extension = System.IO.Path.GetExtension(Request.Files[0].FileName);
+                    string extension = Path.GetExtension(Request.Files[0].FileName);
                     string fullPath = "/external/content/" + fileName + extension;
                     Request.Files[0].SaveAs(Server.MapPath(fullPath));
                     var media = new MediaItem
@@ -94,7 +97,6 @@ namespace Zathura.Admin.Controllers
                             string extension = System.IO.Path.GetExtension(Request.Files[1].FileName);
                             string fullPath = "/external/content/" + fileName + extension;
                             file.SaveAs(Server.MapPath(fullPath));
-
                             var media = new MediaItem
                             {
                                 Url = fullPath,
@@ -124,7 +126,8 @@ namespace Zathura.Admin.Controllers
             //{
             //    _cacheManager.Add("CategoriList_", _categoryRepository.GetMany(x => x.ParentCategoryId == 0).ToList(), 3600);
             //}
-
+            var publisherList = _publisherRepository.GetMany(x=> x.Status == (int)Status.Active);
+            ViewBag.PublisherList = publisherList;
             var categoryList = _categoryRepository.GetMany(x => x.CategoryID == 0 && x.Status == (int)Status.Active);// _cacheManager.Get<List<Category>>("CategoriList_");
             ViewBag.CategoryList = categoryList;
             var systemSettingsList = _systemSettingRepository.GetMany(x => x.Key == "Status").ToList();

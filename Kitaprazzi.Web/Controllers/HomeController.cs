@@ -8,6 +8,8 @@ namespace Zathura.UI.Controllers
 {
     public class HomeController : Controller
     {
+        public HomeController() {
+        }
         // GET: Home
         public ActionResult Index()
         {
@@ -15,12 +17,6 @@ namespace Zathura.UI.Controllers
         }
         // GET: Category
         public ActionResult Category()
-        {
-            return View();
-        }
-
-        // GET: Detail
-        public ActionResult Detail()
         {
             return View();
         }

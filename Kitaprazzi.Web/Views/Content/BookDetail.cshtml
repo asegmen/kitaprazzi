@@ -1,9 +1,14 @@
-﻿
+﻿@using Kitaprazzi.Core.Helper
+@model Kitaprazzi.Data.Model.Content
 @{
-    ViewBag.Title = "Detay Sayfası";
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@if (Model != null)
+{
+    ViewBag.Title = Model.Title;
+}
 
 <div class="container mb20 breadcrumbs d-none d-lg-block">
     <div class="row">
@@ -22,55 +27,53 @@
     <div class="row mb">
         <div class="col-12 col-lg-6 order-lg-2">
             <div class="detail">
-                <div class="detail-title">DÜŞÜNÜYORUM BÜYÜYORUM</div>
-                <a href="javascript:;" title="" class="detail-category">Çamlıca Çocuk Yayınları</a>
+                <div class="detail-title">@Model.Title.ToUpper()</div>
+                <a href="\yayin-evi\detay\@Model.PublisherID" title="" class="detail-category">@Model.Publisher.Name</a>
                 <div class="detail-description">
-                    <p>Genel yetenek, bireyin "SÖZCÜK", "SAYI", "İMGE" ve "ŞEKİL"leri kullanarak yaptığı zihinsel işlemlerle ölçülebilir.</p>
-                    <p>36’u çözümlü 96 SÖZEL YETENEK sorusu, 36’i çözümlü 96 SAYISAL YETENEK sorusu, 32’i çözümlü 80 ŞEKİL YETENEĞİ sorusu, 8’sı çözümlü 132 ÇOKLU YETENEK ve KARMA TEST sorusu olmak üzere toplamda 404 sorunun yer aldığı bu özel kitap, bireylerin genel yeteneklerinin ölçülmesi amacıyla özenle hazırlanmış işlevsel bir kılavuz.</p>
-                    <p>Bu türdeki kitapların genel değerlendirilmesinde, yetenek testleri, içerik bakımından zor veya kolay olarak sınıflandırılmamalıdır. Soru üzerinde ulaşılacak yargı için gerekli ön bilgisi olan her birey, hangi yaşta olursa olsun zihinsel yetisini kullanabilmektedir. 2. sınıfa yönelik bir sayı sorusunun çözümü, toplama işlemine başvurulmasını gerektiriyorsa toplama işlemini bilen tüm bireylerin bu soru üzerinde akıl yürütebileceği düşünülebilmektedir. O nedenle, kitaptaki sorular 2. sınıf düzeyine göre düzenlenmiş olmakla birlikte daha üst sınıflardaki öğrenciler için de önemli bir kaynaktır.</p>
-                    <p>7 yaş ve üzerindeki her yaştan bireye genel (akademik) yeteneğini ölçme ve değerlendirme fırsatı sunan bu benzersiz çalışma, 1600’den fazla anlamlı şekil elde edilebilecek TANGRAM (Çin bulmacası) hediyesi ile bildiklerinizi sınamanıza ve yeni ufuklar keşfetmenize yardımcı olacak yapıcı bir eser…</p>
+                    <p>@Model.Spot</p>
+                    <p>@Model.Description</p>
                 </div>
             </div>
         </div>
         <div class="col-12 col-lg-3 order-lg-1">
             <div class="image-wrapper">
                 <div class="image-main">
-                    <a href="~/Assets/dist/img/kitap.jpg" data-fancybox="gallery" data-caption="Asdfg 1">
-                        <img src="~/Assets/dist/img/kitap.jpg" alt="" />
+                    @{ 
+                        var mainImage = Model.MediaItems.FirstOrDefault(x => x.Content.ID == Model.ID && x.Type == (int)ImageType.SpotImage);
+                        var sampleImages = Model.MediaItems.Where(x => x.Content.ID == Model.ID && x.Type == (int)ImageType.MediaImage).ToList();
+                    }
+                    <a href="@($"http://localhost:36658{mainImage.Url}")" data-fancybox="gallery" data-caption="@Model.Title">
+                        <img src="@($"http://localhost:36658{mainImage.Url}")" alt="@Model.Title" />
                     </a>
                 </div>
                 <div class="image-group">
                     <span>Sayfa Örnekleri</span>
+                    
                     <ul class="image-list">
-                        <li class="image-list-item">
-                            <a href="~/Assets/dist/img/kitap.jpg" data-fancybox="gallery" data-caption="Asdfg 2">
-                                <img src="~/Assets/dist/img/kitap.jpg" alt="" />
-                            </a>
-                        </li>
-                        <li class="image-list-item">
-                            <a href="~/Assets/dist/img/kitap.jpg" data-fancybox="gallery" data-caption="Asdfg 3">
-                                <img src="~/Assets/dist/img/kitap.jpg" alt="" />
-                            </a>
-                        </li>
-                        <li class="image-list-item">
-                            <a href="~/Assets/dist/img/kitap.jpg" data-fancybox="gallery" data-caption="Asdfg 4">
-                                <img src="~/Assets/dist/img/kitap.jpg" alt="" />
-                            </a>
-                        </li>
+                        @foreach (var image in sampleImages)
+                        {
+                            <li class="image-list-item">
+                                <a href="@($"http://localhost:36658{image.Url}")" data-fancybox="gallery" data-caption="Asdfg 2">
+                                    <img src="@($"http://localhost:36658{image.Url}")" alt="@Model.Title" />
+                                </a>
+                            </li>
+
+                        }
+
                     </ul>
                     <ul class="rating">
 
                         <li>
                             <small>A Puanı</small>
-                            <span>7,1</span>
+                            <span>@(Model.UserPoint)</span>
                         </li>
                         <li>
                             <small>B Puanı</small>
-                            <span>7,6</span>
+                            <span>@(Model.UserPoint)</span>
                         </li>
                         <li>
                             <small>C Puanı</small>
-                            <span>7,4</span>
+                            <span>@(Model.UserPoint)</span>
                         </li>
                         <li>
                             <small>Ortalama Puanı</small>

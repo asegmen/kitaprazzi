@@ -8,7 +8,7 @@ namespace Kitaprazzi.Data.DataContext
 {
     public class KitaprazziContext: DbContext
     {
-        public KitaprazziContext() : base("KitaprazziContext") { }
+        public KitaprazziContext() : base("Kitaprazzi") { }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Category> Categories { get; set; }

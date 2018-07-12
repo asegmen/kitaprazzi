@@ -20,6 +20,11 @@ namespace Kitaprazzi.Data.Model
         public virtual ICollection<MediaItem> MediaItems { get; set; }
         public int CategoryID { get; set; }
         public virtual Category Category { get; set; } 
+        public int PublisherID { get; set; }
+        public virtual Publisher Publisher { get; set; }
+        public float EditorPoint { get; set; }
+        public float UserPoint { get; set; }
+        public float KitaprazziPoint { get; set; }
 
     }
 }
