@@ -8,16 +8,15 @@ using System.Threading.Tasks;
 
 namespace Kitaprazzi.Data.Model
 {
-    public class Publisher : BaseEntity
+    public class Dealer: BaseEntity
     {
-        [MaxLength(100, ErrorMessage = "Yayınevi Alanı 100 karakterden uzun olamaz!")]
+        [MaxLength(100, ErrorMessage = "Bayi Alanı 100 karakterden uzun olamaz!")]
         public string Name { get; set; }
         public string Phone { get; set; }
-        public string Adress { get; set; }
         public int CityID { get; set; }
         public int CountryID { get; set; }
         public virtual City City { get; set; }
         public virtual Country Country { get; set; }
-        public virtual ICollection<Dealer> Dealers{ get; set; }
+        public virtual Publisher Publisher { get; set; }
     }
 }

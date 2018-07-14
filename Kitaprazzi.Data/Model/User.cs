@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 namespace Kitaprazzi.Data.Model
 {
@@ -23,7 +24,10 @@ namespace Kitaprazzi.Data.Model
         [Required]
         public string Password { get; set; }
 
+        [ForeignKey("RoleID")]
         public virtual Role Role { get; set; }
 
+        [Required]
+        public int RoleID { get; set; }
     }
 }

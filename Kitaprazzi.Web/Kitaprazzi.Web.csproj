@@ -552,6 +552,9 @@
     <None Include="packages.config" />
     <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\_UserForgetPassword.cshtml" />
+    <Content Include="Views\User\_NewUser.cshtml" />
+    <Content Include="Views\User\_UserEnterance.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

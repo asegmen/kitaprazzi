@@ -72,6 +72,7 @@
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Content.cs" />
     <Compile Include="Model\Country.cs" />
+    <Compile Include="Model\Dealer.cs" />
     <Compile Include="Model\MediaItem.cs" />
     <Compile Include="Model\Publisher.cs" />
     <Compile Include="Model\Role.cs" />
