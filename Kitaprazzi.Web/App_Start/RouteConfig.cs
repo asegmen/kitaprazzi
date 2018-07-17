@@ -19,6 +19,16 @@ namespace Kitaprazzi.Web
                 defaults: new { controller = "User", action = "Enterance"}
             );
             routes.MapRoute(
+                name: "Kayit",
+                url: "uye-kayit",
+                defaults: new { controller = "User", action = "Add" }
+            );
+            routes.MapRoute(
+                name: "ForgatPassword",
+                url: "sifremi-unuttum",
+                defaults: new { controller = "User", action = "ForgatPassword" }
+            );
+            routes.MapRoute(
                 name: "Kitap",
                 url: "kitap/detay/{id}",
                 defaults: new { controller = "Content", action = "Book", id = UrlParameter.Optional }

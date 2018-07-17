@@ -1,7 +1,8 @@
 ﻿@model Kitaprazzi.Data.Model.User
-@{ 
+@{
     ViewBag.Title = "Kitaprazzi Üyelik Ekranı";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var isexist = ViewBag.IsUserExists ?? false;
 }
 <div class="container mb">
     <div class="row">
@@ -11,33 +12,42 @@
             </div>
             <div class="membership">
                 <h3>Üye olmak için aşağıdaki alanları doldurunuz</h3>
-                @using (Html.BeginForm("Add", "User", FormMethod.Post, new { @class="row"}))
+                @using (Html.BeginForm("Add", "User", FormMethod.Post, new { @class = "row" }))
                 {
                     @Html.AntiForgeryToken()
 
-                <form class="row" role="form">
-                    <div class="col-12 col-md-4 col-lg-3">
-                        @Html.TextBoxFor(x => x.Name, new { id = "UserName", placeholder = "Adınız" })
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-3">
-                        @Html.TextBoxFor(x => x.Surname, new { id = "Surname", placeholder = "Soyadınız" })
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-3">
-                        @Html.TextBoxFor(x => x.Email, new { id = "EmailAdress", placeholder = "E-mail adresiniz" })
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-3">
-                        @Html.PasswordFor(x => x.Password, new { id = "Password", placeholder = "Şifreniz" })
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <input type="submit" value="Kaydet" />
-                    </div>
-                    <div class="col options">
-                        <a href="javascript:;" title="">Zaten üyeyim</a>
-                    </div>
-                    <div class="col-12">
-                        <span class="message">@Html.ValidationSummary()</span>
-                    </div>
-                </form>
+                    <form class="row" role="form">
+                        <div class="col-12 col-md-4 col-lg-3">
+                            @Html.TextBoxFor(x => x.Name, new { id = "UserName", placeholder = "Adınız" })
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-3">
+                            @Html.TextBoxFor(x => x.Surname, new { id = "Surname", placeholder = "Soyadınız" })
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-3">
+                            @Html.TextBoxFor(x => x.Email, new { id = "EmailAdress", placeholder = "E-mail adresiniz" })
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-3">
+                            @Html.PasswordFor(x => x.Password, new { id = "Password", placeholder = "Şifreniz" })
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-3">
+                            <input type="submit" value="Kaydet" />
+                        </div>
+                        <div class="col options">
+                            <a href="/giris" title="">Zaten üyeyim</a>
+                        </div>
+                        <div class="col-12">
+                            <span class="message">
+                                @if (isexist)
+                                {
+                                    Html.Raw("Bu kullanıcı mevcut. Yeni kullanıcı adı deneyin");
+                                }
+                                else
+                                {
+                                    Html.ValidationSummary();
+                                }
+                            </span>
+                        </div>
+                    </form>
                 }
             </div>
         </div>

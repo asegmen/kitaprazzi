@@ -1,32 +1,41 @@
-﻿<div class="container mb">
+﻿@model Kitaprazzi.Data.Model.User
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container mb">
     <div class="row">
         <div class="col-12">
             <div class="title-row">
-                <div class="main-title">Yeni Üyelik</div>
+                <div class="main-title">Üye Girişi</div>
             </div>
             <div class="membership">
-                <h3>Üye olmak için aşağıdaki alanları doldurunuz</h3>
-                <form class="row">
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <input type="text" placeholder="Adınız soyadınız" value="" />
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <input type="email" placeholder="E-mail adresiniz" value="" />
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <input type="password" placeholder="Şifreniz" value="" />
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <input type="submit" value="Kaydet" />
-                    </div>
-                    <div class="col options">
-                        <a href="javascript:;" title="">Zaten üyeyim</a>
-                    </div>
-                    <div class="col-12">
-                        <span class="message">varsa bi uyarı buraya yazdırabiliriz adam</span>
-                    </div>
-                </form>
-            </div>
+                <h3>Üyelik bilgilerinizi giriniz</h3>
+                @using (Html.BeginForm("Enterance", "User", FormMethod.Post, new { @class = "row" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <form class="row" role="form">
+                        <div class="col-12 col-md-4 col-lg-3">
+                            @Html.TextBoxFor(x => x.Email, new { id = "EmailAdress", placeholder = "E-mail adresiniz" })
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-3">
+                            @Html.PasswordFor(x => x.Password, new { id = "Password", placeholder = "Şifreniz" })
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-3">
+                            <input type="submit" value="Giriş Yap" />
+                        </div>
+                        <div class="col options">
+                            <a href="/sifremi-unuttum" title="">Şifremi unuttum</a>
+                            <a href="/uye-kayit" title="">Üye Ol</a>
+                        </div>
+                        <div class="col-12">
+                            <span class="message">@Html.ValidationSummary()</span>
+                        </div>
+                    </form>
+                }
+
+                </div>
         </div>
     </div>
 </div>
