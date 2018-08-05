@@ -590,6 +590,7 @@
     <Compile Include="Controllers\MainControlController.cs" />
     <Compile Include="Controllers\MainSliderController.cs" />
     <Compile Include="Controllers\PublisherController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CustomFilter\LoginFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -656,6 +657,9 @@
     <Content Include="Views\MainSlider\Add.cshtml" />
     <Content Include="Views\MainSlider\Index.cshtml" />
     <Content Include="Views\MainSlider\Update.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Update.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

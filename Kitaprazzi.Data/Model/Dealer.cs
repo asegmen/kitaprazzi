@@ -17,6 +17,8 @@ namespace Kitaprazzi.Data.Model
         public int CountryID { get; set; }
         public virtual City City { get; set; }
         public virtual Country Country { get; set; }
+        public int? PublisherID { get; set; }
+        [ForeignKey("PublisherID")]
         public virtual Publisher Publisher { get; set; }
     }
 }

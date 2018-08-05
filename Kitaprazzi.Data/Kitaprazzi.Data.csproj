@@ -49,21 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext\KitaprazziContext.cs" />
-    <Compile Include="Migrations\201806130949554_Kitaprazzi_V1.cs" />
-    <Compile Include="Migrations\201806130949554_Kitaprazzi_V1.Designer.cs">
-      <DependentUpon>201806130949554_Kitaprazzi_V1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806231213589_KitaprazziV2.cs" />
-    <Compile Include="Migrations\201806231213589_KitaprazziV2.Designer.cs">
-      <DependentUpon>201806231213589_KitaprazziV2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806231227309_Kitaprazzi_V3.cs" />
-    <Compile Include="Migrations\201806231227309_Kitaprazzi_V3.Designer.cs">
-      <DependentUpon>201806231227309_Kitaprazzi_V3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807101230099_kitaprazzi_V4.cs" />
-    <Compile Include="Migrations\201807101230099_kitaprazzi_V4.Designer.cs">
-      <DependentUpon>201807101230099_kitaprazzi_V4.cs</DependentUpon>
+    <Compile Include="Migrations\201808050701489_InitialDatabase.cs" />
+    <Compile Include="Migrations\201808050701489_InitialDatabase.Designer.cs">
+      <DependentUpon>201808050701489_InitialDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BaseEntity.cs" />
@@ -88,17 +76,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806130949554_Kitaprazzi_V1.resx">
-      <DependentUpon>201806130949554_Kitaprazzi_V1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806231213589_KitaprazziV2.resx">
-      <DependentUpon>201806231213589_KitaprazziV2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806231227309_Kitaprazzi_V3.resx">
-      <DependentUpon>201806231227309_Kitaprazzi_V3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807101230099_kitaprazzi_V4.resx">
-      <DependentUpon>201807101230099_kitaprazzi_V4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808050701489_InitialDatabase.resx">
+      <DependentUpon>201808050701489_InitialDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

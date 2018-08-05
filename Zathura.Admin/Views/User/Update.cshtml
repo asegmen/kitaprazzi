@@ -1,0 +1,84 @@
+﻿@model Kitaprazzi.Data.Model.User
+@{
+    ViewBag.Title = "User Activate / Deactivate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="container-fluid">
+    <!-- Basic form -->
+    @using (Html.BeginForm("Update", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <header class="panel-heading">@ViewBag.Title</header>
+                    <div class="panel-body">
+                        @Html.HiddenFor(x => x.ID)
+                        <form role="form">
+                            @*<div class="form-group">
+                                    <label for="exampleInputEmail1">Parent Category Name</label>
+                                    @Html.DropDownListFor(model => model.CategoryID, new SelectList(ViewBag.ParentCategoryList, "ID", "Name"), ("Select Item"), new { @class = "form-control", id = "categoryID" })
+                                </div>*@
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mail Adresi:</label>
+                                <label for="exampleInputEmail1">@Model.Email</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Role</label>
+                                @Html.DropDownListFor(model => model.RoleID, new SelectList(ViewBag.RoleList, "ID", "Name"), ("Select Item"), new { @class = "form-control", id = "roleId" })
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Status</label>
+                                @Html.DropDownListFor(model => model.Status, new SelectList(ViewBag.StatusList, "Value", "Name"), ("Select Item"), new { @class = "form-control", id = "status" })
+                            </div>
+
+                            <button type="submit" class="btn btn-default">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- /Basic form -->
+
+</div>
+
+<script type="text/javascript">
+
+        $(function() {
+            $('#cityId').on('change', function() {
+                var cityDropdown = $('#countryId');
+                //clear drop down of old city
+                cityDropdown.empty();
+
+                //retrieve selected state
+                var state = $(this).val();
+                if (state.length > 0) {
+                    // retrieve data using a Url.Action() to construct url
+                    $.getJSON('@Url.Action("GetCountryByCityID")', {
+                        cityId: state
+                    })
+                    .done(function (data) {
+                        //re-enable city drop down
+                        cityDropdown.removeProp('disabled');
+                        //for each returned state
+                        $.each(data, function (i, city) {
+                            //Create new option
+                            var option = $('<option />').html(city['Name']).val(city['ID']);
+                            //append city states drop down
+                            cityDropdown.append(option);
+                        });
+                    })
+                    .fail(function (jqxhr, textStatus, error) {
+                        var err = textStatus + ", " + error;
+                        console.log("Request Failed: " + err);
+                    });
+                }
+            });
+        })
+</script>

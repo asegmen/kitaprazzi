@@ -7,18 +7,18 @@ namespace Kitaprazzi.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Kitaprazzi_V3 : IMigrationMetadata
+    public sealed partial class InitialDatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Kitaprazzi_V3));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialDatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806231227309_Kitaprazzi_V3"; }
+            get { return "201808050701489_InitialDatabase"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target

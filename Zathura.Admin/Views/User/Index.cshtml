@@ -1,0 +1,78 @@
+﻿@model PagedList.IPagedList<Kitaprazzi.Data.Model.User>
+@using PagedList.Mvc;
+@using Kitaprazzi.Core.Helper
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content start -->
+<div class="container-fluid">
+
+    <div class="row">
+        <!-- Responsive table -->
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <header class="panel-heading">@ViewBag.Title</header>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Mail Adresi</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null && Model.Any())
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td><span class="label label-success">@item.ID</span></td>
+                                            <td>@item.Email</td>
+                                            <td>
+                                                @item.Role.Name
+                                            </td>
+
+                                            <td>
+                                                @if (item.Status == (int)Status.Active)
+                                                {
+                                                    <b class="label label-success">Active</b>
+                                                }
+                                                else
+                                                {
+                                                    <b class="label label-danger">Passive</b>
+                                                }
+                                            </td>
+                                            @*@if (!string.IsNullOrEmpty(item?.User?.Name))
+                                                {
+                                                    <td><a href="#">@(item.User.Name + " " + item.User.Surname)</a></td>
+
+                                                }*@
+                                            <td>
+                                                <a href="@Url.Action("Update","User",new {id = item.ID})" class="btn btn-default btn-sm">Edit</a>
+                                                @*<button class="btn btn-default btn-sm">Edit</button>*@
+                                                @*<button class="btn btn-default btn-sm" id="catDeleteBtn" data-id="@item.ID">Delete</button>*@
+                                                @Html.ActionLink("Delete", "Delete", new { contentId = item.ID }, new { @class = "btn btn-default btn-sm", onclick = "return confirm('Are you sure want to delete?')" })
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    @Html.PagedListPager(Model, p => Url.Action("Index", new { p }), PagedListRenderOptions.Classic)
+                </div>
+            </div>
+
+        </div>
+        <!-- /Responsive table -->
+    </div>
+
+</div>
+

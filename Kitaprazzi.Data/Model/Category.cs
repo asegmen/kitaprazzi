@@ -17,6 +17,7 @@ namespace Kitaprazzi.Data.Model
         public int CategoryID { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<Content> Contents { get; set; }
+        public int IsMenu { get; set; }
 
     }
 }

@@ -28,8 +28,7 @@
             <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
             <!-- Sidebar submenu -->
             <ul class="sidebar-submenu">
-                <li><a href="@Url.Action("Index","Category")">Kullanıcı Listesi</a></li>
-                @*<li><a href="@Url.Action("Add","Category")">Kullanıcı Ekle</a></li>*@
+                <li><a href="@Url.Action("Index","User")">Kullanıcı Listesi</a></li>
             </ul>
             <!-- /Sidebar submenu -->
         </li>
@@ -57,13 +56,13 @@
             <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
             <!-- Sidebar submenu -->
             <ul class="sidebar-submenu">
-                <li><a href="@Url.Action("Index","Content")">İçerik Listesi</a></li>
+                <li><a href="/Content/Index">İçerik Listesi</a></li>
                 <li><a href="@Url.Action("Add","Content")">İçerik Ekle</a></li>
             </ul>
             <!-- /Sidebar submenu -->
         </li>
         <li class="has-submenu">
-            <a href="#"><i class="typcn typcn-tabs-outline"></i> <span>Anasayfa Kitap Liste Kontrolleri</span></a>
+            <a href="#"><i class="typcn typcn-tabs-outline"></i> <span>Anasayfa Kitap Grubu</span></a>
             <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
             <!-- Sidebar submenu -->
             <ul class="sidebar-submenu">
@@ -82,16 +81,7 @@
             </ul>
             <!-- /Sidebar submenu -->
         </li>
-        <li class="has-submenu">
-            <a href="#"><i class="typcn typcn-tabs-outline"></i> <span>İçerik</span></a>
-            <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
-            <!-- Sidebar submenu -->
-            <ul class="sidebar-submenu">
-                <li><a href="@Url.Action("Index","MainControl")">İçerik Listesi</a></li>
-                <li><a href="@Url.Action("Add","MainControl")">İçerik Ekle</a></li>
-            </ul>
-            <!-- /Sidebar submenu -->
-        </li>
+        
 
         @*<li class="has-submenu">
             <a href="#"><i class="typcn typcn-compass"></i> <span>Elements</span></a>
