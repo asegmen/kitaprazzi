@@ -53,7 +53,7 @@ namespace Zathura.Admin.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            var parentCatList = _categoryRepository.GetMany(x => x.Status == (int)Status.Active && x.CategoryID == 0).ToList();//(x => x.ParentCategoryId == 0 && x.Status)
+            var parentCatList = _categoryRepository.GetMany(x => x.Status == (int)Status.Active).ToList();
             ViewBag.ParentCategoryList = parentCatList;
             var systemSettingsList = _systemSettingRepository.GetMany(x => x.Key == "Status").ToList();
             ViewBag.StatusList = systemSettingsList;
@@ -66,6 +66,9 @@ namespace Zathura.Admin.Controllers
             try
             {
                 _categoryRepository.Insert(category);
+                _categoryRepository.Save();
+                category.Url = $"/category/{TextHelper.ClearForUrl(category.Name)}-{category.ID}";
+                _categoryRepository.Update(category);
                 _categoryRepository.Save();
                 return Json(new ResultJson() { Success = true, Message = "Category Added Successfully." });
                 //var user = Session["User"] as User;
@@ -98,7 +101,7 @@ namespace Zathura.Admin.Controllers
             {
                 throw new Exception("Category couldn't found!");
             }
-            var parentCatList = _categoryRepository.GetMany(x => x.CategoryID == 0 && x.Status == (int)Status.Active).ToList();
+            var parentCatList = _categoryRepository.GetMany(x =>x.Status == (int)Status.Active).ToList();
             ViewBag.ParentCategoryList = parentCatList;
             var systemSettingsList = _systemSettingRepository.GetMany(x => x.Key == "Status").ToList();
             ViewBag.StatusList = systemSettingsList;

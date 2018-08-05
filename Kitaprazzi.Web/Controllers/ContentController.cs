@@ -1,4 +1,5 @@
-﻿using Kitaprazzi.Core.Infrastructure;
+﻿using Kitaprazzi.Core.Helper;
+using Kitaprazzi.Core.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,15 @@ namespace Kitaprazzi.Web.Controllers
         private readonly IContentRepository _contentRepository;
         private readonly IPublisherRepository _publisherRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly GenericHelper _genericHelper;
+
 
         public ContentController(IContentRepository contentRepository, IPublisherRepository publisherRepository, ICategoryRepository categoryRepositoy)
         {
             _contentRepository = contentRepository;
             _publisherRepository = publisherRepository;
             _categoryRepository = categoryRepositoy;
+            _genericHelper = new GenericHelper(_contentRepository);
         }
 
         // GET: Content
@@ -36,7 +40,9 @@ namespace Kitaprazzi.Web.Controllers
         public ActionResult Category(int id)
         {
             var categoryItem = _categoryRepository.GetById(id);
-            return View(categoryItem);
+            var contentList = _genericHelper.GetContentsWithByCategory(categoryItem.ID, 50);
+            ViewBag.ContentList = contentList;
+            return View("~/Views/Content/CategoryDetail.cshtml", categoryItem);
         }
     }
 }

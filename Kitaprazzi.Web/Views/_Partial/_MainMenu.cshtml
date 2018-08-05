@@ -1,0 +1,75 @@
+﻿@model Kitaprazzi.Data.Model.Category
+@{
+    var subCategories = ViewBag.SubCategories as List<Kitaprazzi.Data.Model.Category>;
+    if (subCategories != null && subCategories.Any())
+    {
+
+        <li class="main-menu-item has-submenu">
+            <span class="main-menu-item-link" href="@Model.Url" title="">
+                <span class="main-menu-item-wrapper">
+                    @Model.Name.ToUpper()
+                    <i class="fa fa-chevron-down"></i>
+                </span>
+
+                <div class="wide-menu">
+                    @foreach (var subCategory in subCategories)
+                    {
+                        <span class="col-12 col-lg sub-menu-wrapper">
+                            <span class="sub-menu-title">@subCategory.Name</span>
+                            <ul class="sub-menu">
+                                <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
+                                <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
+                                <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
+                            </ul>
+                        </span>
+                    }
+                </div>
+            </span>
+        </li>
+
+    }
+    else
+    {
+        <li class="main-menu-item">
+            <a class="main-menu-item-link" href="@Model.Url" title="@Model.Name"><span class="main-menu-item-wrapper">@Model.Name.ToUpper()</span></a>
+        </li>
+    }
+
+}
+@*<li class="main-menu-item has-submenu">
+        <span class="main-menu-item-link" href="javascript:;" title="">
+            <span class="main-menu-item-wrapper">
+                ERKEN ÖĞRENME
+                <i class="fa fa-chevron-down"></i>
+            </span>
+
+            <div class="wide-menu">
+                <span class="col-12 col-lg sub-menu-wrapper">
+                    <span class="sub-menu-title">36 - 48 Ay</span>
+                    <ul class="sub-menu">
+                        <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
+                        <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
+                        <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
+                    </ul>
+                </span>
+                <span class="col-12 col-lg sub-menu-wrapper">
+                    <span class="sub-menu-title">36 - 48 Ay</span>
+                    <ul class="sub-menu">
+                        <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
+                        <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
+                        <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
+                    </ul>
+                </span>
+                <span class="col-12 col-lg sub-menu-wrapper">
+                    <span class="sub-menu-title">36 - 48 Ay</span>
+                    <ul class="sub-menu">
+                        <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
+                        <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
+                        <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
+                    </ul>
+                </span>
+            </div>
+        </span>
+    </li>*@
+
+

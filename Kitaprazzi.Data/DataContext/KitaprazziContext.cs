@@ -19,5 +19,7 @@ namespace Kitaprazzi.Data.DataContext
         public DbSet<City> Cities { get; set; }
         public DbSet<Country> Countries{ get; set; }
         public DbSet<SystemSetting> SystemSettings{ get; set; }
+        public DbSet<MainControl> MainControls{ get; set; }
+        public DbSet<MainSlider> MainSliders{ get; set; }
     }
 }

@@ -73,9 +73,11 @@
     <Compile Include="Model\Content.cs" />
     <Compile Include="Model\Country.cs" />
     <Compile Include="Model\Dealer.cs" />
+    <Compile Include="Model\MainControl.cs" />
     <Compile Include="Model\MediaItem.cs" />
     <Compile Include="Model\Publisher.cs" />
     <Compile Include="Model\Role.cs" />
+    <Compile Include="Model\MainSlider.cs" />
     <Compile Include="Model\SystemSetting.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

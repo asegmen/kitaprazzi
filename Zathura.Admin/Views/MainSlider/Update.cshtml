@@ -6,7 +6,7 @@
 <script src="~/Content/ckeditor/ckeditor.js"></script>
 <div class="container-fluid">
     <!-- Basic form -->
-    @using (Html.BeginForm("Add", "Content", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Update", "Content", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary()
@@ -29,54 +29,46 @@
                                 <label for="exampleInputEmail1">Short Description</label>
                                 @Html.TextBoxFor(x => x.Spot, new { @class = "form-control", id = "spot", placeholder = "Short Description" })
                                 @*@Html.TextArea("ShortDescription")
-            <script type="text/javascript">
-                var editor = CKEDITOR.instances['ShortDescription'];
-                if (editor) {
-                    editor.destroy(true);
-                }
-                CKEDITOR.replace('ShortDescription',
-                {
-                    enterMode:CKEDITOR.ENTER_BR,
-                });
-            </script>*@
+                                    <script type="text/javascript">
+                                        var editor = CKEDITOR.instances['ShortDescription'];
+                                        if (editor) {
+                                            editor.destroy(true);
+                                        }
+                                        CKEDITOR.replace('ShortDescription',
+                                        {
+                                            enterMode:CKEDITOR.ENTER_BR,
+                                        });
+                                    </script>*@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Description</label>
-                                @Html.TextAreaFor(x => x.Description, new { @class = "form-control", id = "description", placeholder = "Description", @cols=20, @rows=20 })
-                                @*@Html.TextArea("Description")*@
+                                @*@Html.TextAreaFor(x => x.Description, new { @class = "form-control", id = "description", placeholder = "Description" })*@
+                                @Html.TextArea("Description")
                                 <script type="text/javascript">
-                                    var editor = CKEDITOR.instances['Description'];
-                                    if (editor) {
-                                        editor.destroy(true);
-                                    }
-                                    CKEDITOR.replace('Description',
-                                        {
-                                            language: 'tr',
-                                            contentsLanguage: 'tr',
-                                            toolbar: [
-                                                ['Bold', 'Italic', 'Underline', 'Strike', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'TextColor'],
-                                                ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv']
-                                            ]
-                                        });
+                                var editor = CKEDITOR.instances['Description'];
+                                if (editor) {
+                                    editor.destroy(true);
+                                }
+                                CKEDITOR.replace('Description',
+                                {
+                                    enterMode: CKEDITOR.ENTER_BR,
+                                });
                                 </script>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Spot Image</label>
                                 <input type="file" name="spotImage" accept="image/*" class="form-control" />
                             </div>
-
+                            
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Content Image(s)</label>
-                                <input type="file" name="contentImages" accept="image/*" class="form-control" multiple />
+                                <input type="file" name="contentImages" accept="image/*" class="form-control" multiple/>
                             </div>
+
                             <div class="form-group">
-                                <label for="Publisher Name">Publisher Name</label>
-                                @Html.DropDownListFor(model => model.PublisherID, new SelectList(ViewBag.PublisherList, "ID", "Name"), ("Select Item"), new { @class = "form-control", id = "publisherId" })
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Status</label>
-                                @Html.DropDownListFor(model => model.Status, new SelectList(ViewBag.StatusList, "Value", "Name"), ("Select Item"), new { @class = "form-control", id = "status" })
-                            </div>
+                                    <label for="exampleInputEmail1">Status</label>
+                                    @Html.DropDownListFor(model => model.Status, new SelectList(ViewBag.StatusList, "Value", "Name"), ("Select Item"), new { @class = "form-control", id = "status" })
+                                </div>
 
                             <button type="submit" class="btn btn-default">Save</button>
                         </form>

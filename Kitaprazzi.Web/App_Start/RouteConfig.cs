@@ -39,6 +39,11 @@ namespace Kitaprazzi.Web
                 defaults: new { controller = "Content", action = "Publisher", id = UrlParameter.Optional }
             );
             routes.MapRoute(
+                name: "Category",
+                url: "category/{title}-{id}",
+                defaults: new { controller = "Content", action = "Category", title=UrlParameter.Optional, id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

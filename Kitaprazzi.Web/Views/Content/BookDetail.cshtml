@@ -10,18 +10,8 @@
     ViewBag.Title = Model.Title;
 }
 
-<div class="container mb20 breadcrumbs d-none d-lg-block">
-    <div class="row">
-        <dv class="col-12 d-none d-lg-block">
-            <ul>
-                <li><a href="javascript:;" title="" class="item">Anasayfa</a></li>
-                <li><a href="javascript:;" title="" class="item">Erken Öğrenme</a></li>
-                <li><a href="javascript:;" title="" class="item">36-48 Ay</a></li>
-                <li><span class="item">Çamlıca Çocuk Yayınları Okul Öncesi Kitapları</span></li>
-            </ul>
-        </dv>
-    </div>
-</div>
+@{Html.RenderPartial("~/Views/_Partial/_Breadcrumb.cshtml", Model); }
+
 
 <div class="container mb">
     <div class="row mb">
@@ -31,7 +21,7 @@
                 <a href="\yayin-evi\detay\@Model.PublisherID" title="" class="detail-category">@Model.Publisher.Name</a>
                 <div class="detail-description">
                     <p>@Model.Spot</p>
-                    <p>@Model.Description</p>
+                    @Html.Raw(new HtmlString(Model.Description))
                 </div>
             </div>
         </div>
@@ -64,20 +54,20 @@
                     <ul class="rating">
 
                         <li>
-                            <small>A Puanı</small>
+                            <small>Kullanıcı Puanı</small>
                             <span>@(Model.UserPoint)</span>
                         </li>
                         <li>
-                            <small>B Puanı</small>
-                            <span>@(Model.UserPoint)</span>
+                            <small>Editör Puanı</small>
+                            <span>@(Model.EditorPoint)</span>
                         </li>
                         <li>
-                            <small>C Puanı</small>
-                            <span>@(Model.UserPoint)</span>
+                            <small>Kitaprazzi Puanı</small>
+                            <span>@(Model.KitaprazziPoint)</span>
                         </li>
                         <li>
                             <small>Ortalama Puanı</small>
-                            <span>7,3</span>
+                            <span>@Math.Round(((Model.UserPoint + Model.EditorPoint + Model.KitaprazziPoint) / 3),1)</span>
                         </li>
                     </ul>
                 </div>

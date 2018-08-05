@@ -9,7 +9,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Zathura.Admin.CustomFilter;
-using Zathura.Admin.Helper;
 
 namespace Zathura.Admin.Controllers
 {
@@ -51,7 +50,7 @@ namespace Zathura.Admin.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         [LoginFilter]
         public ActionResult Add(Content content, int CategoryID, int PublisherID ,HttpPostedFileBase spotImage, IEnumerable<HttpPostedFileBase> contentImages)
         {
@@ -114,7 +113,7 @@ namespace Zathura.Admin.Controllers
 
             }
             SetCategoryList();
-            return View();
+            return RedirectToAction("Index");
         }
 
 
@@ -128,7 +127,7 @@ namespace Zathura.Admin.Controllers
             //}
             var publisherList = _publisherRepository.GetMany(x=> x.Status == (int)Status.Active);
             ViewBag.PublisherList = publisherList;
-            var categoryList = _categoryRepository.GetMany(x => x.CategoryID == 0 && x.Status == (int)Status.Active);// _cacheManager.Get<List<Category>>("CategoriList_");
+            var categoryList = _categoryRepository.GetMany(x => x.Status == (int)Status.Active);// _cacheManager.Get<List<Category>>("CategoriList_");
             ViewBag.CategoryList = categoryList;
             var systemSettingsList = _systemSettingRepository.GetMany(x => x.Key == "Status").ToList();
             ViewBag.StatusList = systemSettingsList;
@@ -151,7 +150,7 @@ namespace Zathura.Admin.Controllers
             return Index(1);
         }
 
-        [HttpGet]
+        [HttpGet, ValidateInput(false)]
         [LoginFilter]
         public ActionResult Update(int id) {
             var content = _contentRepository.GetById(id);

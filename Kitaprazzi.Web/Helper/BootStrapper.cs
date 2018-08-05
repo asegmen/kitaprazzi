@@ -32,6 +32,8 @@ namespace Kitaprazzi.Web.Helper
             builder.RegisterType<CityRepository>().As<ICityRepository>();
             builder.RegisterType<CountryRepository>().As<ICountryRepository>();
             builder.RegisterType<PublisherRepository>().As<IPublisherRepository>();
+            builder.RegisterType<MainControlRepository>().As<IMainControlRepository>();
+            builder.RegisterType<MainSliderRepository>().As<IMainSliderRepository>();
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             var container = builder.Build();

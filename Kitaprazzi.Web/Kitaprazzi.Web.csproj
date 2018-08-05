@@ -550,11 +550,17 @@
     <Content Include="Assets\bower_components\fancybox\README.md" />
     <Content Include="connections.config" />
     <None Include="packages.config" />
-    <Content Include="Views\Home\Category.cshtml" />
+    <Content Include="Views\Content\CategoryDetail.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\_UserForgetPassword.cshtml" />
     <Content Include="Views\User\_NewUser.cshtml" />
     <Content Include="Views\User\_UserEnterance.cshtml" />
+    <Content Include="Views\_Partial\_MainMenu.cshtml" />
+    <Content Include="Views\_Partial\_Breadcrumb.cshtml" />
+    <Content Include="Views\Home\_Partial\_MainSlider.cshtml" />
+    <Content Include="Views\Home\_Partial\_SearchBox.cshtml" />
+    <Content Include="Views\Home\_Partial\_BookList.cshtml" />
+    <Content Include="Views\Home\_Partial\_PopulerBookList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -565,6 +571,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Category\" />
+    <Folder Include="Views\Menu\" />
     <Folder Include="Views\Partials\" />
   </ItemGroup>
   <ItemGroup>

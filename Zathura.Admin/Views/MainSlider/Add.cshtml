@@ -1,0 +1,51 @@
+﻿@model Kitaprazzi.Data.Model.MainSlider
+@{
+    ViewBag.Title = "Anasayfa Slider";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<div class="container-fluid">
+    <!-- Basic form -->
+    @using (Html.BeginForm("Add", "MainSlider", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <header class="panel-heading">@ViewBag.Title</header>
+                    <div class="panel-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="Category Name">Slider Tipi</label>
+                                @Html.DropDownListFor(model => model.Type, new SelectList(ViewBag.SliderTypeList, "ID", "Name"), ("Select Item"), new { @class = "form-control", id = "Type" })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Spot Yazısı</label>
+                                @Html.TextBoxFor(x => x.Spot, new { @class = "form-control", id = "spot", placeholder = "Spot Yazısı" })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Spot Image</label>
+                                <input type="file" name="spotImage" accept="image/*" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Button Yazısı</label>
+                                @Html.TextBoxFor(x => x.ButtonText, new { @class = "form-control", id = "spot", placeholder = "Spot Yazısı" })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Button Url</label>
+                                @Html.TextBoxFor(x => x.ButtonUrl, new { @class = "form-control", id = "spot", placeholder = "Spot Yazısı" })
+                            </div>
+                            <button type="submit" class="btn btn-default">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    
+    <!-- /Basic form -->
+
+</div>
+

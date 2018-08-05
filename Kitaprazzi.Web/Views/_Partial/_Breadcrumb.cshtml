@@ -1,0 +1,18 @@
+﻿@model Kitaprazzi.Data.Model.Content
+@if (Model != null)
+{
+    <div class="container mb20 breadcrumbs d-none d-lg-block">
+        <div class="row">
+            <dv class="col-12 d-none d-lg-block">
+                <ul>
+                    <li><a href="/" title="" class="item">Anasayfa</a></li>
+                    @*<li><a href="javascript:;" title="" class="item">Erken Öğrenme</a></li>*@
+                    <li><a href="@Model.Category.Url" title="" class="item"> @Model.Category.Name</a></li>
+                    <li><span class="item">@Model.Title</span></li>
+                </ul>
+            </dv>
+        </div>
+    </div>
+}
+
+

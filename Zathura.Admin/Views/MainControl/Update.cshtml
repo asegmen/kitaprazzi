@@ -1,0 +1,45 @@
+﻿@model Kitaprazzi.Data.Model.MainControl
+@{
+    ViewBag.Title = "Anasayfa Kontrol Ekleme Ekranı";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<div class="container-fluid">
+    <!-- Basic form -->
+    @using (Html.BeginForm("Update", "MainControl", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <header class="panel-heading">@ViewBag.Title</header>
+                    <div class="panel-body">
+                        <form role="form">
+                            @Html.HiddenFor(x => x.ID)
+                            <div class="form-group">
+                                <label for="Category Name">Category Name</label>
+                                @Html.DropDownListFor(model => model.CategoryID, new SelectList(ViewBag.CategoryList, "ID", "Name"), ("Select Item"), new { @class = "form-control", id = "CategoryId" })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Kontrol Title</label>
+                                @Html.TextBoxFor(x => x.Title, new { @class = "form-control", id = "controlTitle", placeholder = "Kontrol Başlık Title" })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Sıra</label>
+                                @Html.TextBoxFor(x => x.Order, new { @class = "form-control", @type = "number", @min = "0", id = "order", placeholder = "Sıra" })
+                            </div>
+
+                            <button type="submit" class="btn btn-default">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- /Basic form -->
+
+</div>
+

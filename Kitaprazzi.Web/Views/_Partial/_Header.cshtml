@@ -1,21 +1,33 @@
-﻿
-@{
-    ViewBag.Title = "_Header";
+﻿@using Kitaprazzi.Data.Model
+@{ 
+    var userModel = (Kitaprazzi.Data.Model.User)ViewBag.UserModel;
+    var categories = ViewBag.Categories as List<Kitaprazzi.Data.Model.Category>;
+    var mainCategories = categories.Where(x=> x.CategoryID == 0) ?? new List<Kitaprazzi.Data.Model.Category>();
 }
 <header class="mb">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <ul class="mini-menu">
-                    <li class="mini-menu-item">
-                        <a class="mini-menu-item-link" href="javascript:;" title="ÜYE GİRİŞİ">ÜYE GİRİŞİ</a>
-                    </li>
-                    <li class="mini-menu-item">
-                        <a class="mini-menu-item-link" href="javascript:;" title="ÜYE OL">ÜYE OL</a>
-                    </li>
-                    <li class="mini-menu-item">
-                        <a class="mini-menu-item-link" href="javascript:;" title="YAYINEVİ EKLE">YAYINEVİ EKLE</a>
-                    </li>
+                    @if (!string.IsNullOrEmpty(userModel?.Email))
+                    {
+                        <li class="mini-menu-item">
+                            <span>@Html.Raw($"Hoş Geldiniz: {userModel.Name} {userModel.Surname}")</span>
+                        </li>
+
+                    }
+                    else
+                    {
+                        <li class="mini-menu-item">
+                            <a class="mini-menu-item-link" href="/giris" title="ÜYE GİRİŞİ">ÜYE GİRİŞİ</a>
+                        </li>
+                        <li class="mini-menu-item">
+                            <a class="mini-menu-item-link" href="/uye-kayit" title="ÜYE OL">ÜYE OL</a>
+                        </li>
+                        <li class="mini-menu-item">
+                            <a class="mini-menu-item-link" href="javascript:;" title="YAYINEVİ EKLE">YAYINEVİ EKLE</a>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
@@ -33,52 +45,14 @@
                         <div class="mobile-menu d-lg-none">MENÜ</div>
                         <ul class="main-menu d-lg-inline-block">
                             <li class="main-menu-item">
-                                <a class="main-menu-item-link" href="javascript:;" title=""><span class="main-menu-item-wrapper">ANASAYFA</span></a>
+                                <a class="main-menu-item-link" href="/#" title=""><span class="main-menu-item-wrapper">ANASAYFA</span></a>
                             </li>
-                            <li class="main-menu-item has-submenu">
-                                <span class="main-menu-item-link" href="javascript:;" title="">
-                                    <span class="main-menu-item-wrapper">
-                                        ERKEN ÖĞRENME
-                                        <i class="fa fa-chevron-down"></i>
-                                    </span>
-
-                                    <div class="wide-menu">
-                                            <span class="col-12 col-lg sub-menu-wrapper">
-                                                <span class="sub-menu-title">36 - 48 Ay</span>
-                                                <ul class="sub-menu">
-                                                    <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
-                                                    <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
-                                                    <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
-                                                </ul>
-                                            </span>
-                                            <span class="col-12 col-lg sub-menu-wrapper">
-                                                <span class="sub-menu-title">36 - 48 Ay</span>
-                                                <ul class="sub-menu">
-                                                    <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
-                                                    <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
-                                                    <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
-                                                </ul>
-                                            </span>
-                                            <span class="col-12 col-lg sub-menu-wrapper">
-                                                <span class="sub-menu-title">36 - 48 Ay</span>
-                                                <ul class="sub-menu">
-                                                    <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
-                                                    <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
-                                                    <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
-                                                </ul>
-                                            </span>
-                                    </div>
-                                </span>
-                            </li>
-                            <li class="main-menu-item">
-                                <a class="main-menu-item-link" href="javascript:;" title=""><span class="main-menu-item-wrapper">İLKOKUL</span></a>
-                            </li>
-                            <li class="main-menu-item">
-                                <a class="main-menu-item-link" href="javascript:;" title=""><span class="main-menu-item-wrapper">ORTAOKUL</span></a>
-                            </li>
-                            <li class="main-menu-item">
-                                <a class="main-menu-item-link" href="javascript:;" title=""><span class="main-menu-item-wrapper">LİSE</span></a>
-                            </li>
+                            @foreach (var category in mainCategories)
+                            {
+                                var subCategories = categories.Where(x=> x.CategoryID == category.ID).ToList();
+                                Html.RenderPartial("~/Views/_Partial/_MainMenu.cshtml", category, new ViewDataDictionary { { "SubCategories", subCategories } });
+                            }
+                            
                             <li class="main-menu-item">
                                 <a class="main-menu-item-link" href="javascript:;" title=""><span class="main-menu-item-wrapper">KİTAPRAZZİ</span></a>
                             </li>

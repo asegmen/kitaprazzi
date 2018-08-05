@@ -9,11 +9,11 @@ namespace Kitaprazzi.Data.Model
 {
     public class Content: BaseEntity
     {
-        [MaxLength(50, ErrorMessage = "Kitap Adı Alanı 50 karakterden uzun olamaz!")]
+        [MaxLength(100, ErrorMessage = "Kitap Adı Alanı 50 karakterden uzun olamaz!")]
         public string Title { get; set; }
-        [MaxLength(100, ErrorMessage = "Spot Alanı 100 karakterden uzun olamaz!")]
+        [MaxLength(250, ErrorMessage = "Spot Alanı 100 karakterden uzun olamaz!")]
         public string Spot { get; set; }
-        [MaxLength(500, ErrorMessage = "Açıklama Alanı 500 karakterden uzun olamaz!")]
+        [MaxLength(5000, ErrorMessage = "Açıklama Alanı 500 karakterden uzun olamaz!")]
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
         public int Type { get; set; }

@@ -57,7 +57,6 @@ $(document).on("click", "#catDeleteBtn", function () {
 function UpdateCategory() {
     var category = new Object();
     category.Name = $("#categoryName").val();
-    category.Url = $("#categoryUrl").val();
     category.Status = $("#status").val() ? $("#status").val() : 0;
     category.CategoryID = $("#categoryID").val();
     category.ID = $("#ID").val();

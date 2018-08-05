@@ -1,0 +1,74 @@
+﻿@using Kitaprazzi.Data.Model
+@using Kitaprazzi.Core.Helper
+@model Kitaprazzi.Data.Model.Category
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var contentList = ViewBag.ContentList as List<Content>;
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-4 col-lg-3">
+            <div class="filter mb">
+                <div class="filter-title">SONUÇLARI FİLTRELE</div>
+                <div class="row filter-list">
+                    <div class="col-6 col-md-12">
+                        <div class="filter-list-item">
+                            <div class="filter-list-title">YAYINCI</div>
+                            <div class="filter-list-content">
+                                content
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-12">
+                        <div class="filter-list-item">
+                            <div class="filter-list-title">OYLAMA</div>
+                            <div class="filter-list-content">
+                                content
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-8 col-lg-9">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="title-row">
+                        <a href="javascript:;" title="" class="main-title">@Model.Name.ToUpper()</a>
+                    </div>
+                    <div class="row">
+                        @foreach (var content in contentList)
+                        {
+                            var mainImage = content.MediaItems.FirstOrDefault(x => x.Content.ID == content.ID && x.Type == (int)ImageType.SpotImage);
+                            <div class="col-12 col-sm-6 col-lg-4">
+                                <a href="@($"/kitap/detay/{content.ID}")" title="@content.Title" class="product">
+                                    <span class="product-image">
+                                        <span class="product-image-wrapper">
+                                            <img src="@($"http://localhost:36658{mainImage.Url}")" alt="@content.Title" />
+                                        </span>
+                                    </span>
+                                    <span class="product-publisher">@content.Publisher.Name</span>
+                                    <span class="product-category">@content.Category.Name</span>
+                                    <span class="product-title">@content.Title</span>
+                                    <span class="star-rating">
+                                        @content.KitaprazziPoint
+                                    </span>
+                                </a>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

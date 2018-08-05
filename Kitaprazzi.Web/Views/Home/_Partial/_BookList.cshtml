@@ -1,0 +1,41 @@
+﻿@using Kitaprazzi.Data.Model;
+@using Kitaprazzi.Core.Helper
+@model Kitaprazzi.Data.Model.MainControl
+@if (Model != null)
+{
+    var contentList = ViewBag.ContentList as List<Content>;
+    var url = Model.Category.Url;
+    <div class="container mb">
+        <div class="row">
+            <div class="col-12">
+                <div class="title-row">
+                    <a href="@url" title="" class="main-title">@Model.Title</a>
+                    <a href="@url" title="" class="main-link d-none d-lg-block">TÜMÜNÜ GÖRÜNTÜLE <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+                <div class="row">
+                    @foreach (var item in contentList)
+                    {
+                        var mainImage = item.MediaItems.FirstOrDefault(x => x.Content.ID == item.ID && x.Type == (int)ImageType.SpotImage);
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <a href="@($"/kitap/detay/{item.ID}")" title="@item.Title" class="product">
+                                <span class="product-image">
+                                    <span class="product-image-wrapper">
+                                        <img src="@($"http://localhost:36658{mainImage.Url}")" alt="@item.Title" />
+                                    </span>
+                                </span>
+                                <span class="product-publisher">@item.Publisher.Name</span>
+                                <span class="product-category">@item.Category.Name</span>
+                                <span class="product-title">@item.Title</span>
+                                <span class="star-rating">
+                                    <span class="star-rating__wrap">
+                                       @item.KitaprazziPoint
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
