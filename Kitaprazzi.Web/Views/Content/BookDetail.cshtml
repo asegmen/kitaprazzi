@@ -32,8 +32,8 @@
                         var mainImage = Model.MediaItems.FirstOrDefault(x => x.Content.ID == Model.ID && x.Type == (int)ImageType.SpotImage);
                         var sampleImages = Model.MediaItems.Where(x => x.Content.ID == Model.ID && x.Type == (int)ImageType.MediaImage).ToList();
                     }
-                    <a href="@($"http://localhost:36658{mainImage.Url}")" data-fancybox="gallery" data-caption="@Model.Title">
-                        <img src="@($"http://localhost:36658{mainImage.Url}")" alt="@Model.Title" />
+                    <a href="@($"{GlobalHelper.ImageAdress}{mainImage.Url}")" data-fancybox="gallery" data-caption="@Model.Title">
+                        <img src="@($"{GlobalHelper.ImageAdress}{mainImage.Url}")" alt="@Model.Title" />
                     </a>
                 </div>
                 <div class="image-group">
@@ -43,8 +43,8 @@
                         @foreach (var image in sampleImages)
                         {
                             <li class="image-list-item">
-                                <a href="@($"http://localhost:36658{image.Url}")" data-fancybox="gallery" data-caption="Asdfg 2">
-                                    <img src="@($"http://localhost:36658{image.Url}")" alt="@Model.Title" />
+                                <a href="@($"{GlobalHelper.ImageAdress}{image.Url}")" data-fancybox="gallery" data-caption="Asdfg 2">
+                                    <img src="@($"{GlobalHelper.ImageAdress}{image.Url}")" alt="@Model.Title" />
                                 </a>
                             </li>
 

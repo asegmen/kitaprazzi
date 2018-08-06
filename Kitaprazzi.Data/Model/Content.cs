@@ -22,7 +22,7 @@ namespace Kitaprazzi.Data.Model
         public int CategoryID { get; set; }
         [ForeignKey("CategoryID")]
         public virtual Category Category { get; set; }
-        public int PublisherID { get; set; }
+        public int? PublisherID { get; set; }
         [ForeignKey("PublisherID")]
         public virtual Publisher Publisher { get; set; }
         public float EditorPoint { get; set; }

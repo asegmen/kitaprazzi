@@ -71,17 +71,6 @@ namespace Zathura.Admin.Controllers
                 _categoryRepository.Update(category);
                 _categoryRepository.Save();
                 return Json(new ResultJson() { Success = true, Message = "Category Added Successfully." });
-                //var user = Session["User"] as User;
-                //if (user != null)
-                //{
-                //    var usr = new User();
-                //    usr = user;
-                //    category.User = usr;
-                //    _categoryRepository.Insert(category);
-                //    _categoryRepository.Save();
-                //    return Json(new ResultJson() { Success = true, Message = "Category Added Successfully." });
-                //}
-                //return Json(new ResultJson { Success = false, Message = "Category couldnt added!!!" });
 
             }
             catch (Exception ex)

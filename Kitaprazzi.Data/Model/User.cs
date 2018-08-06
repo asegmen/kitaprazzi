@@ -28,6 +28,6 @@ namespace Kitaprazzi.Data.Model
         public virtual Role Role { get; set; }
 
         [Required]
-        public int RoleID { get; set; }
+        public int? RoleID { get; set; }
     }
 }

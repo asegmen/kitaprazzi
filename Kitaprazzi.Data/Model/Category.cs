@@ -11,13 +11,12 @@ namespace Kitaprazzi.Data.Model
     {
         [MaxLength(75, ErrorMessage = "Ad Alanı 50 karakterden uzun olamaz!")]
         public string Name { get; set; }
-
         [MaxLength(75, ErrorMessage = "Url Alanı 50 karakterden uzun olamaz!")]
         public string Url { get; set; }
         public int CategoryID { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<Content> Contents { get; set; }
-        public int IsMenu { get; set; }
+        public int? IsMenu { get; set; }
 
     }
 }

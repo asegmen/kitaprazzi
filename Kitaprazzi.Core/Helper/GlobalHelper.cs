@@ -13,6 +13,7 @@ namespace Kitaprazzi.Core.Helper
         public static string SMTPHost => ConfigurationManager.AppSettings["SMTPHost"];
         public static string MailPassword => ConfigurationManager.AppSettings["MailPassword"];
         public static string MailAdress => ConfigurationManager.AppSettings["MailAdress"];
+        public static string ImageAdress => ConfigurationManager.AppSettings["ImageService:Url"];
 
     }
 }

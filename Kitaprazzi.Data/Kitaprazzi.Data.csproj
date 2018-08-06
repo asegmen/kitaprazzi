@@ -49,9 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext\KitaprazziContext.cs" />
-    <Compile Include="Migrations\201808050701489_InitialDatabase.cs" />
-    <Compile Include="Migrations\201808050701489_InitialDatabase.Designer.cs">
-      <DependentUpon>201808050701489_InitialDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201808061313242_missingTables.cs" />
+    <Compile Include="Migrations\201808061313242_missingTables.Designer.cs">
+      <DependentUpon>201808061313242_missingTables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BaseEntity.cs" />
@@ -76,8 +76,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808050701489_InitialDatabase.resx">
-      <DependentUpon>201808050701489_InitialDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808061313242_missingTables.resx">
+      <DependentUpon>201808061313242_missingTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

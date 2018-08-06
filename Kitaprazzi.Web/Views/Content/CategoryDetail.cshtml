@@ -49,7 +49,7 @@
                                 <a href="@($"/kitap/detay/{content.ID}")" title="@content.Title" class="product">
                                     <span class="product-image">
                                         <span class="product-image-wrapper">
-                                            <img src="@($"http://localhost:36658{mainImage.Url}")" alt="@content.Title" />
+                                            <img src="@($"{GlobalHelper.ImageAdress}{mainImage.Url}")" alt="@content.Title" />
                                         </span>
                                     </span>
                                     <span class="product-publisher">@content.Publisher.Name</span>

@@ -13,12 +13,12 @@
             <div class="row">
                 @foreach (var item in contentList)
                 {
-                    var mainImage = item.MediaItems.FirstOrDefault(x => x.Content.ID == item.ID && x.Type == (int)ImageType.SpotImage);
+                    var mainImage = item.MediaItems.FirstOrDefault(x => x.Content.ID == item.ID && x.Type == (int)ImageType.SpotImage) ?? new MediaItem();
                     <div class="col-12 col-sm-6 col-lg-3">
                         <a href="@($"/kitap/detay/{item.ID}")" title="@item.Title" class="product">
                             <span class="product-image">
                                 <span class="product-image-wrapper">
-                                    <img src="@($"http://localhost:36658{mainImage.Url}")" alt="@item.Title" />
+                                    <img src="@($"{GlobalHelper.ImageAdress}{mainImage.Url}")" alt="@item.Title" />
                                 </span>
                             </span>
                             <span class="product-publisher">@item.Publisher.Name</span>
