@@ -113,7 +113,7 @@ namespace Zathura.Admin.Controllers
 
             }
             SetCategoryList();
-            return RedirectToAction("Index");
+            return Redirect("Index");
         }
 
 
@@ -139,15 +139,20 @@ namespace Zathura.Admin.Controllers
                 if (content == null)
                 {
                 }
+                var mediaItems = content.MediaItems.ToList();
+                foreach (var mediaItem in mediaItems)
+                {
+                    _mediaItemRepository.Delete(mediaItem.ID);
+                }
                 _contentRepository.Delete(contentId);
                 _contentRepository.Save();
                 //return Json(new ResultJson { Success = true, Message = "Content deleted successfully..." });
             }
             catch (Exception ex)
             {
-                //return Json(new ResultJson { Success = false, Message = "Content couldnt deleted!!!", ExceptionMessage = ex.Message, ExStackTrace = ex.StackTrace });
+                return Redirect("Index");
             }
-            return Index(1);
+            return Redirect("Index");
         }
 
         [HttpGet, ValidateInput(false)]

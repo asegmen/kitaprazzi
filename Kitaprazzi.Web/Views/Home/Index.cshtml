@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-4">
             @{
-                Html.RenderPartial("~/Views/Home/_Partial/_SearchBox.cshtml");
+                Html.RenderAction("SearchBox", "Home");
             }
         </div>
         <div class="col-md-8">

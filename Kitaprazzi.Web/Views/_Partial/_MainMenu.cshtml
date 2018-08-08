@@ -12,16 +12,24 @@
                 </span>
 
                 <div class="wide-menu">
-                    @foreach (var subCategory in subCategories)
+                    @foreach (var subCategory in subCategories.Where(x=> x.CategoryID == Model.ID))
                     {
-                        <span class="col-12 col-lg sub-menu-wrapper">
-                            <span class="sub-menu-title">@subCategory.Name</span>
-                            <ul class="sub-menu">
-                                <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
-                                <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
-                                <li class="sub-menu-item"><a href="javascript:;" title="">Okul Öncesi Setler</a></li>
-                            </ul>
-                        </span>
+                    <span class="col-12 col-lg sub-menu-wrapper">
+                        <span class="sub-menu-title">@subCategory.Name</span>
+                        @{
+                            var ancCategories = subCategories.Where(x => x.CategoryID == subCategory.ID);
+                            if (ancCategories != null && ancCategories.Any())
+                            {
+                        <ul class="sub-menu">
+                            @foreach (var subMenu in ancCategories)
+                            {
+                                <li class="sub-menu-item"><a href="@subMenu.Url" title="">@subMenu.Name</a></li>
+                            }
+                        </ul>
+                            }
+                        }
+
+                    </span>
                     }
                 </div>
             </span>

@@ -67,5 +67,19 @@ namespace Zathura.UI.Controllers
             var slides = _mainSliderRepository.GetAll().ToList();
             return PartialView("~/Views/Home/_Partial/_MainSlider.cshtml", slides);
         }
+
+        [ChildActionOnly]
+        public ActionResult SearchBox()
+        {
+            var categories = _categoryRepository.GetAll().ToList();
+            var mainCategories = categories.Where(x=> x.CategoryID == 0).ToList();
+            var subCategories = new List<Category>();
+            foreach (var mainCategory in mainCategories)
+            {
+                subCategories.AddRange(categories.Where(x=>x.CategoryID == mainCategory.ID));
+            }
+            ViewBag.SubCategories = subCategories;
+            return PartialView("~/Views/Home/_Partial/_SearchBox.cshtml");
+        }
     }
 }

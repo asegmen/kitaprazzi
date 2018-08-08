@@ -1,12 +1,19 @@
-﻿<div class="search-box">
+﻿@using Kitaprazzi.Core.Helper
+@using Kitaprazzi.Data.Model
+@{ 
+    var subCategories = ViewBag.SubCategories as List<Category>;
+}
+<div class="search-box">
     <div class="search-box-title">HANGİ KİTABI ARIYORSUNUZ?</div>
     <div class="search-box-line">
         <span class="search-box-line-title mb30">Sınıf Seçiniz</span>
         <span class="search-box-line-element">
             <select>
-                <option selected>Okul Öncesi / 36-48 Ay</option>
-                <option selected>Okul Öncesi / 36-48 Ay</option>
-                <option selected>Okul Öncesi / 36-48 Ay</option>
+                @foreach (var subCategory in subCategories)
+                {
+                    <option value="@subCategory.ID" >@($"{subCategory.Name}")</option>
+
+                }
             </select>
         </span>
     </div>

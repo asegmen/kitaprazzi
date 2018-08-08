@@ -49,7 +49,7 @@
                             </li>
                             @foreach (var category in mainCategories)
                             {
-                                var subCategories = categories.Where(x=> x.CategoryID == category.ID).ToList();
+                                var subCategories = categories.Where(x=> x.CategoryID != 0).ToList();
                                 Html.RenderPartial("~/Views/_Partial/_MainMenu.cshtml", category, new ViewDataDictionary { { "SubCategories", subCategories } });
                             }
                             
