@@ -1,22 +1,32 @@
-﻿
-<div class="main-slider swiper-container">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <div class="main-slide-item type2">
-                <img src="http://corinth.ascsa.net/image?type=preview&id=Corinth%3AImage%3Adigital%202014%2011149" alt="" />
-                <span class="main-slide-info">
-                    <span class="main-slide-title">BİR OCAK YAYINLARININ DİKKAT VE GÖRSEL ALGI KİTABINI OKUMUŞ MUYDUNUZ?</span>
-                    <a href="javascript:;" title="" class="main-slide-button d-none d-md-block">KİTABI İNCELE</a>
-                </span>
-            </div>
+﻿@using Kitaprazzi.Data.Model
+@using Kitaprazzi.Core.Helper
+@model List<MainSlider>
+
+@if (Model != null && Model.Any())
+{
+    
+    <div class="main-slider swiper-container">
+        <div class="swiper-wrapper">
+            @foreach (var slide in Model)
+            {
+                var detailSlide = slide.Type.Equals("1");
+                <div class="swiper-slide">
+                    <div class="main-slide-item @if (detailSlide) { <text> type2</text>} ">
+                        <img src="@($"{GlobalHelper.ImageAdress}{slide.ImageUrl}") slide.ImageUrl" alt="@slide.Spot" />
+                        @if (detailSlide)
+                        {
+                            <span class="main-slide-info">
+                                <span class="main-slide-title">@slide.Spot</span>
+                                <a href="@slide.ButtonUrl" title="" class="main-slide-button d-none d-md-block">@slide.ButtonText</a>
+                            </span>
+                        }
+                    </div>
+
+                </div>
+            }
         </div>
-        <div class="swiper-slide">
-            <div class="main-slide-item">
-                <img src="https://www.theclymb.com/cImages/Website_0/type_730/EPL01233_1163722.jpg" alt="" />
-            </div>
-        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev d-none d-md-block"><i class="fa fa-long-arrow-left"></i></div>
+        <div class="swiper-button-next d-none d-md-block"><i class="fa fa-long-arrow-right"></i></div>
     </div>
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-prev d-none d-md-block"><i class="fa fa-long-arrow-left"></i></div>
-    <div class="swiper-button-next d-none d-md-block"><i class="fa fa-long-arrow-right"></i></div>
-</div>
+}

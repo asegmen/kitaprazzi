@@ -13,14 +13,16 @@ namespace Zathura.UI.Controllers
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMainControlRepository _mainControlRepository;
+        private readonly IMainSliderRepository _mainSliderRepository;
         private readonly IContentRepository _contentRepository;
         private readonly GenericHelper _genericHelper;
         
 
-        public HomeController(ICategoryRepository categoryRepository, IMainControlRepository mainControlRepository, IContentRepository contentRepository) {
+        public HomeController(ICategoryRepository categoryRepository, IMainControlRepository mainControlRepository, IContentRepository contentRepository, IMainSliderRepository mainSliderRepository) {
             _categoryRepository = categoryRepository;
             _mainControlRepository = mainControlRepository;
             _contentRepository = contentRepository;
+            _mainSliderRepository = mainSliderRepository;
             _genericHelper = new GenericHelper(_contentRepository);
         }
         // GET: Home
@@ -58,6 +60,12 @@ namespace Zathura.UI.Controllers
             var contentList = _genericHelper.GetContentsWithByCategory(control.CategoryID);
             ViewBag.ContentList = contentList;
             return PartialView("~/Views/Home/_Partial/_BookList.cshtml", control);
+        }
+        [ChildActionOnly]
+        public ActionResult MainSlider()
+        {
+            var slides = _mainSliderRepository.GetAll().ToList();
+            return PartialView("~/Views/Home/_Partial/_MainSlider.cshtml", slides);
         }
     }
 }
