@@ -1,6 +1,6 @@
 ﻿@using Kitaprazzi.Core.Helper
 @using Kitaprazzi.Data.Model
-@{ 
+@{
     var subCategories = ViewBag.SubCategories as List<Category>;
 }
 <div class="search-box">
@@ -8,10 +8,10 @@
     <div class="search-box-line">
         <span class="search-box-line-title mb30">Sınıf Seçiniz</span>
         <span class="search-box-line-element">
-            <select>
+            <select id="mainCategoryID">
                 @foreach (var subCategory in subCategories)
                 {
-                    <option value="@subCategory.ID" >@($"{subCategory.Name}")</option>
+                    <option value="@subCategory.ID">@($"{subCategory.Name}")</option>
 
                 }
             </select>
@@ -20,14 +20,47 @@
     <div class="search-box-line">
         <span class="search-box-line-title">Ders Seçiniz</span>
         <span class="search-box-line-element">
-            <select>
-                <option selected>Fen ve Doğa Deneyleri</option>
-                <option selected>Fen ve Doğa Deneyleri</option>
-                <option selected>Fen ve Doğa Deneyleri</option>
-            </select>
+            <select id="SubCategory"></select>
         </span>
     </div>
     <div class="search-box-line">
         <input class="find-button" type="submit" value="KİTAPLARI BUL">
     </div>
 </div>
+
+<script type="text/javascript">
+
+        $(function() {
+            $('#mainCategoryID').on('change', function() {
+                var subCategory = $('#SubCategory');
+                //disable city drop down
+                /*subCategory.prop('disabled', 'disabled');*/
+                //clear drop down of old city
+                subCategory.empty();
+
+                //retrieve selected state
+                var state = $(this).val();
+                if (state.length > 0) {
+                    // retrieve data using a Url.Action() to construct url
+                    $.getJSON('@Url.Action("GetSubCategoryWithByID")', {
+                        categoryId: state
+                    })
+                    .done(function (data) {
+                        //re-enable city drop down
+                        subCategory.removeProp('disabled');
+                        //for each returned state
+                        $.each(data, function (i, category) {
+                            //Create new option
+                            var option = $('<option />').html(category['Name']).val(category['Url']);
+                            //append city states drop down
+                            subCategory.append(option);
+                        });
+                    })
+                    .fail(function (jqxhr, textStatus, error) {
+                        var err = textStatus + ", " + error;
+                        console.log("Request Failed: " + err);
+                    });
+                }
+            });
+        })
+</script>

@@ -81,5 +81,11 @@ namespace Zathura.UI.Controllers
             ViewBag.SubCategories = subCategories;
             return PartialView("~/Views/Home/_Partial/_SearchBox.cshtml");
         }
+
+        public JsonResult GetSubCategoryWithByID(int categoryId)
+        {
+            var counrtyList = _categoryRepository.GetMany(x => x.CategoryID== categoryId);
+            return Json(counrtyList, JsonRequestBehavior.AllowGet);
+        }
     }
 }
