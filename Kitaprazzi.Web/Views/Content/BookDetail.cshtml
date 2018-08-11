@@ -18,7 +18,8 @@
         <div class="col-12 col-lg-6 order-lg-2">
             <div class="detail">
                 <div class="detail-title">@Model.Title.ToUpper()</div>
-                <a href="\yayin-evi\detay\@Model.PublisherID" title="" class="detail-category">@Model.Publisher.Name</a>
+                @*<a href="\yayin-evi\detay\@Model.PublisherID" title="" class="detail-category">@Model.Publisher.Name</a>*@
+                <a href="javascript:;" title="" class="detail-category">@Model.Publisher.Name</a>
                 <div class="detail-description">
                     <p>@Model.Spot</p>
                     @Html.Raw(new HtmlString(Model.Description))
@@ -76,7 +77,7 @@
         </div>
         <div class="col-12 col-lg-3 order-lg-3">
             <div class="search-box dealers">
-                <div class="search-box-title">BAYİ BUL</div>
+                @*<div class="search-box-title">BAYİ BUL</div>
                 <div class="search-box-line">
                     <span class="search-box-line-title mb30">İl Seçiniz</span>
                     <span class="search-box-line-element">
@@ -112,7 +113,7 @@
 
                     <span class="dealers-name">Remzi Kitabevi</span>
                     <span class="dealers-phone">0212 250 96 07</span>
-                </div>
+                </div>*@
             </div>
         </div>
     </div>
@@ -122,11 +123,11 @@
     <div class="row">
         <div class="col-12">
             <div class="title-row">
-                <a href="javascript:;" title="" class="main-title">ÖĞRETMEN YORUMLARI (16 Yorum)</a>
+                <a href="javascript:;" title="" class="main-title">ÖĞRETMEN YORUMLARI (0 Yorum)</a>
                 <a href="javascript:;" title="" class="main-link d-none d-lg-block">TÜMÜNÜ GÖRÜNTÜLE <i class="fa fa-long-arrow-right"></i></a>
             </div>
             <div class="comment">
-                <div class="row comment-row">
+                @*<div class="row comment-row">
                     <div class="col-auto">
                         <img src="" alt="" class="comment-avatar" />
                     </div>
@@ -162,7 +163,7 @@
                             <p>Ut aliquam id leo non dignissim. Donec sollicitudin enim sodales, lacinia nulla at, gravida dui. Ut rhoncus vestibulum diam, quis eleifend augue ornare id. Vestibulum placerat odio in maximus feugiat. Cras consequat in lectus varius imperdiet. Duis ut imperdiet nibh, non facilisis erat. Vivamus sed quam sit amet arcu lacinia viverra. Quisque suscipit eu urna non eleifend. Integer sed neque ut eros ultricies facilisis eu laoreet turpis. Ut tempus sem nec gravida pretium. Donec nec orci tincidunt, luctus lacus sed, ornare mi. Nam tincidunt, augue nec fermentum interdum, leo dolor cursus ex, nec commodo tellus tellus in justo.</p>
                         </div>
                     </div>
-                </div>
+                </div>*@
             </div>
         </div>
     </div>

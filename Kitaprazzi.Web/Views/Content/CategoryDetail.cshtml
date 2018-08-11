@@ -6,6 +6,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var contentList = ViewBag.ContentList as List<Content>;
+    var publisherList = contentList.Select(x=>x.Publisher).Distinct();
+
 }
 
 
@@ -19,7 +21,10 @@
                         <div class="filter-list-item">
                             <div class="filter-list-title">YAYINCI</div>
                             <div class="filter-list-content">
-                                content
+                                @foreach (var pubilsher in publisherList)
+                                {
+                                    <span> @pubilsher.ID - @pubilsher.Name</span>
+                                }
                             </div>
                         </div>
                     </div>
@@ -27,7 +32,11 @@
                         <div class="filter-list-item">
                             <div class="filter-list-title">OYLAMA</div>
                             <div class="filter-list-content">
-                                content
+                                <span>1-3</span>
+                                <span>3-5</span>
+                                <span>5-7</span>
+                                <span>7-9</span>
+                                <span>9-10</span>
                             </div>
                         </div>
                     </div>
