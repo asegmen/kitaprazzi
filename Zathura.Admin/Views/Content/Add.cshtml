@@ -28,22 +28,11 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Short Description</label>
                                 @Html.TextBoxFor(x => x.Spot, new { @class = "form-control", id = "spot", placeholder = "Short Description" })
-                                @*@Html.TextArea("ShortDescription")
-            <script type="text/javascript">
-                var editor = CKEDITOR.instances['ShortDescription'];
-                if (editor) {
-                    editor.destroy(true);
-                }
-                CKEDITOR.replace('ShortDescription',
-                {
-                    enterMode:CKEDITOR.ENTER_BR,
-                });
-            </script>*@
+
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Description</label>
                                 @Html.TextAreaFor(x => x.Description, new { @class = "form-control", id = "description", placeholder = "Description", @cols=20, @rows=20 })
-                                @*@Html.TextArea("Description")*@
                                 <script type="text/javascript">
                                     var editor = CKEDITOR.instances['Description'];
                                     if (editor) {
@@ -86,7 +75,5 @@
         </div>
     }
     
-    <!-- /Basic form -->
-
 </div>
 

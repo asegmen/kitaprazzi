@@ -561,6 +561,7 @@
     <Content Include="Views\Home\_Partial\_SearchBox.cshtml" />
     <Content Include="Views\Home\_Partial\_BookList.cshtml" />
     <Content Include="Views\Home\_Partial\_PopulerBookList.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

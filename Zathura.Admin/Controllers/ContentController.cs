@@ -166,6 +166,78 @@ namespace Zathura.Admin.Controllers
             SetCategoryList();
             return View(content);
         }
+
+        [HttpPost, ValidateInput(false)]
+        [LoginFilter]
+        public ActionResult Update(Content content, int CategoryID, HttpPostedFileBase spotImage = null, IEnumerable<HttpPostedFileBase> contentImages = null)
+        {
+            if (ModelState.IsValid) //check Content object attributes is ok?
+            {
+                var contentItem = _contentRepository.GetById(content.ID);
+                if (contentItem == null)
+                {
+                    return Redirect("Index");
+                }
+                contentItem.CategoryID = CategoryID;
+                contentItem.Description = content.Description;
+                contentItem.PublisherID = content.PublisherID;
+                contentItem.Spot = content.Spot;
+                contentItem.Title = content.Title;
+                contentItem.Type = content.Type;
+                contentItem.UpdateDate = DateTime.Now;
+                _contentRepository.Save();
+
+                //insert spot images
+                if (spotImage != null)
+                {
+                    string fileName = Guid.NewGuid().ToString().Replace("-", "");
+                    string extension = Path.GetExtension(Request.Files[0].FileName);
+                    string fullPath = "/external/content/" + fileName + extension;
+                    Request.Files[0].SaveAs(Server.MapPath(fullPath));
+                    var media = new MediaItem
+                    {
+                        Url = fullPath,
+                        Content = content,
+                        Status = (int)Status.Active,
+                        CreatedDate = DateTime.Now,
+                        Type = (int)ImageType.SpotImage
+                    };
+
+                    _mediaItemRepository.Insert(media);
+                    _mediaItemRepository.Save();
+                }
+                //get inserted content id and save images if contentImages not null
+                string mediaList = System.IO.Path.GetExtension(Request.Files[1].FileName);
+                if (contentImages != null)
+                {
+                    foreach (var file in contentImages)
+                    {
+                        if (file?.ContentLength > 0)
+                        {
+                            string fileName = Guid.NewGuid().ToString().Replace("-", "");
+                            string extension = System.IO.Path.GetExtension(Request.Files[1].FileName);
+                            string fullPath = "/external/content/" + fileName + extension;
+                            file.SaveAs(Server.MapPath(fullPath));
+                            var media = new MediaItem
+                            {
+                                Url = fullPath,
+                                Content = content,
+                                Status = (int)Status.Active,
+                                CreatedDate = DateTime.Now,
+                                Type = (int)ImageType.MediaImage
+                            };
+
+                            _mediaItemRepository.Insert(media);
+                            _mediaItemRepository.Save();
+                        }
+                    }
+                }
+
+            }
+            SetCategoryList();
+            int p = 1;
+            return View("Index",_contentRepository.GetAll().OrderByDescending(x => x.ID).ToPagedList(p, PagingCount));
+        }
         #endregion
     }
 }
