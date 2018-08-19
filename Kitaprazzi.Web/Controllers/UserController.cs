@@ -25,10 +25,21 @@ namespace Kitaprazzi.Web.Controllers
         }
         public ActionResult Add()
         {
+            var _user = Session[Kitaprazzi.Core.Helper.Session.User];
+            if (_user != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View("~/Views/User/_NewUser.cshtml");
         }
         public ActionResult Enterance()
         {
+            var _user = Session[Kitaprazzi.Core.Helper.Session.User];
+            if (_user != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
             return View("~/Views/User/_UserEnterance.cshtml");
         }
         public ActionResult ForgatPassword()
@@ -42,23 +53,15 @@ namespace Kitaprazzi.Web.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                var existMail = _userRepository.GetMany(x => x.Email == userModel.Email);
+                if (existMail.Any())
                 {
-                    var existMail = _userRepository.GetMany(x => x.Email == userModel.Email);
-                    if (existMail.Any())
-                    {
-                        ViewBag.IsUserExists = true;
-                        return View("~/Views/User/_NewUser.cshtml");
-                    }
-                    userModel.RoleID = 10;
-                    _userRepository.Insert(userModel);
-                    _userRepository.Save();
-                }
-                else
-                {
+                    ViewBag.IsUserExists = true;
                     return View("~/Views/User/_NewUser.cshtml");
                 }
-                
+                userModel.RoleID = 2;
+                _userRepository.Insert(userModel);
+                _userRepository.Save();
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception)
@@ -72,16 +75,12 @@ namespace Kitaprazzi.Web.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                var userControl = _userRepository.Get(x => x.Email.Equals(userModel.Email) && x.Password.Equals(userModel.Password) && x.Status == (int)Status.Active);
+                if (userControl != null)
                 {
-                    var userControl = _userRepository.Get(x => x.Email.Equals(userModel.Email) && x.Password.Equals(userModel.Password) && x.Status == (int)Status.Active);
-                    if (userControl != null)
-                    {
-                        Session[Kitaprazzi.Core.Helper.Session.User] = userControl;
-                    }
-                    return RedirectToAction("Index", "Home");
+                    Session[Kitaprazzi.Core.Helper.Session.User] = userControl;
                 }
-                return View("~/Views/User/_UserEnterance.cshtml");
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception)
             {
