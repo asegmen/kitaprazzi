@@ -18,21 +18,25 @@
                     <div class="panel-body">
                         <form role="form">
                             <div class="form-group">
-                                <label for="Category Name">Category Name</label>
+                                <label for="Category Name">Kategori Adı</label>
                                 @Html.DropDownListFor(model => model.CategoryID, new SelectList(ViewBag.CategoryList, "ID", "Name"), ("Select Item"), new { @class = "form-control", id = "CategoryId" })
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Content Title</label>
+                                <label for="Category Name">Ders Adı</label>
+                                @Html.DropDownListFor(model => model.LessonID, new SelectList(ViewBag.LessonList, "ID", "Name"), ("Select Item"), new { @class = "form-control", id = "LessonId" })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">İçerik Başlık</label>
                                 @Html.TextBoxFor(x => x.Title, new { @class = "form-control", id = "contentTitle", placeholder = "Content Title" })
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Short Description</label>
+                                <label for="exampleInputEmail1">Spot Açıklama</label>
                                 @Html.TextBoxFor(x => x.Spot, new { @class = "form-control", id = "spot", placeholder = "Short Description" })
 
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Description</label>
-                                @Html.TextAreaFor(x => x.Description, new { @class = "form-control", id = "description", placeholder = "Description", @cols=20, @rows=20 })
+                                <label for="exampleInputEmail1">Açıklama</label>
+                                @Html.TextAreaFor(x => x.Description, new { @class = "form-control", id = "description", placeholder = "Description", @cols = 20, @rows = 20 })
                                 <script type="text/javascript">
                                     var editor = CKEDITOR.instances['Description'];
                                     if (editor) {
@@ -50,20 +54,20 @@
                                 </script>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Spot Image</label>
+                                <label for="exampleInputEmail1">Spot Görsel</label>
                                 <input type="file" name="spotImage" accept="image/*" class="form-control" />
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Content Image(s)</label>
+                                <label for="exampleInputEmail1">İç Görseller</label>
                                 <input type="file" name="contentImages" accept="image/*" class="form-control" multiple />
                             </div>
                             <div class="form-group">
-                                <label for="Publisher Name">Publisher Name</label>
+                                <label for="Publisher Name">Yayınevi</label>
                                 @Html.DropDownListFor(model => model.PublisherID, new SelectList(ViewBag.PublisherList, "ID", "Name"), ("Select Item"), new { @class = "form-control", id = "publisherId" })
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Status</label>
+                                <label for="exampleInputEmail1">Durum</label>
                                 @Html.DropDownListFor(model => model.Status, new SelectList(ViewBag.StatusList, "Value", "Name"), ("Select Item"), new { @class = "form-control", id = "status" })
                             </div>
 

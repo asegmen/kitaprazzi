@@ -15,14 +15,16 @@ namespace Zathura.UI.Controllers
         private readonly IMainControlRepository _mainControlRepository;
         private readonly IMainSliderRepository _mainSliderRepository;
         private readonly IContentRepository _contentRepository;
+        private readonly ILessonRepository _lessonRepository;
         private readonly GenericHelper _genericHelper;
         
 
-        public HomeController(ICategoryRepository categoryRepository, IMainControlRepository mainControlRepository, IContentRepository contentRepository, IMainSliderRepository mainSliderRepository) {
+        public HomeController(ICategoryRepository categoryRepository, IMainControlRepository mainControlRepository, IContentRepository contentRepository, IMainSliderRepository mainSliderRepository, ILessonRepository lessonRepository) {
             _categoryRepository = categoryRepository;
             _mainControlRepository = mainControlRepository;
             _contentRepository = contentRepository;
             _mainSliderRepository = mainSliderRepository;
+            _lessonRepository = lessonRepository;
             _genericHelper = new GenericHelper(_contentRepository);
         }
         // GET: Home
@@ -43,6 +45,8 @@ namespace Zathura.UI.Controllers
         {
             var categories = _categoryRepository.GetMany(x => x.Status == (int)Status.Active);
             ViewBag.Categories = categories.ToList();
+            var lessons = _lessonRepository.GetMany(x=> x.Status == (int)Status.Active);
+            ViewBag.LessonList = lessons.ToList();
             ViewBag.UserModel = Session[Kitaprazzi.Core.Helper.Session.User];
             return PartialView("~/Views/_Partial/_Header.cshtml");
         }
@@ -82,10 +86,11 @@ namespace Zathura.UI.Controllers
             return PartialView("~/Views/Home/_Partial/_SearchBox.cshtml");
         }
 
-        public JsonResult GetSubCategoryWithByID(int categoryId)
+        public JsonResult GetLessonsWithByID(int categoryId)
         {
-            var counrtyList = _categoryRepository.GetMany(x => x.CategoryID== categoryId);
-            return Json(counrtyList, JsonRequestBehavior.AllowGet);
+            var category = _categoryRepository.GetById(categoryId);
+            var lessonList = _lessonRepository.GetAll().Where(x=> category.LessonIDs != null && (bool)category.LessonIDs?.Contains(x.ID.ToString()));
+            return Json(lessonList, JsonRequestBehavior.AllowGet);
         }
     }
 }

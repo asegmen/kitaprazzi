@@ -37,10 +37,10 @@ namespace Kitaprazzi.Web.Controllers
             return View(contentItem);
         }
 
-        public ActionResult Category(int id)
+        public ActionResult Category(int id, int l = 0)
         {
             var categoryItem = _categoryRepository.GetById(id);
-            var contentList = _genericHelper.GetContentsWithByCategory(categoryItem.ID, 50);
+            var contentList = _genericHelper.GetContentsWithByCategory(categoryItem.ID, l, 50);
             ViewBag.ContentList = contentList;
             return View("~/Views/Content/CategoryDetail.cshtml", categoryItem);
         }

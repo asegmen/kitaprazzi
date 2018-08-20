@@ -10,6 +10,7 @@ using Kitaprazzi.Core.Infrastructure;
 using Kitaprazzi.Core.Repository;
 using Kitaprazzi.Core.Helper;
 using Kitaprazzi.Data.Model;
+using Zathura.Admin.Models;
 
 namespace Zathura.Admin.Controllers
 {
@@ -22,16 +23,18 @@ namespace Zathura.Admin.Controllers
         #region Repositories
         private readonly ICategoryRepository _categoryRepository;
         private readonly ISystemSettingRepository _systemSettingRepository;
+        private readonly ILessonRepository _lessonRepository;
 
-        public CategoryController() : this(new CategoryRepository(), new SystemSettingRepository())
+        public CategoryController() : this(new CategoryRepository(), new SystemSettingRepository(), new LessonRepository())
         {
               
         }
 
-        public CategoryController(ICategoryRepository categoryRepository, ISystemSettingRepository systemSettingRepository)
+        public CategoryController(ICategoryRepository categoryRepository, ISystemSettingRepository systemSettingRepository, ILessonRepository lessonRepository)
         {
             _categoryRepository = categoryRepository;
             _systemSettingRepository = systemSettingRepository;
+            _lessonRepository = lessonRepository;
         }
         #endregion
         
@@ -55,6 +58,13 @@ namespace Zathura.Admin.Controllers
         {
             var parentCatList = _categoryRepository.GetMany(x => x.Status == (int)Status.Active).ToList();
             ViewBag.ParentCategoryList = parentCatList;
+            var generalLessonList = _lessonRepository.GetMany(x=> x.Status == (int) Status.Active).ToList();
+            var lessonList = new List<CheckLessonModel>();
+            foreach (var item in generalLessonList)
+            {
+                lessonList.Add(new CheckLessonModel { LessonId = item.ID, LessonName = item.Name, IsCheck = false});
+            }
+            ViewBag.LessonList = lessonList;
             var systemSettingsList = _systemSettingRepository.GetMany(x => x.Key == "Status").ToList();
             ViewBag.StatusList = systemSettingsList;
             return View();
@@ -94,6 +104,14 @@ namespace Zathura.Admin.Controllers
             ViewBag.ParentCategoryList = parentCatList;
             var systemSettingsList = _systemSettingRepository.GetMany(x => x.Key == "Status").ToList();
             ViewBag.StatusList = systemSettingsList;
+
+            var generalLessonList = _lessonRepository.GetMany(x => x.Status == (int)Status.Active).ToList();
+            var lessonList = new List<CheckLessonModel>();
+            foreach (var item in generalLessonList)
+            {
+                lessonList.Add(new CheckLessonModel { LessonId = item.ID, LessonName = item.Name, IsCheck = category.LessonIDs.Contains(item.ID.ToString()) });
+            }
+            ViewBag.LessonList = lessonList;
             return View(category);
         }
 
@@ -108,6 +126,7 @@ namespace Zathura.Admin.Controllers
                 categoryItem.Name = category.Name;
                 categoryItem.CategoryID = category.CategoryID;
                 categoryItem.Url = category.Url;
+                categoryItem.LessonIDs = category.LessonIDs;
                 _categoryRepository.Save();
                 return Json(new ResultJson { Success = true, Message = "Category updated successfully." });
             }

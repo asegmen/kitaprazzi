@@ -23,9 +23,10 @@ namespace Zathura.Admin.Controllers
         private readonly IMediaItemRepository _mediaItemRepository;
         private readonly ISystemSettingRepository _systemSettingRepository;
         private readonly IPublisherRepository _publisherRepository;
+        private readonly ILessonRepository _lessonRepository;
         //private readonly IMemoryCacheManager _cacheManager;
 
-        public ContentController(IContentRepository contentRepository, ICategoryRepository categoryRepository, IUserRepository userRepository, IMediaItemRepository mediaItemRepository, ISystemSettingRepository systemSettingRepository, IPublisherRepository publisherRepository)//, IMemoryCacheManager cacheManager
+        public ContentController(IContentRepository contentRepository, ICategoryRepository categoryRepository, IUserRepository userRepository, IMediaItemRepository mediaItemRepository, ISystemSettingRepository systemSettingRepository, IPublisherRepository publisherRepository, ILessonRepository lessonRepository)//, IMemoryCacheManager cacheManager
         {
             _contentRepository = contentRepository;
             _categoryRepository = categoryRepository;
@@ -33,6 +34,7 @@ namespace Zathura.Admin.Controllers
             _mediaItemRepository = mediaItemRepository;
             _systemSettingRepository = systemSettingRepository;
             _publisherRepository = publisherRepository;
+            _lessonRepository = lessonRepository;
             //_cacheManager = cacheManager;
         }
         #endregion
@@ -129,6 +131,8 @@ namespace Zathura.Admin.Controllers
             ViewBag.PublisherList = publisherList;
             var categoryList = _categoryRepository.GetMany(x => x.Status == (int)Status.Active);// _cacheManager.Get<List<Category>>("CategoriList_");
             ViewBag.CategoryList = categoryList;
+            var lessonList = _lessonRepository.GetMany(x=> x.Status == (int)Status.Active);
+            ViewBag.LessonList = lessonList;
             var systemSettingsList = _systemSettingRepository.GetMany(x => x.Key == "Status").ToList();
             ViewBag.StatusList = systemSettingsList;
         }
@@ -181,6 +185,7 @@ namespace Zathura.Admin.Controllers
                 contentItem.CategoryID = CategoryID;
                 contentItem.Description = content.Description;
                 contentItem.PublisherID = content.PublisherID;
+                contentItem.LessonID = content.LessonID;
                 contentItem.Spot = content.Spot;
                 contentItem.Title = content.Title;
                 contentItem.Type = content.Type;

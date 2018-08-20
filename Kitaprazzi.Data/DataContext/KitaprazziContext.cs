@@ -22,5 +22,6 @@ namespace Kitaprazzi.Data.DataContext
         public DbSet<SystemSetting> SystemSettings{ get; set; }
         public DbSet<MainControl> MainControls{ get; set; }
         public DbSet<MainSlider> MainSliders{ get; set; }
+        public DbSet<Lesson> Lessons{ get; set; }
     }
 }

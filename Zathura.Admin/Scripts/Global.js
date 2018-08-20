@@ -1,9 +1,16 @@
-﻿function AddCategory() {
+﻿
+function AddCategory() {
     var category = new Object();
     category.Name = $("#categoryName").val();
     category.Url = $("#categoryUrl").val();
     category.Status = $("#status").val() ? $("#status").val() : 0;
     category.CategoryID = $("#categoryID").val();
+    var arr = []
+    $("input[dataname]:checked").each(function () {
+        arr.push($(this).attr("dataname"));
+    });
+    
+    category.LessonIDs = arr.toString();
 
     $.ajax({
         url: "/category/add",
@@ -60,6 +67,12 @@ function UpdateCategory() {
     category.Status = $("#status").val() ? $("#status").val() : 0;
     category.CategoryID = $("#categoryID").val();
     category.ID = $("#ID").val();
+    var arr = []
+    $("input[dataname]:checked").each(function () {
+        arr.push($(this).attr("dataname"));
+    });
+
+    category.LessonIDs = arr.toString();
 
     $.ajax({
         url: "/category/update",
@@ -79,6 +92,88 @@ function UpdateCategory() {
         }
     });
 }
+
+
+
+function AddLesson() {
+
+
+    var lesson = new Object();
+    lesson.Name = $("#lessonName").val();
+    lesson.Status = $("#status").val() ? $("#status").val() : 0;
+
+    $.ajax({
+        url: "/lesson/add",
+        data: lesson,
+        type: "POST",
+        success: function (response) {
+            if (response.Success) {
+                bootbox.alert(response.Message, function () {
+                    location.reload();
+                });
+            }
+            else {
+                bootbox.alert(response.Message, function () {
+
+                });
+            }
+        }
+    });
+}
+function UpdateLesson() {
+    var lesson = new Object();
+    lesson.Name = $("#lessonName").val();
+    lesson.Status = $("#status").val() ? $("#status").val() : 0;
+    lesson.ID = $("#ID").val();
+
+    $.ajax({
+        url: "/lesson/update",
+        data: lesson,
+        type: "POST",
+        success: function (response) {
+            if (response.Success) {
+                bootbox.alert(response.Message, function () {
+                    location.reload();
+                });
+            }
+            else {
+                bootbox.alert(response.Message, function () {
+
+                });
+            }
+        }
+    });
+}
+/* Delete Lesson Function Start */
+$(document).on("click", "#lesssonDeleteBtn", function () {
+    var lessonId = $(this).attr("data-id");
+    var deleteRow = $(this).closest("tr");
+
+    bootbox.confirm("Are you sure want to delete?", function (result) {
+        if (result) {
+            $.ajax({
+                url: '/lesson/delete/' + lessonId,
+                type: "POST",
+                datatype: 'json',
+                success: function (response) {
+                    if (response.Success) {
+                        $.notify(response.Message, "success");
+                        deleteRow.fadeOut(300,
+                            function () {
+                                deleteRow.remove();
+                            });
+                    }
+                    else {
+                        $.notify(response.Message, "error");
+                    }
+                }
+            });
+        }
+    });
+});
+/* Delete lesson Function End */
+
+
 
 
 
@@ -139,7 +234,6 @@ function UpdatePublisher() {
         }
     });
 }
-
 /* Delete Publisher Function Start */
 $(document).on("click", "#publisherDeleteBtn", function () {
     var publisherId = $(this).attr("data-id");
@@ -167,4 +261,4 @@ $(document).on("click", "#publisherDeleteBtn", function () {
         }
     });
 });
-/* Delete Category Function End */
+/* Delete Publisher Function End */

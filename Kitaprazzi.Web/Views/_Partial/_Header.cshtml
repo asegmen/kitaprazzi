@@ -2,6 +2,7 @@
 @{ 
     var userModel = (Kitaprazzi.Data.Model.User)ViewBag.UserModel;
     var categories = ViewBag.Categories as List<Kitaprazzi.Data.Model.Category>;
+    var lessonList = ViewBag.LessonList as List<Kitaprazzi.Data.Model.Lesson>;
     var mainCategories = categories.Where(x=> x.CategoryID == 0) ?? new List<Kitaprazzi.Data.Model.Category>();
 }
 <header class="mb">
@@ -48,7 +49,7 @@
                             @foreach (var category in mainCategories)
                             {
                                 var subCategories = categories.Where(x=> x.CategoryID != 0).ToList();
-                                Html.RenderPartial("~/Views/_Partial/_MainMenu.cshtml", category, new ViewDataDictionary { { "SubCategories", subCategories } });
+                                Html.RenderPartial("~/Views/_Partial/_MainMenu.cshtml", category, new ViewDataDictionary { { "SubCategories", subCategories },{ "LessonList", lessonList } });
                             }
                             
                             <li class="main-menu-item">

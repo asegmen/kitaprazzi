@@ -1,7 +1,11 @@
 ﻿@model Kitaprazzi.Data.Model.Category
+@using Zathura.Admin.Models;
+
 @{
     ViewBag.Title = "Update";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var lessonList = ViewBag.LessonList as List<CheckLessonModel>;
+
 }
 
 <div class="container-fluid">
@@ -11,21 +15,28 @@
             <div class="panel panel-default">
                 <header class="panel-heading">@ViewBag.Title</header>
                 <div class="panel-body">
-                    @Html.HiddenFor(x=> x.ID)
+                    @Html.HiddenFor(x => x.ID)
                     <form role="form">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Parent Category Name</label>
-                            @Html.DropDownListFor(model => model.CategoryID, new SelectList(ViewBag.ParentCategoryList, "ID", "Name"), ("Select Item"), new {@class = "form-control", id = "categoryID" })
+                            @Html.DropDownListFor(model => model.CategoryID, new SelectList(ViewBag.ParentCategoryList, "ID", "Name"), ("Select Item"), new { @class = "form-control", id = "categoryID" })
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Category Name</label>
-                            @Html.TextBoxFor(x => x.Name, new {@class = "form-control", id = "categoryName", placeholder = "Category Name"})
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", id = "categoryName", placeholder = "Category Name" })
                         </div>
                         @*<div class="checkbox">
-                            <label>
-                                @Html.CheckBoxFor(x => x.IsActive, new { @checked = "checked", id = "categoryIsActive" }) Is Active?
-                            </label>
-                        </div>*@
+                                <label>
+                                    @Html.CheckBoxFor(x => x.IsActive, new { @checked = "checked", id = "categoryIsActive" }) Is Active?
+                                </label>
+                            </div>*@
+                        @foreach (var lesson in lessonList)
+                        {
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">@lesson.LessonName</label>
+                                @Html.CheckBoxFor(m => lesson.IsCheck, new { @class = "form-control", id = "lessonIDs", dataname = lesson.LessonId })
+                            </div>
+                        }
                         <div class="form-group">
                             <label for="exampleInputEmail1">Status</label>
                             @Html.DropDownListFor(model => model.Status, new SelectList(ViewBag.StatusList, "Value", "Name"), ("Select Item"), new { @class = "form-control", id = "status" })

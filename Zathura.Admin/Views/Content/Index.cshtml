@@ -20,9 +20,10 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Category</th>
-                                    <th>Title</th>
-                                    <th>Status</th>
+                                    <th>Kategori</th>
+                                    <th>Başlık</th>
+                                    <th>Ders</th>
+                                    <th>Durum</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -37,7 +38,9 @@
                                             <td>
                                                @item.Title
                                             </td>
-
+                                            <td>
+                                                @(item.Lesson?.Name ?? string.Empty) 
+                                            </td>
                                             <td>
                                                 @if (item.Status == (int)Status.Active)
                                                 {

@@ -25,6 +25,9 @@ namespace Kitaprazzi.Data.Model
         public int? PublisherID { get; set; }
         [ForeignKey("PublisherID")]
         public virtual Publisher Publisher { get; set; }
+        public int? LessonID { get; set; }
+        [ForeignKey("LessonID")]
+        public virtual Lesson Lesson { get; set; }
         public float EditorPoint { get; set; }
         public float UserPoint { get; set; }
         public float KitaprazziPoint { get; set; }

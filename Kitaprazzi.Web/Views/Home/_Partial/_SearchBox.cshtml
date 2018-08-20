@@ -20,11 +20,13 @@
     <div class="search-box-line">
         <span class="search-box-line-title">Ders Seçiniz</span>
         <span class="search-box-line-element">
-            <select id="SubCategory"></select>
+            <select id="SubCategory">
+                <option value="0">Seçiniz</option>
+            </select>
         </span>
     </div>
     <div class="search-box-line">
-        <input class="find-button" type="submit" value="KİTAPLARI BUL">
+        <input class="find-button" type="submit" onclick="SearchList()" value="KİTAPLARI BUL">
     </div>
 </div>
 
@@ -42,16 +44,18 @@
                 var state = $(this).val();
                 if (state.length > 0) {
                     // retrieve data using a Url.Action() to construct url
-                    $.getJSON('@Url.Action("GetSubCategoryWithByID")', {
+                    $.getJSON('@Url.Action("GetLessonsWithByID")', {
                         categoryId: state
                     })
                     .done(function (data) {
                         //re-enable city drop down
                         subCategory.removeProp('disabled');
+                        var defaultOption = $('<option value="0">Seçiniz</option>');
+                        subCategory.append(defaultOption);
                         //for each returned state
                         $.each(data, function (i, category) {
                             //Create new option
-                            var option = $('<option />').html(category['Name']).val(category['Url']);
+                            var option = $('<option />').html(category['Name']).val(category['ID']);
                             //append city states drop down
                             subCategory.append(option);
                         });
@@ -62,5 +66,16 @@
                     });
                 }
             });
-        })
+    })
+
+
+    function SearchList() {
+        var mainCat = $("#mainCategoryID").val() ? $("#mainCategoryID").val() : 0;
+        var subCat = $("#SubCategory").val() ? $("#SubCategory").val() : 0;
+        var _url = "/category/arama-" + mainCat+"?l="+subCat;
+        console.log(_url);
+        window.location.href = _url;
+       
+      
+    }
 </script>

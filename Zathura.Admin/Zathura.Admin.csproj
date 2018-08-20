@@ -589,6 +589,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainControlController.cs" />
     <Compile Include="Controllers\MainSliderController.cs" />
+    <Compile Include="Controllers\LessonController.cs" />
     <Compile Include="Controllers\PublisherController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CustomFilter\LoginFilter.cs" />
@@ -597,6 +598,7 @@
     </Compile>
     <Compile Include="Helper\BootStrapper.cs" />
     <Compile Include="Helper\ResultJson.cs" />
+    <Compile Include="Models\CheckLessonModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -660,6 +662,9 @@
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Update.cshtml" />
+    <Content Include="Views\Lesson\Add.cshtml" />
+    <Content Include="Views\Lesson\Index.cshtml" />
+    <Content Include="Views\Lesson\Update.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -670,7 +675,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="External\Content\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Dealer\" />
   </ItemGroup>
   <ItemGroup>

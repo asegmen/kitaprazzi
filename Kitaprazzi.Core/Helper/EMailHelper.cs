@@ -14,14 +14,14 @@ namespace Kitaprazzi.Core.Helper
         {
             MailMessage mail = new MailMessage();
             mail.To.Add(toMail);
-            mail.From = new MailAddress("admin@kitaprazzi.com.tr", displayName);
+            mail.From = new MailAddress("info@kitaprazzi.com", displayName);
             mail.IsBodyHtml = true;
             mail.Subject = subject;
             mail.Body = body;
             SmtpClient smtp = new SmtpClient();
             smtp.Host = GlobalHelper.SMTPHost;
             smtp.Port = Convert.ToInt16(GlobalHelper.SMTPPort);
-            smtp.EnableSsl = true;
+            smtp.EnableSsl = false;
             smtp.UseDefaultCredentials = false;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtp.Credentials = new NetworkCredential(GlobalHelper.MailAdress, GlobalHelper.MailPassword);

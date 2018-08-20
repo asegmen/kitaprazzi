@@ -1,6 +1,7 @@
 ﻿@model Kitaprazzi.Data.Model.Category
 @{
     var subCategories = ViewBag.SubCategories as List<Kitaprazzi.Data.Model.Category>;
+    var lessonList = ViewBag.LessonList as List<Kitaprazzi.Data.Model.Lesson>;
     if (subCategories != null && subCategories.Any())
     {
 
@@ -22,13 +23,13 @@
                             <span class="sub-menu-title">@subCategory.Name</span>
                         </a>
                         @{
-                            var ancCategories = subCategories.Where(x => x.CategoryID == subCategory.ID);
-                            if (ancCategories != null && ancCategories.Any())
+                            var lessons = lessonList.Where(x=> subCategory.LessonIDs != null &&  (bool)subCategory.LessonIDs?.Contains(x.ID.ToString()) );
+                            if (lessons != null && lessons.Any())
                             {
                             <ul class="sub-menu">
-                                @foreach (var subMenu in ancCategories)
+                                @foreach (var lesson in lessons)
                                 {
-                                    <li class="sub-menu-item"><a href="@subMenu.Url" title="">@subMenu.Name</a></li>
+                                    <li class="sub-menu-item"><a href="@($"{subCategory.Url}?l={lesson.ID}")" title="">@lesson.Name</a></li>
                                 }
                             </ul>
                             }

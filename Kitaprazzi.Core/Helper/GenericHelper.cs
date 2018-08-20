@@ -15,8 +15,16 @@ namespace Kitaprazzi.Core.Helper
             _contentRepository = contentRepository;
         }
 
-        public List<Content> GetContentsWithByCategory(int categoryId, int limit = 4) {
-            var contentList = _contentRepository.GetMany(x=> x.CategoryID == categoryId && x.Status == (int)Status.Active).OrderByDescending(x=>x.CreatedDate).Take(limit).ToList();
+        public List<Content> GetContentsWithByCategory(int categoryId, int lessonid = 0, int limit = 4) {
+            var contentList = new List<Content>();
+            if (lessonid > 0)
+            {
+                contentList = _contentRepository.GetMany(x => x.CategoryID == categoryId && x.Status == (int)Status.Active && x.LessonID == lessonid).OrderByDescending(x => x.CreatedDate).Take(limit).ToList();
+            }
+            else
+            {
+                contentList = _contentRepository.GetMany(x => x.CategoryID == categoryId && x.Status == (int)Status.Active).OrderByDescending(x => x.CreatedDate).Take(limit).ToList();
+            }
             return contentList;
         }
         public List<Content> GetMostPopularContents(int limit = 4)
