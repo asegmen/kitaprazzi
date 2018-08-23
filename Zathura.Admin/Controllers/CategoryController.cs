@@ -109,7 +109,7 @@ namespace Zathura.Admin.Controllers
             var lessonList = new List<CheckLessonModel>();
             foreach (var item in generalLessonList)
             {
-                lessonList.Add(new CheckLessonModel { LessonId = item.ID, LessonName = item.Name, IsCheck = category.LessonIDs.Contains(item.ID.ToString()) });
+                lessonList.Add(new CheckLessonModel { LessonId = item.ID, LessonName = item.Name, IsCheck = category.LessonIDs != null && category.LessonIDs.Contains(item.ID.ToString()) });
             }
             ViewBag.LessonList = lessonList;
             return View(category);
