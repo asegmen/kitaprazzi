@@ -26,7 +26,7 @@
                             <span class="product-title">@item.Title</span>
                             <span class="star-rating">
                                 <span class="star-rating__wrap">
-                                    @item.KitaprazziPoint
+                                    @Math.Round(((item.UserPoint + item.EditorPoint + item.KitaprazziPoint) / 3), 1)
                                 </span>
                             </span>
                         </a>

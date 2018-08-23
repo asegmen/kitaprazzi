@@ -104,12 +104,12 @@ namespace Zathura.Admin.Controllers
             ViewBag.ParentCategoryList = parentCatList;
             var systemSettingsList = _systemSettingRepository.GetMany(x => x.Key == "Status").ToList();
             ViewBag.StatusList = systemSettingsList;
-
+            var lessonIDList = category.LessonIDs?.Split(new char[] { ',' });
             var generalLessonList = _lessonRepository.GetMany(x => x.Status == (int)Status.Active).ToList();
             var lessonList = new List<CheckLessonModel>();
             foreach (var item in generalLessonList)
             {
-                lessonList.Add(new CheckLessonModel { LessonId = item.ID, LessonName = item.Name, IsCheck = category.LessonIDs != null && category.LessonIDs.Contains(item.ID.ToString()) });
+                lessonList.Add(new CheckLessonModel { LessonId = item.ID, LessonName = item.Name, IsCheck = lessonIDList != null && lessonIDList.Any(x=>x.Equals(item.ID.ToString())) });
             }
             ViewBag.LessonList = lessonList;
             return View(category);
@@ -125,7 +125,6 @@ namespace Zathura.Admin.Controllers
                 categoryItem.Status = category.Status;
                 categoryItem.Name = category.Name;
                 categoryItem.CategoryID = category.CategoryID;
-                categoryItem.Url = category.Url;
                 categoryItem.LessonIDs = category.LessonIDs;
                 _categoryRepository.Save();
                 return Json(new ResultJson { Success = true, Message = "Category updated successfully." });

@@ -23,12 +23,15 @@
                             <span class="sub-menu-title">@subCategory.Name</span>
                         </a>
                         @{
-                            var lessons = lessonList.Where(x=> subCategory.LessonIDs != null &&  (bool)subCategory.LessonIDs?.Contains(x.ID.ToString()) );
+                            var lessonIDList = subCategory.LessonIDs?.Split(new char[] { ',' });
+                            //var lessons = lessonList.Where(x=> subCategory.LessonIDs != null &&  (bool)subCategory.LessonIDs?.Contains(x.ID.ToString()) );
+                            var lessons = lessonList.Where(x=> lessonIDList != null && lessonIDList.Any(a=> a.Equals(x.ID.ToString())));
+
                             if (lessons != null && lessons.Any())
                             {
                             <ul class="sub-menu">
                                 @foreach (var lesson in lessons)
-                                {
+                                    {
                                     <li class="sub-menu-item"><a href="@($"{subCategory.Url}?l={lesson.ID}")" title="">@lesson.Name</a></li>
                                 }
                             </ul>
