@@ -1,0 +1,75 @@
+﻿@model PagedList.IPagedList<Kitaprazzi.Data.Model.Content>
+@using PagedList.Mvc;
+@using Kitaprazzi.Core.Helper
+@{
+    ViewBag.Title = "Puanlama";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content start -->
+<div class="container-fluid">
+
+    <div class="row">
+        <!-- Responsive table -->
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <header class="panel-heading">@ViewBag.Title</header>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Kategori</th>
+                                    <th>Başlık</th>
+                                    <th>Ders</th>
+                                    <th>Editör</th>
+                                    <th>Kullanıcı</th>
+                                    <th>Kitaprazzi</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null && Model.Any())
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                <tr>
+                                    <td><span class="label label-success">@item.ID</span></td>
+                                    <td>@item.Category.Name</td>
+                                    <td>
+                                        @item.Title
+                                    </td>
+                                    <td>
+                                        @(item.Lesson?.Name ?? string.Empty)
+                                    </td>
+                                    <td>
+                                        @(item.EditorPoint)
+                                    </td>
+                                    <td>
+                                        @(item.UserPoint)
+                                    </td>
+                                    <td>
+                                        @(item.KitaprazziPoint)
+                                    </td>
+
+                                    <td>
+                                        <a href="@Url.Action("UpdateRating","Content",new {id = item.ID})" class="btn btn-default btn-sm">Puanlama</a>
+                                    </td>
+                                </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    @Html.PagedListPager(Model, p => Url.Action("Index", new { p }), PagedListRenderOptions.Classic)
+                </div>
+            </div>
+
+        </div>
+        <!-- /Responsive table -->
+    </div>
+
+</div>
+

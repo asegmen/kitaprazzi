@@ -665,6 +665,8 @@
     <Content Include="Views\Lesson\Add.cshtml" />
     <Content Include="Views\Lesson\Index.cshtml" />
     <Content Include="Views\Lesson\Update.cshtml" />
+    <Content Include="Views\Content\Rating.cshtml" />
+    <Content Include="Views\Content\UpdateRating.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -72,7 +72,10 @@
                                 <label for="exampleInputEmail1">Durum</label>
                                 @Html.DropDownListFor(model => model.Status, new SelectList(ViewBag.StatusList, "Value", "Name"), ("Select Item"), new { @class = "form-control", id = "status" })
                             </div>
-
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Puanlama</label>
+                                <a href="@Url.Action("UpdateRating","Content",new {id = Model.ID})" class="btn btn-default btn-sm" target="_blank">Puanlama Sayfası</a>
+                            </div>
                             <button type="submit" class="btn btn-default">Kaydet</button>
                         </form>
                     </div>

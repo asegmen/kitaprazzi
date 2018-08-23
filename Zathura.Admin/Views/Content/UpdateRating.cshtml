@@ -1,0 +1,58 @@
+﻿@model Kitaprazzi.Data.Model.Content
+
+@{
+    ViewBag.Title = "Puanlama Sayfası";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<div class="container-fluid">
+    <!-- Basic form -->
+    @using (Html.BeginForm("UpdateRating", "Content", FormMethod.Post, new { @class="row" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <header class="panel-heading">@ViewBag.Title</header>
+                    <div class="panel-body">
+                        @Html.HiddenFor(x => x.ID)
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="Category Name">Kategori Adı:</label>
+                                <label for="Category Name">@Model.Category.Name</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="Category Name">Ders Adı:</label>
+                                <label for="Category Name">@Model.Lesson.Name</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">İçerik Başlık:</label>
+                                <label for="exampleInputEmail1">@Model.Title</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Editör Puanı</label>
+                                @Html.TextBoxFor(x => x.EditorPoint, new { @class = "form-control", id = "editorPoint", placeholder = "Editör Puanı" })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Kullanıcı Puanı</label>
+                                @Html.TextBoxFor(x => x.UserPoint, new { @class = "form-control", id = "userPoint", placeholder = "Kullanıcı Puanı" })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Kitaprazzi Puanı</label>
+                                @Html.TextBoxFor(x => x.KitaprazziPoint, new { @class = "form-control", id = "kitaprazziPoint", placeholder = "Kitaprazzi Puanı" })
+                            </div>
+
+                            <button type="submit" class="btn btn-default">Kaydet</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- /Basic form -->
+
+</div>
+

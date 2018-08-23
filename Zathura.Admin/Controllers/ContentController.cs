@@ -44,6 +44,11 @@ namespace Zathura.Admin.Controllers
             return View(_contentRepository.GetAll().OrderByDescending(x => x.ID).ToPagedList(p, PagingCount));
         }
 
+        public ActionResult Rating(int p = 1)
+        {
+            return View(_contentRepository.GetAll().OrderByDescending(x => x.ID).ToPagedList(p, PagingCount));
+        }
+
         [HttpGet]
         [LoginFilter]
         public ActionResult Add()
@@ -242,6 +247,40 @@ namespace Zathura.Admin.Controllers
             SetCategoryList();
             int p = 1;
             return View("Index",_contentRepository.GetAll().OrderByDescending(x => x.ID).ToPagedList(p, PagingCount));
+        }
+        #endregion
+        #region Puanlama
+        [HttpGet, ValidateInput(false)]
+        [LoginFilter]
+        public ActionResult UpdateRating(int id)
+        {
+            var content = _contentRepository.GetById(id);
+            if (content == null)
+            {
+                throw new Exception("Content not found");
+            }
+            return View(content);
+        }
+
+        [HttpPost, ValidateInput(false)]
+        [LoginFilter]
+        public ActionResult UpdateRating(Content content)
+        {
+            if (ModelState.IsValid) //check Content object attributes is ok?
+            {
+                var contentItem = _contentRepository.GetById(content.ID);
+                if (contentItem == null)
+                {
+                    return Redirect("Index");
+                }
+                contentItem.KitaprazziPoint = content.KitaprazziPoint;
+                contentItem.UserPoint = content.UserPoint;
+                contentItem.EditorPoint = content.EditorPoint;
+                contentItem.UpdateDate = DateTime.Now;
+                _contentRepository.Save();
+            }
+            int p = 1;
+            return View("Rating", _contentRepository.GetAll().OrderByDescending(x => x.ID).ToPagedList(p, PagingCount));
         }
         #endregion
     }
