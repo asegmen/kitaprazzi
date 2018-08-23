@@ -54,7 +54,7 @@
                     </ul>
                     <ul class="rating">
 
-                        <li>
+                        @*<li>
                             <small>Kullanıcı Puanı</small>
                             <span>@(Model.UserPoint)</span>
                         </li>
@@ -63,11 +63,11 @@
                             <span>@(Model.EditorPoint)</span>
                         </li>
                         <li>
-                            <small>Kitaprazzi Puanı</small>
+                            <small>Yayın Evi Puanı</small>
                             <span>@(Model.KitaprazziPoint)</span>
-                        </li>
+                        </li>*@
                         <li>
-                            <small>Ortalama Puanı</small>
+                            <small>Kitaprazzi Puanı</small>
                             <span>@Math.Round(((Model.UserPoint + Model.EditorPoint + Model.KitaprazziPoint) / 3),1)</span>
                         </li>
                     </ul>
