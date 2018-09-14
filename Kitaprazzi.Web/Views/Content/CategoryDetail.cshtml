@@ -13,36 +13,52 @@
 
 <div class="container">
     <div class="row">
-        @*<div class="col-12 col-md-4 col-lg-3">
+        <div class="col-12 col-md-4 col-lg-3">
             <div class="filter mb">
                 <div class="filter-title">SONUÇLARI FİLTRELE</div>
                 <div class="row filter-list">
                     <div class="col-6 col-md-12">
                         <div class="filter-list-item">
-                            <div class="filter-list-title">YAYINCI</div>
+                            <div class="filter-list-title">YAYINCIYA GÖRE</div>
                             <div class="filter-list-content">
                                 @foreach (var pubilsher in publisherList)
                                 {
-                                    <span> @pubilsher.ID - @pubilsher.Name</span>
+                                    <span class="check">
+                                        <label for="@pubilsher.ID">
+                                            <input type="checkbox" id="@pubilsher.ID" />
+                                            @pubilsher.Name
+                                        </label>
+                                    </span>
                                 }
                             </div>
                         </div>
                     </div>
                     <div class="col-6 col-md-12">
                         <div class="filter-list-item">
-                            <div class="filter-list-title">OYLAMA</div>
+                            <div class="filter-list-title">PUANA GÖRE</div>
                             <div class="filter-list-content">
+                                <span>Puana göre filtre:</span>
+                                <select class="by-point">
+                                    <option>Hepsi</option>
+                                    <option>1-2</option>
+                                    <option>3-4</option>
+                                    <option>5-6</option>
+                                    <option>7-8</option>
+                                    <option>9-10</option>
+                                </select>
+                            </div>
+                            @*<div class="filter-list-content">
                                 <span>1-3</span>
                                 <span>3-5</span>
                                 <span>5-7</span>
                                 <span>7-9</span>
                                 <span>9-10</span>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                 </div>
             </div>
-        </div>*@
+        </div>
         <div class="col-12 col-md-8 col-lg-9">
 
             <div class="row">
@@ -65,7 +81,10 @@
                                     <span class="product-category">@content.Category.Name</span>
                                     <span class="product-title">@content.Title</span>
                                     <span class="star-rating">
-                                        @content.KitaprazziPoint
+                                        <span class="star-rating-text">
+                                            <i>KR puanı</i>
+                                            @content.KitaprazziPoint
+                                        </span>
                                     </span>
                                 </a>
                             </div>
