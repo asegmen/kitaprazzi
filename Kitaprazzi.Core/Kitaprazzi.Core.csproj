@@ -58,6 +58,7 @@
     <Compile Include="Helper\ImageHelper.cs" />
     <Compile Include="Helper\Structs.cs" />
     <Compile Include="Helper\TextHelper.cs" />
+    <Compile Include="Infrastructure\IDealerRepository.cs" />
     <Compile Include="Infrastructure\ILessonRepository.cs" />
     <Compile Include="Infrastructure\IMainSliderRepository.cs" />
     <Compile Include="Infrastructure\IMainControlRepository.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Infrastructure\ICategoryRepository.cs" />
     <Compile Include="Infrastructure\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\DealerRepository.cs" />
     <Compile Include="Repository\LessonRepository.cs" />
     <Compile Include="Repository\MainSliderRepository.cs" />
     <Compile Include="Repository\MainControlRepository.cs" />

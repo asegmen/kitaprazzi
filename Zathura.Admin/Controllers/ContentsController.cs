@@ -12,7 +12,7 @@ using Zathura.Admin.CustomFilter;
 
 namespace Zathura.Admin.Controllers
 {
-    public class ContentController : Controller
+    public class ContentsController : Controller
     {
         private const int PagingCount = 30;
 
@@ -26,7 +26,7 @@ namespace Zathura.Admin.Controllers
         private readonly ILessonRepository _lessonRepository;
         //private readonly IMemoryCacheManager _cacheManager;
 
-        public ContentController(IContentRepository contentRepository, ICategoryRepository categoryRepository, IUserRepository userRepository, IMediaItemRepository mediaItemRepository, ISystemSettingRepository systemSettingRepository, IPublisherRepository publisherRepository, ILessonRepository lessonRepository)//, IMemoryCacheManager cacheManager
+        public ContentsController(IContentRepository contentRepository, ICategoryRepository categoryRepository, IUserRepository userRepository, IMediaItemRepository mediaItemRepository, ISystemSettingRepository systemSettingRepository, IPublisherRepository publisherRepository, ILessonRepository lessonRepository)//, IMemoryCacheManager cacheManager
         {
             _contentRepository = contentRepository;
             _categoryRepository = categoryRepository;

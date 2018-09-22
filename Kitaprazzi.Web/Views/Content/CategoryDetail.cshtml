@@ -53,7 +53,7 @@
                     <div class="row">
                         @foreach (var content in contentList)
                         {
-                            var mainImage = content.MediaItems.FirstOrDefault(x => x.Content.ID == content.ID && x.Type == (int)ImageType.SpotImage);
+                            var mainImage = content.MediaItems.FirstOrDefault(x => x.Content.ID == content.ID && x.Type == (int)ImageType.SpotImage)?? new MediaItem {Url= "/external/content/7ad586eb83f44123925e69d1965fb363.jpg" }; // standart resim eklenecek
                             <div class="col-12 col-sm-6 col-lg-4">
                                 <a href="@($"/kitap/detay/{content.ID}")" title="@content.Title" class="product">
                                     <span class="product-image">

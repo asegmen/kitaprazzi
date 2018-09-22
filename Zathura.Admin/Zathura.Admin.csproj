@@ -584,7 +584,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
-    <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Controllers\ContentsController.cs" />
     <Compile Include="Controllers\DealerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainControlController.cs" />
@@ -631,8 +631,8 @@
     <Content Include="Views\Category\Add.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\Update.cshtml" />
-    <Content Include="Views\Content\Add.cshtml" />
-    <Content Include="Views\Content\Index.cshtml" />
+    <Content Include="Views\Contents\Add.cshtml" />
+    <Content Include="Views\Contents\Index.cshtml" />
     <Content Include="Content\ckeditor\CHANGES.md" />
     <Content Include="Content\ckeditor\LICENSE.md" />
     <Content Include="Content\ckeditor\plugins\scayt\CHANGELOG.md" />
@@ -649,7 +649,7 @@
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Content\ckeditor\skins\moono-lisa\readme.md" />
     <None Include="packages.config" />
-    <Content Include="Views\Content\Update.cshtml" />
+    <Content Include="Views\Contents\Update.cshtml" />
     <Content Include="Views\Publisher\Add.cshtml" />
     <Content Include="Views\Publisher\Index.cshtml" />
     <Content Include="Views\Publisher\Update.cshtml" />
@@ -665,8 +665,9 @@
     <Content Include="Views\Lesson\Add.cshtml" />
     <Content Include="Views\Lesson\Index.cshtml" />
     <Content Include="Views\Lesson\Update.cshtml" />
-    <Content Include="Views\Content\Rating.cshtml" />
-    <Content Include="Views\Content\UpdateRating.cshtml" />
+    <Content Include="Views\Contents\Rating.cshtml" />
+    <Content Include="Views\Contents\UpdateRating.cshtml" />
+    <Content Include="Views\Dealer\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -677,7 +678,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="External\Content\" />
-    <Folder Include="Views\Dealer\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

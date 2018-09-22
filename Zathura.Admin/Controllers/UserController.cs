@@ -78,16 +78,15 @@ namespace Zathura.Admin.Controllers
             try
             {
                 var userItem = _userRepository.GetById(_user.ID);
+                if (userItem.Status != _user.Status)
+                {
+                    string body = $"Merhaba {userItem.Name} {userItem.Surname} </br>";
+                    body += " hesabınız " + (_user.Status == (int)Status.Active ? "Aktif" : "Pasif") + " hale getirilmiştir.";
+                    EMailHelper.SendMail(userItem.Email, "Üyelik Yönetim Kitaprazzi", "Aktivasyon Bilgilendirme", body);
+                }
                 userItem.RoleID = _user.RoleID;
                 userItem.Status = _user.Status;
                 _userRepository.Save();
-                
-                if (userItem.Status != _user.Status)
-                {
-                    string body = $"Merhaba {_user.Name} {_user.Surname} </br>";
-                    body += " hesabınız " + (_user.Status == (int)Status.Active ? "Aktif" : "Pasif") +" hale getirilmiştir.";
-                    EMailHelper.SendMail(_user.Email, "Üyelik Yönetim Kitaprazzi", "Aktivasyon Bilgilendirme", body);
-                }
             }
             catch (Exception ex)
             {
