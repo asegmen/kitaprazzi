@@ -1094,6 +1094,13 @@ footer {
                 padding-right: 15px;
             }
         }
+
+        &[data-type="kitaprazzi"] {
+            > .col {
+                background: #fff7f0;
+                padding:10px 15px;
+            }
+        }
     }
 
     &-post-row {

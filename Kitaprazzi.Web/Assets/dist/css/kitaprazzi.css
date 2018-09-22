@@ -1164,6 +1164,7 @@ footer .footer-middle .footer-links .foot-box a{font-size:12px;color:#666;line-h
 .comment-row div[class^=col]{padding-left:5px;padding-right:5px}
 @media (min-width:768px){.comment-row div[class^=col]{padding-left:15px;padding-right:15px}
 }
+.comment-row[data-type=kitaprazzi]>.col{background:#fff7f0;padding:10px 15px}
 .comment-post-row{border-top-width:5px}
 .comment-post-row .comment-avatar{background:0 0}
 .comment-post-row .comment-post{width:50%}

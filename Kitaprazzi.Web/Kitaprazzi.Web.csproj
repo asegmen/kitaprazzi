@@ -410,6 +410,7 @@
     <Content Include="Assets\dist\img\404.png" />
     <Content Include="Assets\dist\img\kitap.jpg" />
     <Content Include="Assets\dist\img\kitaprazzi-logo.png" />
+    <Content Include="Assets\dist\img\kr-yorumu.png" />
     <Content Include="Assets\dist\img\pattern.png" />
     <Content Include="Assets\dist\js\kitaprazzi.js" />
     <Content Include="gulpfile - Copy.js" />
