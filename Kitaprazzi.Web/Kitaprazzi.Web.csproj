@@ -421,6 +421,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -562,6 +563,8 @@
     <Content Include="Views\Home\_Partial\_BookList.cshtml" />
     <Content Include="Views\Home\_Partial\_PopulerBookList.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -573,6 +576,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Category\" />
+    <Folder Include="Views\Error\" />
     <Folder Include="Views\Menu\" />
     <Folder Include="Views\Partials\" />
   </ItemGroup>
