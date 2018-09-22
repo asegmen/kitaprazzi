@@ -961,6 +961,7 @@ strong{font-weight:700}
 ol,ul{list-style:none}
 table{border-collapse:collapse;border-spacing:0}
 a{color:#000}
+.comment-name,.detail-category,.membership .options a,.product-publisher{text-decoration:underline}
 img{max-width:100%}
 input[type=text]{padding:0}
 textarea{resize:none}
@@ -982,7 +983,6 @@ header .col-menu{position:static}
 }
 .mobile-menu{cursor:pointer;display:inline-block;font-size:14px;font-weight:700;padding:10px 10px 5px}
 .main-menu{background:#eaeaea;height:100%;left:100vw;padding-top:40px;position:fixed;top:0;transition:left .1s linear;width:100%;z-index:99}
-.main-menu.opened,.swiper-button-prev,.wide-menu{left:0}
 @media (min-width:992px){.main-menu{background:#fff;float:right;left:0;padding:0;position:static}
 }
 .main-menu-item{cursor:pointer;display:inline-block;padding:4px 5px 0}
@@ -999,6 +999,7 @@ header .col-menu{position:static}
 .main-menu-item.has-submenu{padding-right:12px}
 .main-menu-item.has-submenu:hover{border-radius:5px 5px 0 0}
 }
+.main-menu.opened{left:0}
 .main-menu.opened .close-menu{background:#e6debb;cursor:pointer;font:900 16px/36px Montserrat;height:36px;position:absolute;right:2px;top:2px;width:36px}
 .main-menu.opened .main-menu-item{border-top:1px solid #e0e0e0;width:100%}
 .main-menu.opened .main-menu-item.has-submenu{padding:0;position:relative}
@@ -1013,7 +1014,7 @@ header .col-menu{position:static}
 .main-menu.opened .main-menu-item .wide-menu .sub-menu{display:none;transition:all .2s linear}
 .main-menu.opened .main-menu-item .wide-menu .sub-menu.opened{display:block}
 .main-menu.opened .main-menu-item .wide-menu .sub-menu-item>a{border-top:1px solid #ccc;display:block;line-height:20px;padding:5px 0}
-.wide-menu{background:#fff;border-radius:5px;border-top:3px solid #e6debb;position:absolute;top:34px;width:100%;z-index:3}
+.wide-menu{background:#fff;border-radius:5px;border-top:3px solid #e6debb;left:0;position:absolute;top:34px;width:100%;z-index:3}
 @media (min-width:992px){.wide-menu{display:none;text-align:left}
 .wide-menu .sub-menu{list-style-type:disc;padding-left:20px;padding-top:10px;width:80%}
 .wide-menu .sub-menu-wrapper{padding:20px}
@@ -1057,6 +1058,7 @@ header .col-menu{position:static}
 .swiper-button-next,.swiper-button-prev{background:rgba(0,0,0,.6);height:44px;text-align:center;width:44px}
 .swiper-button-next i,.swiper-button-prev i{color:#eaeaea;font-size:22px;line-height:44px}
 .swiper-button-next{right:0}
+.swiper-button-prev{left:0}
 .title-row{margin-bottom:20px;position:relative}
 .title-row:before{background:#e3e3e3;content:"";height:2px;left:0;margin-top:-1px;position:absolute;top:50%;width:100%}
 .title-row .main-title{background:#f2f3f4;color:#626f79;display:inline-block;font:700 14px/20px Montserrat;padding-right:10px;position:relative;z-index:1}
@@ -1072,18 +1074,21 @@ header .col-menu{position:static}
 .product-image{margin-bottom:10px;padding-bottom:110%;position:relative}
 .product-image-wrapper{align-items:center;display:flex;height:100%;justify-content:center;position:absolute;width:100%}
 .product-image-wrapper img{max-height:100%;max-width:100%}
-.product-publisher{color:#b46619;font-size:14px;font-weight:700;line-height:18px;margin:5px 0;text-decoration:underline;display:block!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.product-publisher{color:#b46619;font-size:14px;font-weight:700;line-height:18px;margin:5px 0;display:block!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .product-category,.product-title{color:#000;line-height:18px;margin:5px 0;display:block!important;overflow:hidden}
 .product-category{text-overflow:ellipsis;white-space:nowrap}
 .product-title{font-weight:700;height:36px;-webkit-box-orient:vertical;display:-webkit-box!important;-webkit-line-clamp:2;white-space:inherit}
-.star-rating{font-size:0;margin-top:10px}
+.star-rating{margin-top:10px}
+.star-rating-text{font:700 18px/24px Tahoma;background:#fff2ca;padding:2px 10px 2px 40px;position:relative;color:#333}
+.star-rating-text i{font-size:10px;line-height:8px;position:absolute;text-align:left;left:0;width:32px;top:0;height:26px;background:#f0f0f0;padding:5px 3px;color:#666}
+footer,footer .box{text-align:center}
 .star-rating__wrap{display:inline-block;font-size:1rem}
 .star-rating__wrap:after{content:"";display:table;clear:both}
 .star-rating__ico:hover:before,.star-rating__ico:hover~.star-rating__ico:before,.star-rating__input:checked~.star-rating__ico:before{content:"\f005"}
 .star-rating__ico{float:right;padding-left:2px;cursor:pointer;color:#FFB300}
 .star-rating__ico:last-child{padding-left:0}
 .star-rating__input{display:none}
-footer{background:#626f79;color:#fff;text-align:center}
+footer{background:#626f79;color:#fff}
 footer .socialbox{margin-top:30px}
 @media (min-width:768px){footer .social{padding:10px 0}
 footer .socialbox{margin:0}
@@ -1097,7 +1102,6 @@ footer .social-item a i[class*=google-plus]{background:#d34836}
 footer .social-item a i[class*=instagram]{background:#636cb0}
 footer .footer-bottom{background:#333;padding-bottom:25px;padding-top:25px}
 footer .footer-top{background:#111;padding-bottom:25px;padding-top:25px}
-footer .box{text-align:center}
 @media (min-width:768px){footer .box{text-align:left}
 }
 footer .box-title{font-weight:700;margin-bottom:15px}
@@ -1116,11 +1120,12 @@ footer .footer-middle .footer-links .foot-box{text-align:left}
 footer .footer-middle .footer-links .foot-box h2{color:#ddd;font-weight:700;font-size:13px;margin:10px 0}
 footer .footer-middle .footer-links .foot-box a{font-size:12px;color:#666;line-height:18px}
 .filter{background:#f9f7f4;box-shadow:0 1px 2px rgba(0,0,0,.1);padding:15px}
-.comment,.detail,.image-wrapper{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.1)}
 .filter-title{border-bottom:1px solid #eaeaea;font:700 16px/28px Montserrat;padding-bottom:15px;text-align:center}
 .filter-list-item{margin-top:15px}
 .filter-list-title{color:#666;font-size:16px;font-weight:700;line-height:28px}
-.comment-name,.detail-category{color:#b46619;text-decoration:underline}
+.filter-list-content .check{display:block;padding:5px 0}
+.filter-list-content .by-point{background:#f7f7f7;border:1px solid #eaeaea;border-radius:3px;display:block;height:38px;line-height:28px;margin-top:10px;padding:5px 10px;width:100%}
+.detail,.image-wrapper{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.1)}
 .breadcrumbs li{float:left}
 .breadcrumbs li .item{font-size:12px;line-height:27px}
 .breadcrumbs li :after{content:">";margin:0 5px}
@@ -1129,26 +1134,25 @@ footer .footer-middle .footer-links .foot-box a{font-size:12px;color:#666;line-h
 @media (min-width:992px){.detail{height:100%;margin:0;padding:25px 30px}
 }
 .detail-title{font:700 18px/27px Montserrat;margin-bottom:10px}
-.comment-name,.dealers-name,.detail-category,.image-group .rating li span,.image-group>span,.membership h3{font-weight:700}
-.detail-category{font-size:14px}
+.detail-category{color:#b46619;font-size:14px;font-weight:700}
 .detail-description{display:block}
 .detail-description>p{font-size:14px;line-height:20px;margin-top:20px}
-.comment-name,.image-group .rating li:last-child *{font-size:16px}
 .image-wrapper{margin-bottom:20px}
 @media (min-width:992px){.detail-description>p{font-size:16px;line-height:24px;margin-top:30px}
 .image-wrapper{height:100%;margin:0}
 }
 .image-main img{width:100%}
 .image-group{padding:15px}
-.image-group>span{display:block;line-height:24px;margin-bottom:5px}
+.image-group>span{display:block;line-height:24px;font-weight:700;margin-bottom:5px}
 .image-group .image-list{border-bottom:1px solid #eaeaea;display:inline-block;margin:0 -8px 15px;padding-bottom:15px}
 .image-group .image-list li{float:left;padding-left:8px;padding-right:8px;width:33.333333%}
-.image-group .rating li small{display:inline-block;width:60%}
-.image-group .rating li:last-child{padding-top:10px;margin-top:10px;border-top:1px solid #eaeaea}
+.image-group .rating li{background:#fff2ca;display:inline-block;width:100%}
+.image-group .rating li small{display:inline-block;padding:11px 5px 9px;width:60%;float:left;background:#f8f8f8}
+.image-group .rating li span{font-weight:700;width:40%;display:inline-block;float:left;padding:11px 5px 9px;text-align:center}
 .dealers-list{display:block;margin-top:20px}
-.dealers-name{display:block;line-height:20px;margin-top:20px}
+.dealers-name{display:block;font-weight:700;line-height:20px;margin-top:20px}
 .dealers-phone{display:block;line-height:20px}
-.comment{padding:15px 20px}
+.comment{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.1);padding:15px 20px}
 @media (min-width:992px){.comment{padding:25px 30px}
 }
 .comment-row{margin-top:20px;padding-top:20px}
@@ -1156,8 +1160,13 @@ footer .footer-middle .footer-links .foot-box a{font-size:12px;color:#666;line-h
 .comment-row div[class^=col]{padding-left:5px;padding-right:5px}
 @media (min-width:768px){.comment-row div[class^=col]{padding-left:15px;padding-right:15px}
 }
+.comment-post-row{border-top-width:5px}
+.comment-post-row .comment-avatar{background:0 0}
+.comment-post-row .comment-post{width:50%}
+.comment-post-row .comment-post textarea{width:100%;height:200px;padding:20px;border:1px solid #eee;margin-bottom:10px;resize:none}
+.comment-post-row .comment-post input{background:#27ae60;border:none;border-radius:3px;color:#fff;cursor:pointer;font-weight:900;height:50px;letter-spacing:1px;line-height:30px;padding:10px;text-align:center}
 .comment-avatar{background:#edf2f6;border-radius:50%;display:block;height:40px;width:40px}
-.comment-name{line-height:27px;margin-bottom:5px}
+.comment-name{color:#b46619;font-size:16px;font-weight:700;line-height:27px;margin-bottom:5px}
 .comment-title{font-size:18px;line-height:27px;margin-bottom:10px}
 .comment-description p{color:#666;line-height:18px;margin-top:20px}
 .comment-description p:first-child{margin-top:0}
@@ -1166,11 +1175,11 @@ footer .footer-middle .footer-links .foot-box a{font-size:12px;color:#666;line-h
 .comment-description p{font-size:16px;line-height:24px}
 .membership{padding:25px 30px}
 }
-.membership h3{font-size:14px;margin-bottom:10px}
+.membership h3{font-size:14px;font-weight:700;margin-bottom:10px}
 .membership input{border:1px solid #ccc;border-radius:3px;display:block;height:42px;margin:5px 0;padding:5px 10px;width:100%}
 .membership input[type=button],.membership input[type=submit]{background:#27ae60;border:none;color:#fff;cursor:pointer;font-weight:700;letter-spacing:1px;padding:5px;text-align:center}
 .membership .options{margin-top:10px}
 @media (min-width:992px){.membership .options{margin-top:0}
 }
-.membership .options a{clear:both;display:block;float:right;line-height:20px;margin:2px 0;text-decoration:underline}
+.membership .options a{clear:both;display:block;float:right;line-height:20px;margin:2px 0}
 .membership .message{color:#b46619;display:block;margin-top:10px}
