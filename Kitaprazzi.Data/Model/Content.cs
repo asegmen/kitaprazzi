@@ -28,6 +28,9 @@ namespace Kitaprazzi.Data.Model
         public int? LessonID { get; set; }
         [ForeignKey("LessonID")]
         public virtual Lesson Lesson { get; set; }
+        public int? ContentTypeID { get; set; }
+        [ForeignKey("ContentTypeID")]
+        public virtual ContentType ContentType { get; set; }
         public float EditorPoint { get; set; }
         public float UserPoint { get; set; }
         public float KitaprazziPoint { get; set; }

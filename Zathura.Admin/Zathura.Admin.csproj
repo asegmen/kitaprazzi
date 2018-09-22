@@ -587,6 +587,7 @@
     <Compile Include="Controllers\ContentsController.cs" />
     <Compile Include="Controllers\DealerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ContentTypeController.cs" />
     <Compile Include="Controllers\MainControlController.cs" />
     <Compile Include="Controllers\MainSliderController.cs" />
     <Compile Include="Controllers\LessonController.cs" />
@@ -668,6 +669,9 @@
     <Content Include="Views\Contents\Rating.cshtml" />
     <Content Include="Views\Contents\UpdateRating.cshtml" />
     <Content Include="Views\Dealer\Index.cshtml" />
+    <Content Include="Views\ContentType\Add.cshtml" />
+    <Content Include="Views\ContentType\Index.cshtml" />
+    <Content Include="Views\ContentType\Update.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

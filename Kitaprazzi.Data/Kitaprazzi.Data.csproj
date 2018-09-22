@@ -59,6 +59,7 @@
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Content.cs" />
+    <Compile Include="Model\ContentType.cs" />
     <Compile Include="Model\Country.cs" />
     <Compile Include="Model\Dealer.cs" />
     <Compile Include="Model\Lesson.cs" />

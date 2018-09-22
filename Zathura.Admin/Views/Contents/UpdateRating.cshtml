@@ -7,7 +7,7 @@
 <script src="~/Content/ckeditor/ckeditor.js"></script>
 <div class="container-fluid">
     <!-- Basic form -->
-    @using (Html.BeginForm("UpdateRating", "Content", FormMethod.Post, new { @class="row" }))
+    @using (Html.BeginForm("UpdateRating", "Contents", FormMethod.Post, new { @class="row" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary()

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kitaprazzi.Core
+namespace Kitaprazzi.Data.Model
 {
-    public class Class1
+    public class ContentType: BaseEntity
     {
+        public string Name { set; get; }
     }
 }

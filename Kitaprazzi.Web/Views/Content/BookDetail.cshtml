@@ -78,7 +78,7 @@
         <div class="col-12 col-lg-3 order-lg-3">
             <div class="search-box dealers">
                 <div class="search-box-title">BAYİ BUL</div>
-                <div class="search-box-line">
+                @*<div class="search-box-line">
                     <span class="search-box-line-title mb30">İl Seçiniz</span>
                     <span class="search-box-line-element">
                         <select>
@@ -97,22 +97,14 @@
                             <option selected="">Begalunya</option>
                         </select>
                     </span>
-                </div>
+                </div>*@
                 <div class="dealers-list">
-                    <span class="dealers-name">Remzi Kitabevi</span>
-                    <span class="dealers-phone">0212 250 96 07</span>
-
-                    <span class="dealers-name">Remzi Kitabevi</span>
-                    <span class="dealers-phone">0212 250 96 07</span>
-
-                    <span class="dealers-name">Remzi Kitabevi</span>
-                    <span class="dealers-phone">0212 250 96 07</span>
-
-                    <span class="dealers-name">Remzi Kitabevi</span>
-                    <span class="dealers-phone">0212 250 96 07</span>
-
-                    <span class="dealers-name">Remzi Kitabevi</span>
-                    <span class="dealers-phone">0212 250 96 07</span>
+                    @if (Model.Publisher != null)
+                    {
+                        <span class="dealers-name">@Model.Publisher.Name </span>
+                        <span class="dealers-name">@Model.Publisher.Country.Name / @Model.Publisher.City.Name </span>
+                        <span class="dealers-phone">@Model.Publisher.Phone</span>
+                    }
                 </div>
             </div>
         </div>

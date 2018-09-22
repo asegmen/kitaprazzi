@@ -7,7 +7,7 @@
 <script src="~/Content/ckeditor/ckeditor.js"></script>
 <div class="container-fluid">
     <!-- Basic form -->
-    @using (Html.BeginForm("Update", "Content", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Update", "Contents", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary()
@@ -26,6 +26,10 @@
                             <div class="form-group">
                                 <label for="Category Name">Ders Adı</label>
                                 @Html.DropDownListFor(model => model.LessonID, new SelectList(ViewBag.LessonList, "ID", "Name"), ("Select Item"), new { @class = "form-control", id = "LessonId" })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">İçerik Tipi</label>
+                                @Html.DropDownListFor(model => model.ContentTypeID, new SelectList(ViewBag.ContentTypeList, "ID", "Name"), ("Select Item"), new { @class = "form-control", id = "ContentTypeId" })
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">İçerik Başlık</label>

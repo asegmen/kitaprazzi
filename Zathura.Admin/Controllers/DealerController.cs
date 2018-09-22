@@ -117,24 +117,24 @@ namespace Zathura.Admin.Controllers
 
         [HttpPost]
         [LoginFilter]
-        public JsonResult Update(Publisher publisher)
+        public JsonResult Update(Dealer dealer)
         {
             try
             {
-                var publisherItem = _publisherRepository.GetById(publisher.ID);
-                if (publisherItem == null)
-                {
-                    return Json(new ResultJson { Success = false, Message = "Publisher couldn't found!" });
-                }
-                publisherItem.Name = publisher.Name;
-                publisherItem.Phone = publisher.Phone;
-                publisherItem.Status = publisher.Status;
-                publisherItem.UpdateDate = DateTime.Now;
-                publisherItem.Adress = publisher.Adress;
-                publisherItem.CityID = publisher.CityID;
-                publisherItem.CountryID = publisher.CountryID;
+                //var publisherItem = _publisherRepository.GetById(publisher.ID);
+                //if (publisherItem == null)
+                //{
+                //    return Json(new ResultJson { Success = false, Message = "Publisher couldn't found!" });
+                //}
+                //publisherItem.Name = publisher.Name;
+                //publisherItem.Phone = publisher.Phone;
+                //publisherItem.Status = publisher.Status;
+                //publisherItem.UpdateDate = DateTime.Now;
+                //publisherItem.Adress = publisher.Adress;
+                //publisherItem.CityID = publisher.CityID;
+                //publisherItem.CountryID = publisher.CountryID;
 
-                _publisherRepository.Save();
+                //_publisherRepository.Save();
                 return Json(new ResultJson { Success = true, Message = "Publisher updated successfully." });
             }
             catch (Exception ex)
