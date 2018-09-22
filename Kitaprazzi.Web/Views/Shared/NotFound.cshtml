@@ -1,16 +1,29 @@
 ﻿
 @{
-    ViewBag.Title = "NotFound";
+    ViewBag.Title = "Aradığınız sayfa bulanamadı";
 }
 
-<div style=" padding:20px;">
-    <h3>
-        Application Error:
-    </h3>
-    <h4>
-        Sorry, The Page, You are Looking for is not found.
-    </h4>
-    <h6>@Html.ActionLink("Ana sayfaya Geri Dön", "Index", "Home")</h6>
-    <br />
-    <br />
+<div class="container">
+    <div class="row">
+        <div class="col message">
+            <img src="~/Assets/dist/img/404.png" alt="Aradığınız sayfa bulunamadı" />
+            <div>@Html.ActionLink("Anasayfaya dön", "Index", "Home")</div>
+        </div>
+    </div>
 </div>
+
+<style type="text/css">
+    .message {
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        display: flex;
+        margin-bottom:30px;
+        background:#eee;
+        flex-direction:column;
+        padding-bottom:20px;
+    }
+    a{
+        font-size:16px;
+    }
+</style>

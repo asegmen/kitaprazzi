@@ -407,6 +407,7 @@
     <Content Include="Assets\bower_components\tether\src\js\utils.js" />
     <Content Include="Assets\dist\css\bootstrap-sass-grid.css" />
     <Content Include="Assets\dist\css\kitaprazzi.css" />
+    <Content Include="Assets\dist\img\404.png" />
     <Content Include="Assets\dist\img\kitap.jpg" />
     <Content Include="Assets\dist\img\kitaprazzi-logo.png" />
     <Content Include="Assets\dist\img\pattern.png" />

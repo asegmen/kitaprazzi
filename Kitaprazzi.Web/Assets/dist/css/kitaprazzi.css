@@ -991,7 +991,7 @@ header .col-menu{position:static}
 .main-menu-item-link{padding:0 5px}
 @media (min-width:1200px){.main-menu-item-link{padding:0 10px}
 }
-.main-menu-item-link .main-menu-item-wrapper{font-size:16px;font-weight:900;line-height:30px}
+.main-menu-item-link .main-menu-item-wrapper{font-size:15px;font-weight:900;line-height:30px}
 .main-menu-item-link .main-menu-item-wrapper .fa{font-size:12px;position:relative;right:0;top:-2px}
 @media (min-width:992px){.main-menu-item:hover{background:#e6debb;border-radius:5px}
 .main-menu-item:hover .main-menu-item-wrapper{color:#b46619}
