@@ -1069,6 +1069,7 @@ header .col-menu{position:static}
 .title-row .main-link{background:#f2f3f4;font-size:14px;font-weight:900;height:20px;line-height:20px;margin-top:-10px;padding-left:20px;position:absolute;right:0;top:50%}
 .product{background:#fff;margin-bottom:20px;padding:15px;text-align:center;transition:all .2s linear}
 .product:hover{box-shadow:0 2px 1px rgba(0,0,0,.25)}
+.comment,.detail,.filter,.image-wrapper,.membership{box-shadow:0 1px 2px rgba(0,0,0,.1)}
 @media (min-width:768px){.product{padding:30px 20px}
 }
 .product-image{margin-bottom:10px;padding-bottom:110%;position:relative}
@@ -1111,7 +1112,6 @@ footer .box .newsletter-wrapper input{background:0 0;border:none;height:100%;lin
 footer .box .newsletter-wrapper .subscribe{background:#fec500;height:30px;position:absolute;right:10px;text-align:center;top:10px;width:30px}
 footer .box .newsletter-wrapper .subscribe i{color:#fff;font-size:18px;line-height:30px}
 footer .footer-middle{background:#111;border-top:1px dotted #333;padding-bottom:20px;padding-top:20px}
-.comment-row,.dealers-list{border-top:1px solid #eaeaea}
 footer .footer-middle .foot-box{background:#222;display:block;margin:1px 0;padding:10px;position:relative}
 footer .footer-middle .foot-box b{color:#fff;font-weight:700;line-height:20px}
 footer .footer-middle .foot-box i{color:orange;float:right;font-size:20px;line-height:20px}
@@ -1119,25 +1119,29 @@ footer .footer-middle .footer-links{margin-top:20px}
 footer .footer-middle .footer-links .foot-box{text-align:left}
 footer .footer-middle .footer-links .foot-box h2{color:#ddd;font-weight:700;font-size:13px;margin:10px 0}
 footer .footer-middle .footer-links .foot-box a{font-size:12px;color:#666;line-height:18px}
-.filter{background:#f9f7f4;box-shadow:0 1px 2px rgba(0,0,0,.1);padding:15px}
+.filter{background:#f9f7f4;padding:15px}
 .filter-title{border-bottom:1px solid #eaeaea;font:700 16px/28px Montserrat;padding-bottom:15px;text-align:center}
 .filter-list-item{margin-top:15px}
 .filter-list-title{color:#666;font-size:16px;font-weight:700;line-height:28px}
 .filter-list-content .check{display:block;padding:5px 0}
 .filter-list-content .by-point{background:#f7f7f7;border:1px solid #eaeaea;border-radius:3px;display:block;height:38px;line-height:28px;margin-top:10px;padding:5px 10px;width:100%}
-.detail,.image-wrapper{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.1)}
 .breadcrumbs li{float:left}
 .breadcrumbs li .item{font-size:12px;line-height:27px}
 .breadcrumbs li :after{content:">";margin:0 5px}
 .breadcrumbs li:last-child :after{content:"";display:none}
-.detail{margin-bottom:20px;padding:15px 20px}
+.detail{background:#fff;margin-bottom:20px;padding:15px 20px}
 @media (min-width:992px){.detail{height:100%;margin:0;padding:25px 30px}
 }
 .detail-title{font:700 18px/27px Montserrat;margin-bottom:10px}
 .detail-category{color:#b46619;font-size:14px;font-weight:700}
-.detail-description{display:block}
+.detail-description{display:block;max-height:350px;overflow:hidden;position:relative}
+.detail-description:after{background:-moz-linear-gradient(top,rgba(255,255,255,0) 0,rgba(255,255,255,.65) 65%,#fff 100%);background:-webkit-linear-gradient(top,rgba(255,255,255,0) 0,rgba(255,255,255,.65) 65%,#fff 100%);background:linear-gradient(to bottom,rgba(255,255,255,0) 0,rgba(255,255,255,.65) 65%,#fff 100%);filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff', GradientType=0 );bottom:0;content:"";height:100px;left:0;position:absolute;width:100%}
+.detail-description .show-all{background:rgba(220,220,220,.5);border-radius:5px;bottom:0;color:#666;cursor:pointer;display:block;font-size:14px;font-weight:700;left:50%;margin-left:-60px;padding:10px;position:absolute;text-align:center;width:120px;z-index:9}
+.detail-description .show-all:hover{background:rgba(220,220,220,.7)}
+.detail-description.toggle{max-height:inherit}
+.detail-description.toggle .show-all,.detail-description.toggle:after{display:none}
 .detail-description>p{font-size:14px;line-height:20px;margin-top:20px}
-.image-wrapper{margin-bottom:20px}
+.image-wrapper{background:#fff;margin-bottom:20px}
 @media (min-width:992px){.detail-description>p{font-size:16px;line-height:24px;margin-top:30px}
 .image-wrapper{height:100%;margin:0}
 }
@@ -1149,13 +1153,13 @@ footer .footer-middle .footer-links .foot-box a{font-size:12px;color:#666;line-h
 .image-group .rating li{background:#fff2ca;display:inline-block;width:100%}
 .image-group .rating li small{display:inline-block;padding:11px 5px 9px;width:60%;float:left;background:#f8f8f8}
 .image-group .rating li span{font-weight:700;width:40%;display:inline-block;float:left;padding:11px 5px 9px;text-align:center}
-.dealers-list{display:block;margin-top:20px}
+.dealers-list{display:block}
 .dealers-name{display:block;font-weight:700;line-height:20px;margin-top:20px}
 .dealers-phone{display:block;line-height:20px}
-.comment{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.1);padding:15px 20px}
+.comment{background:#fff;padding:15px 20px}
 @media (min-width:992px){.comment{padding:25px 30px}
 }
-.comment-row{margin-top:20px;padding-top:20px}
+.comment-row{border-top:1px solid #eaeaea;margin-top:20px;padding-top:20px}
 .comment-row:first-child{border:none;margin-top:0;padding-top:0}
 .comment-row div[class^=col]{padding-left:5px;padding-right:5px}
 @media (min-width:768px){.comment-row div[class^=col]{padding-left:15px;padding-right:15px}
@@ -1170,7 +1174,7 @@ footer .footer-middle .footer-links .foot-box a{font-size:12px;color:#666;line-h
 .comment-title{font-size:18px;line-height:27px;margin-bottom:10px}
 .comment-description p{color:#666;line-height:18px;margin-top:20px}
 .comment-description p:first-child{margin-top:0}
-.membership{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.1);padding:15px 20px}
+.membership{background:#fff;padding:15px 20px}
 @media (min-width:992px){.comment-avatar{height:80px;width:80px}
 .comment-description p{font-size:16px;line-height:24px}
 .membership{padding:25px 30px}

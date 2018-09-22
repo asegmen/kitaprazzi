@@ -26,6 +26,9 @@
         effect: 'fade'
     });
 
+    $(".detail-description .show-all").click(function () {
+        $(this).parent().addClass("toggle");
+    });
 });
 
 function openSubMenu(clicked, opened) {
