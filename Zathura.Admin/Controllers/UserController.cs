@@ -49,9 +49,10 @@ namespace Zathura.Admin.Controllers
             }
             catch (Exception ex)
             {
+                return Redirect("Index");
                 //return Json(new ResultJson { Success = false, Message = "Content couldnt deleted!!!", ExceptionMessage = ex.Message, ExStackTrace = ex.StackTrace });
             }
-            return Index(1);
+            return Redirect("Index");
         }
 
         #region Update Category

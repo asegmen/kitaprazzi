@@ -57,7 +57,7 @@
                                                 <a href="@Url.Action("Update","User",new {id = item.ID})" class="btn btn-default btn-sm">Edit</a>
                                                 @*<button class="btn btn-default btn-sm">Edit</button>*@
                                                 @*<button class="btn btn-default btn-sm" id="catDeleteBtn" data-id="@item.ID">Delete</button>*@
-                                                @Html.ActionLink("Delete", "Delete", new { contentId = item.ID }, new { @class = "btn btn-default btn-sm", onclick = "return confirm('Are you sure want to delete?')" })
+                                                @Html.ActionLink("Delete", "Delete", new { userId = item.ID }, new { @class = "btn btn-default btn-sm", onclick = "return confirm('Are you sure want to delete?')" })
                                             </td>
                                         </tr>
                                     }

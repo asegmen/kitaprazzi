@@ -413,7 +413,6 @@
     <Content Include="Assets\dist\img\kr-yorumu.png" />
     <Content Include="Assets\dist\img\pattern.png" />
     <Content Include="Assets\dist\js\kitaprazzi.js" />
-    <Content Include="gulpfile - Copy.js" />
     <Content Include="gulpfile.js" />
     <Content Include="Assets\src\js\jquery.min.js" />
     <Content Include="Assets\src\js\main.js" />
