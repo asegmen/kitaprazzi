@@ -10,9 +10,39 @@
 
 }
 
+<script type="text/javascript">
+    // push request
+    const ajaxer = (queryName, optionValue) => {
+        console.log(queryName + optionValue);
+        let getUrl = window.location.href;
+        if (optionValue)
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const newPath = getUrl + '&' + queryName + optionValue;
+                    console.log('new url ' + newPath);
+                });
+    }
 
+    $(document).ready(function () {
+        // pull by select
+        var $select = $('.by-point');
+        var query = "shortBy=";
+        $select.on('change', function () {
+            var value = $(this).val();
+            ajaxer(query, value);
+        });
 
-
+        // pull by radio
+        const publisherOption = $(".filter-list-content input[name='publisher']");
+        var query = "publisherID=";
+        publisherOption.change(function () {
+            var _id = $(this).val();
+            ajaxer(query, _id);
+        });
+        
+    });
+</script>
 
 <div class="container">
     <div class="row">
@@ -28,7 +58,7 @@
                                 {
                                     <span class="check">
                                         <label for="@pubilsher.ID">
-                                            <input type="checkbox" id="@pubilsher.ID" />
+                                            <input type="radio" name="publisher" id="@pubilsher.ID" value="@pubilsher.ID" />
                                             @pubilsher.Name
                                         </label>
                                     </span>
@@ -42,8 +72,8 @@
                             <div class="filter-list-content">
                                 <span>Puana göre filtre:</span>
                                 <select class="by-point">
-                                    <option selected>En yüksekten düşüğe</option>
-                                    <option>En düşükten yükseğe</option>
+                                    <option value="higherToLower" selected>En yüksekten düşüğe</option>
+                                    <option value="lowerToHigher">En düşükten yükseğe</option>
                                 </select>
                             </div>
                             
