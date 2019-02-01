@@ -37,10 +37,24 @@ namespace Kitaprazzi.Web.Controllers
             return View(contentItem);
         }
 
-        public ActionResult Category(int id, int l = 0)
+        public ActionResult Category(int id, int l = 0, int publisherId = 0, int sortBy=0)
         {
             var categoryItem = _categoryRepository.GetById(id);
             var contentList = _genericHelper.GetContentsWithByCategory(categoryItem.ID, l, 50);
+            ViewBag.FullContentList = contentList;
+            if (publisherId > 0)
+            {
+                contentList = contentList.Where(x => x.PublisherID == publisherId).ToList();
+            }
+            if (sortBy == 0)
+            {
+                contentList = contentList.OrderBy(x=> x.KitaprazziPoint).ToList();
+            }
+            else
+            {
+                contentList = contentList.OrderByDescending(x => x.KitaprazziPoint).ToList();
+            }
+            
             ViewBag.ContentList = contentList;
             return View("~/Views/Content/CategoryDetail.cshtml", categoryItem);
         }

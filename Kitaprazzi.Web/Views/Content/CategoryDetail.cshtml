@@ -6,31 +6,48 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var contentList = ViewBag.ContentList as List<Content>;
-    var publisherList = contentList.Select(x=>x.Publisher).Distinct();
+    var fullContentList = ViewBag.FullContentList as List<Content>;
+    var publisherList = fullContentList.Select(x=>x.Publisher).Distinct();
 
 }
 
 <script type="text/javascript">
     // push request
-    const ajaxer = (queryName, optionValue) => {
-        console.log(queryName + optionValue);
+    const ajaxer = (publisher, sort) => {
         let getUrl = window.location.href;
-        if (optionValue)
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    const newPath = getUrl + '&' + queryName + optionValue;
-                    console.log('new url ' + newPath);
-                });
+        fetch(getUrl)
+            //.then(response => response)
+            .then(data => {
+                var lParam = getQueryString("l", getUrl);
+                var newUrl = location.protocol + '//' + location.host + location.pathname;
+                if (lParam !== "undefined" && lParam !== null)
+                    newUrl += "?l=" + lParam;
+
+                var qStringChar = newUrl.includes("?") ? "&" : "?";
+
+                const newPath = newUrl + qStringChar + "publisherId=" + publisher + "&sortBy=" + sort;
+                window.location.replace(newPath);
+            });
     }
 
+    var getQueryString = function (field, url) {
+        var href = url ? url : window.location.href;
+        var reg = new RegExp('[?&]' + field + '=([^&#]*)', 'i');
+        var string = reg.exec(href);
+        return string ? string[1] : null;
+    };
     $(document).ready(function () {
+        let getUrl = window.location.href;
+        var publisherId = getQueryString("publisherId", getUrl);
+        if (publisherId !== "undefined" && publisherId !== null)
+            $("#"+publisherId+"").prop("checked", true);
+
         // pull by select
         var $select = $('.by-point');
-        var query = "shortBy=";
         $select.on('change', function () {
-            var value = $(this).val();
-            ajaxer(query, value);
+            var sortVal = $(this).val();
+            var publisherVal = $('input[name=publisher]:checked').val();
+            ajaxer(publisherVal, sortVal);
         });
 
         // pull by radio
@@ -38,7 +55,8 @@
         var query = "publisherID=";
         publisherOption.change(function () {
             var _id = $(this).val();
-            ajaxer(query, _id);
+            var sortVal = $(".by-point").val();
+            ajaxer(_id, sortVal);
         });
         
     });
@@ -72,8 +90,8 @@
                             <div class="filter-list-content">
                                 <span>Puana göre filtre:</span>
                                 <select class="by-point">
-                                    <option value="higherToLower" selected>En yüksekten düşüğe</option>
-                                    <option value="lowerToHigher">En düşükten yükseğe</option>
+                                    <option value="1" selected>En yüksekten düşüğe</option>
+                                    <option value="0">En düşükten yükseğe</option>
                                 </select>
                             </div>
                             
