@@ -96,22 +96,33 @@
             <div class="filter mb">
                 <div class="filter-title">SONUÇLARI FİLTRELE</div>
                 <div class="row filter-list">
+                   
+                @if (contentTypeList.Any())
+                {
                     <div class="col-6 col-md-12">
                         <div class="filter-list-item">
                             <div class="filter-list-title">İÇERİK TİPİNE GÖRE</div>
                             <div class="filter-list-content">
+
                                 @foreach (var contentType in contentTypeList)
                                 {
-                                    <span class="check">
-                                        <label for="@contentType">
-                                            <input type="radio" name="contentType" id="@contentType.ID" value="@contentType.ID" />
-                                            @contentType.Name
-                                        </label>
-                                    </span>
+                                    if (contentType?.ID != null)
+                                    {
+                                        <span class="check">
+                                            <label for="@(contentType.ID)">
+                                                <input type="radio" name="contentType" id="@(contentType.ID)" value="@(contentType.ID)"/>
+                                                @(contentType.Name ?? string.Empty)
+                                            </label>
+                                        </span>
+                                    }
+                                   
                                 }
                             </div>
                         </div>
                     </div>
+                }
+                @if (publisherList != null && publisherList.Any())
+                {
                     <div class="col-6 col-md-12">
                         <div class="filter-list-item">
                             <div class="filter-list-title">YAYINCIYA GÖRE</div>
@@ -128,6 +139,9 @@
                             </div>
                         </div>
                     </div>
+                }
+
+                   
                     <div class="col-6 col-md-12">
                         <div class="filter-list-item">
                             <div class="filter-list-title">PUANA GÖRE</div>
