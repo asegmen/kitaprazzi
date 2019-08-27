@@ -37,11 +37,15 @@ namespace Kitaprazzi.Web.Controllers
             return View(contentItem);
         }
 
-        public ActionResult Category(int id, int l = 0, int publisherId = 0, int sortBy=0)
+        public ActionResult Category(int id, int l = 0,int contentType = 0,  int publisherId = 0, int sortBy=0)
         {
             var categoryItem = _categoryRepository.GetById(id);
             var contentList = _genericHelper.GetContentsWithByCategory(categoryItem.ID, l, 50);
             ViewBag.FullContentList = contentList;
+            if (contentType > 0)
+            {
+                contentList = contentList.Where(x => x.ContentTypeID == contentType).ToList();
+            }
             if (publisherId > 0)
             {
                 contentList = contentList.Where(x => x.PublisherID == publisherId).ToList();

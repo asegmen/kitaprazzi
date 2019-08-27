@@ -8,12 +8,13 @@
     var contentList = ViewBag.ContentList as List<Content>;
     var fullContentList = ViewBag.FullContentList as List<Content>;
     var publisherList = fullContentList.Select(x=>x.Publisher).Distinct();
+    var contentTypeList  = fullContentList.Select(x=>x.ContentType).Distinct();
 
 }
 
 <script type="text/javascript">
     // push request
-    const ajaxer = (publisher, sort) => {
+    const ajaxer = (contentType, publisher, sort) => {
         let getUrl = window.location.href;
         fetch(getUrl)
             //.then(response => response)
@@ -24,8 +25,18 @@
                     newUrl += "?l=" + lParam;
 
                 var qStringChar = newUrl.includes("?") ? "&" : "?";
+                var cType = getQueryString("contentType", getUrl);
+                console.log("contentType" + cType);
+                if (cType == "undefined" || cType == null) {
+                    contentType = 0;
+                }
+                var pParam = getQueryString("publisherId", getUrl);
+                console.log("pparam" + pParam);
+                if (pParam == "undefined" || pParam == null) {
+                    publisher = 0;
+                }
 
-                const newPath = newUrl + qStringChar + "publisherId=" + publisher + "&sortBy=" + sort;
+                const newPath = newUrl + qStringChar + "contentType=" + contentType + "&publisherId=" + publisher + "&sortBy=" + sort;
                 window.location.replace(newPath);
             });
     }
@@ -40,14 +51,19 @@
         let getUrl = window.location.href;
         var publisherId = getQueryString("publisherId", getUrl);
         if (publisherId !== "undefined" && publisherId !== null)
-            $("#"+publisherId+"").prop("checked", true);
+            $("#" + publisherId + "").prop("checked", true);
+
+        var contentTypeId = getQueryString("contentType", getUrl);
+        if (contentTypeId !== "undefined" && contentTypeId !== null)
+            $("#" + contentTypeId + "").prop("checked", true);
 
         // pull by select
         var $select = $('.by-point');
         $select.on('change', function () {
             var sortVal = $(this).val();
+            var contentTypeId = $('input[name=contentType]:checked').val();
             var publisherVal = $('input[name=publisher]:checked').val();
-            ajaxer(publisherVal, sortVal);
+            ajaxer(contentTypeId, publisherVal, sortVal);
         });
 
         // pull by radio
@@ -55,8 +71,20 @@
         var query = "publisherID=";
         publisherOption.change(function () {
             var _id = $(this).val();
+            var contentTypeId = $('input[name=contentType]:checked').val();
             var sortVal = $(".by-point").val();
-            ajaxer(_id, sortVal);
+            ajaxer(contentTypeId, _id, sortVal);
+        });
+
+        // pull by contentType
+        const contentTypeOption = $(".filter-list-content input[name='contentType']");
+        var query = "contentType=";
+        contentTypeOption.change(function ()
+        {
+            var _id = $(this).val();
+            var sortVal = $(".by-point").val();
+            var publisherVal = $('input[name=publisher]:checked').val();
+            ajaxer(_id, publisherVal, sortVal);
         });
         
     });
@@ -68,6 +96,22 @@
             <div class="filter mb">
                 <div class="filter-title">SONUÇLARI FİLTRELE</div>
                 <div class="row filter-list">
+                    <div class="col-6 col-md-12">
+                        <div class="filter-list-item">
+                            <div class="filter-list-title">İÇERİK TİPİNE GÖRE</div>
+                            <div class="filter-list-content">
+                                @foreach (var contentType in contentTypeList)
+                                {
+                                    <span class="check">
+                                        <label for="@contentType">
+                                            <input type="radio" name="contentType" id="@contentType.ID" value="@contentType.ID" />
+                                            @contentType.Name
+                                        </label>
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-6 col-md-12">
                         <div class="filter-list-item">
                             <div class="filter-list-title">YAYINCIYA GÖRE</div>
@@ -94,7 +138,7 @@
                                     <option value="0">En düşükten yükseğe</option>
                                 </select>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -124,7 +168,8 @@
                                     <span class="star-rating">
                                         <span class="star-rating-text">
                                             <i>KR puanı</i>
-                                            @Math.Round(((content.UserPoint + content.EditorPoint + content.KitaprazziPoint) / 3), 1)
+                                            @*@Math.Round(((content.UserPoint + content.EditorPoint + content.KitaprazziPoint) / 3), 1)*@
+                                            @Math.Round(content.KitaprazziPoint, 1)
                                         </span>
                                     </span>
                                 </a>
