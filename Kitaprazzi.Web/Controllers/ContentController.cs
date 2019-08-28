@@ -40,7 +40,7 @@ namespace Kitaprazzi.Web.Controllers
         public ActionResult Category(int id, int l = 0,int contentType = 0,  int publisherId = 0, int sortBy=0)
         {
             var categoryItem = _categoryRepository.GetById(id);
-            var contentList = _genericHelper.GetContentsWithByCategory(categoryItem.ID, l, 50);
+            var contentList = _genericHelper.GetContentsWithByCategory(categoryItem.ID, l, 1000);
             ViewBag.FullContentList = contentList;
             if (contentType > 0)
             {
@@ -52,11 +52,11 @@ namespace Kitaprazzi.Web.Controllers
             }
             if (sortBy == 0)
             {
-                contentList = contentList.OrderBy(x=> x.KitaprazziPoint).ToList();
+                contentList = contentList.OrderByDescending(x => x.KitaprazziPoint).ToList();
             }
             else
             {
-                contentList = contentList.OrderByDescending(x => x.KitaprazziPoint).ToList();
+                contentList = contentList.OrderBy(x => x.KitaprazziPoint).ToList();
             }
             
             ViewBag.ContentList = contentList;
