@@ -52,7 +52,7 @@ namespace Kitaprazzi.Web.Controllers
             }
             if (sortBy == 0)
             {
-                contentList = contentList.OrderByDescending(x => x.KitaprazziPoint).ToList();
+                contentList = contentList.OrderByDescending(x => Math.Round(((x.UserPoint + x.EditorPoint + x.KitaprazziPoint) / 3), 1)).ToList();
             }
             else
             {
